@@ -1,0 +1,19 @@
+<html t:type="layout" title="Rooms"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      xmlns:p="tapestry:parameter">
+<head></head><body>
+   <p>Choose a Room:</p>
+    <p></p>
+    <div t:type="loop" t:source="allRooms" t:value="room">
+        <t:ActionLink t:context="room.roomName"
+        t:id="roomDetailsLink">${room.roomName}</t:ActionLink>
+    </div>
+
+    <br/>
+    <t:PageLink t:page="StudioDetails">Back To The Studio Details</t:PageLink>
+</body>
+<p:sidebar><br/>
+        <center><h1>Welcome ${userWelcome}</h1></center>
+<br/><br/>
+    </p:sidebar>
+</html>

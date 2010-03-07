@@ -1,0 +1,33 @@
+<html t:type="layout" title="Registration"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      xmlns:p="tapestry:parameter">
+<head></head><body>
+    Registration:
+    <br/><br/>
+    <t:form t:id="registrationForm">
+        First Name:<br/>
+        <div><t:textfield t:value="firstName"/></div>
+
+        Last Name:<br/>
+        <div><t:textfield t:value="lastName"/></div>
+
+        Personal Number:<br/>
+        <div><t:textfield t:value="personalNumber"/></div>
+
+        User Name:<br/>
+        <div><t:textfield t:value="userName"/></div>
+
+        Password:<br/>
+        <div><t:passwordfield t:value="password"/></div>
+
+        Retype Password:<br/>
+        <div><t:passwordfield t:value="password2"/></div>
+
+        <br/>
+        <input type="submit" value="Submit"/>
+    </t:form>
+    <br/>
+    <div>${name}</div>
+    <t:pagelink page="Index">Back To The Hello Page</t:pagelink>
+</body>
+</html>

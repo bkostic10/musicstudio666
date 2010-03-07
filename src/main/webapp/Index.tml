@@ -1,0 +1,49 @@
+<html t:type="layout" title="Login Page"
+      t:sidebarTitle="Welcome"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      xmlns:p="tapestry:parameter">
+        <!-- Most of the page content, including <head>, <body>, etc. tags, comes from Layout.tml -->
+<head></head><body>
+    <t:form t:id="loginForm">
+    
+ <div>
+    <div>
+        <t:label t:for="userName">
+        User name</t:label>:
+    </div>
+    <div>
+        <input type="text" t:id="userName"
+        t:type="TextField" t:value="userName"/>
+    </div>
+</div>
+<div>
+    <div>
+        <t:label t:for="password">
+        Password</t:label>:
+    </div>
+    <div>
+        <input type="text" t:id="password"
+        t:type="PasswordField" t:value="password"/>
+    </div>
+</div>
+<br/>
+<div>
+    <div colspan="2" align="left">
+        <input type="submit" value="Log In"/>
+    </div>
+</div>
+</t:form>
+<p>
+<t:PageLink t:page="Registration">Register</t:PageLink>
+</p>
+</body>
+    <p:sidebar>
+
+        <h1>
+            
+        </h1>
+
+      
+    </p:sidebar>
+
+</html>

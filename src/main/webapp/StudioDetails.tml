@@ -1,0 +1,32 @@
+<html t:type="layout" title="Studio Details"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      xmlns:p="tapestry:parameter">
+<head></head><body>
+    <p></p>
+    <div>
+    <div>
+        <div>Studio Name: ${studio.studioName}</div>
+    </div>
+    <div>
+        <div>Studio Address: ${studio.studioAddress}</div>
+    </div>
+    <div>
+        <div>Jamming Rooms: ${studio.numberOfJRooms}</div>
+    </div>
+    <div>
+        <div>Recording Rooms: ${studio.numberOfRRooms}</div>
+        
+    </div>
+    </div>
+
+
+        <p><t:PageLink
+        t:page="Rooms">See the rooms:</t:PageLink></p>
+
+    <t:PageLink t:page="Studios">Back</t:PageLink>
+</body>
+<p:sidebar><br/>
+        <center><h1>Welcome ${userWelcome}</h1></center>
+<br/><br/>
+    </p:sidebar>
+</html>
