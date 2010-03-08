@@ -35,7 +35,9 @@ public class AuthenticationBean implements Authentication{
     public User authenticate(String userName,String password){
         for (int i = 0; i < getUsers().size(); i++) {
             if(getUsers().get(i).getUserName().equals(userName)&&getUsers().get(i).getPassword().equals(password)){
-                return new UserBean();
+                String firstName = getUsers().get(i).getFirstName();
+                String lastName = getUsers().get(i).getLastName();
+                return new UserBean(firstName,lastName);
             }
         }
 

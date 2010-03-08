@@ -18,8 +18,6 @@ import org.bane8006.MusicStudio.service.User;
  * @author Baxter
  */
 public class Studios {
-    @ApplicationState
-    private String userWelcome;
 
     @ApplicationState
     private User user;
@@ -39,13 +37,6 @@ public class Studios {
         if (!userExists) return Index.class;
         return null;
     }
-    void onActivate(String fullName){
-        System.out.println("Activated:"+fullName);
-        this.userWelcome = fullName;
-    }
-    String onPassivate(){
-        return userWelcome;
-    }
 
     @OnEvent(component="studioDetailsLink")
     Object onShowDetails(String name){
@@ -63,12 +54,13 @@ public class Studios {
         studioBean = s;
     }
 
-    public String getUserWelcome() {
-        return userWelcome;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserWelcome(String userWelcome) {
-        this.userWelcome = userWelcome;
-    }  
+    public void setUser(User user) {
+        this.user = user;
+    }
+    
     
 }

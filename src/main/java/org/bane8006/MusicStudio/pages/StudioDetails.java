@@ -18,8 +18,6 @@ import org.bane8006.MusicStudio.service.User;
  * @author Baxter
  */
 public class StudioDetails {
-    @ApplicationState
-    private String userWelcome;
 
     @Persist
     private Studio s;
@@ -46,11 +44,11 @@ public class StudioDetails {
         return s;
     }
 
-    public String getUserWelcome() {
-        return userWelcome;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserWelcome(String userWelcome) {
-        this.userWelcome = userWelcome;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

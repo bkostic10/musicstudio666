@@ -31,7 +31,6 @@ public class Index
         aUser = a.authenticate(userName,password);
         if(aUser!=null){
             user = aUser;
-            studios.setUserWelcome(userName);
             nextPage = Studios.class;
         }
         return nextPage;

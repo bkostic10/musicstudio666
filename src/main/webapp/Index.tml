@@ -1,5 +1,4 @@
 <html t:type="layout" title="Login Page"
-      t:sidebarTitle="Welcome"
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
       xmlns:p="tapestry:parameter">
         <!-- Most of the page content, including <head>, <body>, etc. tags, comes from Layout.tml -->
@@ -37,13 +36,4 @@
 <t:PageLink t:page="Registration">Register</t:PageLink>
 </p>
 </body>
-    <p:sidebar>
-
-        <h1>
-            
-        </h1>
-
-      
-    </p:sidebar>
-
 </html>

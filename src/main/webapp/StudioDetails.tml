@@ -26,7 +26,8 @@
     <t:PageLink t:page="Studios">Back</t:PageLink>
 </body>
 <p:sidebar><br/>
-        <center><h1>Welcome ${userWelcome}</h1></center>
+        <h1>Welcome:</h1>
+        <center><user>${user.firstName} ${user.lastName}</user></center>
 <br/><br/>
     </p:sidebar>
 </html>

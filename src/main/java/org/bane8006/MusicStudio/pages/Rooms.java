@@ -17,8 +17,7 @@ import org.bane8006.MusicStudio.service.User;
  * @author Baxter
  */
 public class Rooms {
-    @ApplicationState
-    private String userWelcome;
+
 
     @ApplicationState
     private User user;
@@ -53,13 +52,12 @@ public class Rooms {
     public void setRoom(RoomBean r){
         roomBean = r;
     }
-    public String getUserWelcome() {
-        return userWelcome;
+
+    public User getUser() {
+        return user;
     }
 
-    public void setUserWelcome(String userWelcome) {
-        this.userWelcome = userWelcome;
+    public void setUser(User user) {
+        this.user = user;
     }
-
-
 }
