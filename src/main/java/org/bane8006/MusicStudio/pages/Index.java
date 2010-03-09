@@ -3,9 +3,9 @@ package org.bane8006.MusicStudio.pages;
 //import java.util.Date;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
-import org.bane8006.MusicStudio.service.Authentication;
 import org.bane8006.MusicStudio.service.User;
-import org.bane8006.MusicStudio.beans.AuthenticationBean;
+import org.bane8006.MusicStudio.data.IDataUser;
+import org.bane8006.MusicStudio.data.MockDataUser;
 
 
 /**
@@ -27,8 +27,8 @@ public class Index
     Object onSubmitFromLoginForm(){
         Class nextPage = null;
         User aUser = null;
-        Authentication a = new AuthenticationBean();
-        aUser = a.authenticate(userName,password);
+        IDataUser a = new MockDataUser();
+        aUser = a.authenticate(userName, password);
         if(aUser!=null){
             user = aUser;
             nextPage = Studios.class;

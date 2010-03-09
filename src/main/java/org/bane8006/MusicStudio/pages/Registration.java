@@ -5,7 +5,12 @@
 
 package org.bane8006.MusicStudio.pages;
 
+import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
+import org.bane8006.MusicStudio.beans.UserBean;
+import org.bane8006.MusicStudio.data.IDataUser;
+import org.bane8006.MusicStudio.data.MockDataUser;
+import org.bane8006.MusicStudio.service.User;
 
 
 /**
@@ -21,7 +26,9 @@ public class Registration {
     private String password2;
 
     private String name;
-
+    @ApplicationState
+    private User user;
+    
     @InjectPage
     private Registration registration;
 
@@ -100,6 +107,14 @@ public class Registration {
 
     Object onSubmitFromRegistrationForm(){
         System.out.println("Handling form submission!");
+        IDataUser a = new MockDataUser();
+        user = new UserBean();
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setPersonalNumber(personalNumber);
+        user.setUserName(userName);
+        user.setPassword(password);
+        a.addUserBean((UserBean) user);
         registration.setName(getFullName());
         return registration;
     }

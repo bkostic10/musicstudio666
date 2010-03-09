@@ -8,6 +8,7 @@ package org.bane8006.MusicStudio.data;
 import java.util.ArrayList;
 import java.util.List;
 import org.bane8006.MusicStudio.beans.UserBean;
+import org.bane8006.MusicStudio.service.User;
 
 /**
  *
@@ -15,13 +16,17 @@ import org.bane8006.MusicStudio.beans.UserBean;
  */
 public class MockDataUser implements IDataUser{
 
-    private List<UserBean> users = new ArrayList<UserBean>();
+    private static List<UserBean> users = new ArrayList<UserBean>();
 
-    public MockDataUser() {
-        addUserBean(new UserBean("Pera", "Pampur", "0706987483921", "pera111", "pera111"));
+    public void oldUsers() {
+        User u1 = new UserBean();
+        u1.setFirstName("Pera");
+        u1.setLastName("Pampur");
+        u1.setPersonalNumber("0706987483921");
+        u1.setUserName("pera111");
+        u1.setPassword("pera111");
+        users.add((UserBean) u1);
     }
-
-
 
     public ArrayList<UserBean> getAllUsers() {
         return (ArrayList<UserBean>) users;
@@ -34,9 +39,19 @@ public class MockDataUser implements IDataUser{
         }
         return null;
     }
-
-    public void addUserBean(UserBean ub) {
+    public void addUserBean(UserBean ub){
         users.add(ub);
     }
 
+    public User authenticate(String userName,String password){
+        oldUsers();
+        for (int i = 0; i < getAllUsers().size(); i++) {
+            if(getAllUsers().get(i).getUserName().equals(userName)&&getAllUsers().get(i).getPassword().equals(password)){
+                String firstName = getAllUsers().get(i).getFirstName();
+                String lastName = getAllUsers().get(i).getLastName();
+                return new UserBean(firstName,lastName);
+            }
+        }
+        return null;
+    }
 }
