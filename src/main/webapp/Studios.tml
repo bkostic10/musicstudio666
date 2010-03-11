@@ -13,8 +13,6 @@
     
     </div>
     
-    <br/>
-    <t:PageLink t:page="Index">Back To The Start Page</t:PageLink>
 </body>
 <p:sidebar><br/>
         <h1>Welcome:</h1>

@@ -40,6 +40,9 @@ public class UserBean implements User{
     }
 
     public void setFirstName(String firstName) {
+        assert firstName!=null;
+        assert !firstName.equals(" ");
+        assert !firstName.equals("");
         this.firstName = firstName;
     }
 
@@ -48,6 +51,9 @@ public class UserBean implements User{
     }
 
     public void setLastName(String lastName) {
+        assert lastName!=null;
+        assert !lastName.equals(" ");
+        assert !lastName.equals("");
         this.lastName = lastName;
     }
 
@@ -56,6 +62,9 @@ public class UserBean implements User{
     }
 
     public void setPersonalNumber(String personalNumber) {
+        assert personalNumber!=null;
+        assert !personalNumber.equals(" ");
+        assert !personalNumber.equals("");
         this.personalNumber = personalNumber;
     }
 
@@ -64,6 +73,9 @@ public class UserBean implements User{
     }
 
     public void setPassword(String password) {
+        assert password!=null;
+        assert !password.equals(" ");
+        assert !password.equals("");
         this.password = password;
     }
 
@@ -72,7 +84,14 @@ public class UserBean implements User{
     }
 
     public void setUserName(String userName) {
+        assert userName!=null;
+        assert !userName.equals(" ");
+        assert !userName.equals("");
         this.userName = userName;
     }
-
+    public boolean equals(Object o){
+        UserBean u = (UserBean)(o);
+        if(userName.equals(u.getUserName()))return true;
+        else return false;
+    }
 }

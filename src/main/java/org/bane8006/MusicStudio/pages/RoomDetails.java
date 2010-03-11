@@ -40,8 +40,4 @@ public class RoomDetails {
     public User getUser() {
         return user;
     }
-
-    public void setUserWelcome(User user) {
-        this.user = user;
-    }
 }

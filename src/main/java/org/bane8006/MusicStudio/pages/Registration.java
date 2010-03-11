@@ -99,7 +99,7 @@ public class Registration {
 
     void onActivate(String fullName){
         System.out.println("Activated:"+fullName);
-        this.name = fullName+" is successfuly registered!";
+        this.name = fullName;
     }
     String onPassivate(){
         return name;
@@ -114,8 +114,14 @@ public class Registration {
         user.setPersonalNumber(personalNumber);
         user.setUserName(userName);
         user.setPassword(password);
-        a.addUserBean((UserBean) user);
-        registration.setName(getFullName());
+        
+        if(!a.getAllUsers().contains((UserBean)user)){
+            a.addUserBean((UserBean) user);
+            registration.setName(getFullName()+" is successfuly registered!");
+        }
+        else{
+            registration.setName("Username invalid!!!");
+        }
         return registration;
     }
 }

@@ -24,8 +24,8 @@ public class MockDataUser implements IDataUser{
         u1.setLastName("Pampur");
         u1.setPersonalNumber("0706987483921");
         u1.setUserName("pera111");
-        u1.setPassword("pera111");
-        users.add((UserBean) u1);
+        u1.setPassword("pera111");    
+        addUserBean((UserBean) u1);
     }
 
     public ArrayList<UserBean> getAllUsers() {
@@ -40,7 +40,10 @@ public class MockDataUser implements IDataUser{
         return null;
     }
     public void addUserBean(UserBean ub){
-        users.add(ub);
+        if(!users.contains(ub)){
+            users.add(ub);
+        }
+        else System.out.println("User exists!");
     }
 
     public User authenticate(String userName,String password){

@@ -13,10 +13,6 @@ import org.bane8006.MusicStudio.data.MockDataUser;
  */
 public class Index
 {
-//    public Date getCurrentTime()
-//    {
-//        return new Date();
-//    }
     private String userName;
     private String password;
     @InjectPage

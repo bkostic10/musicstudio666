@@ -12,19 +12,9 @@ public class LogOut
     public void setUser(User user) {
         this.user = user;
     }
-
-    @ApplicationState
-    private String userWelcome;
-
-    public void setUserWelcome(String userWelcome) {
-        this.userWelcome = userWelcome;
-    }
-
-
     Object onActivate()
     {
         setUser(null);
-        setUserWelcome(null);
         if (!userExists) return Index.class;
         return null;
     }
