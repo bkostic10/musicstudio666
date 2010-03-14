@@ -9,7 +9,10 @@ package org.bane8006.MusicStudio.pages;
 
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
+import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
+import org.bane8006.MusicStudio.data.IDataRooms;
+import org.bane8006.MusicStudio.data.MockDataRooms;
 import org.bane8006.MusicStudio.service.Studio;
 import org.bane8006.MusicStudio.service.User;
 
@@ -34,7 +37,17 @@ public class StudioDetails {
         if (!userExists) return Index.class;
         return null;
     }
-
+    @OnEvent(component="roomsLink")
+    Object onShowRooms(){
+        IDataRooms ar = new MockDataRooms();
+        ar.getCertainRooms().clear();
+        for (int i = 0; i < ar.getAllRooms().size(); i++) {
+            if(s.getStudioID().equals(ar.getAllRooms().get(i).getStudioID())){
+                ar.addCertainRoomBean(ar.getAllRooms().get(i));
+            }
+        }
+        return r;
+    }
     public void setStudio(Studio s)
     {
         this.s = s;
@@ -50,5 +63,5 @@ public class StudioDetails {
 
     public void setUser(User user) {
         this.user = user;
-    }
+    }   
 }

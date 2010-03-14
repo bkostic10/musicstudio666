@@ -16,6 +16,8 @@ import org.bane8006.MusicStudio.beans.RoomBean;
 public interface IDataRooms {
 
     public ArrayList<RoomBean> getAllRooms();
-    public RoomBean getRoomByName(String name);
+    public ArrayList<RoomBean> getCertainRooms();
+    public void addCertainRoomBean(RoomBean rb);
+    public RoomBean getRoomById(String id);
     public void addRoomBean(RoomBean rb);
 }

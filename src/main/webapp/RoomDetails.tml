@@ -8,8 +8,7 @@
     <div>
         Room Name: ${room.roomName}
     </div>
-    <p><t:PageLink t:page="Rooms">See the rooms:</t:PageLink></p>
-    <t:PageLink t:page="StudioDetails">Back</t:PageLink>
+    <p><t:PageLink t:page="Rooms">Back:</t:PageLink></p>
 </body>
 <p:sidebar><br/>
         <h1>Welcome:</h1>

@@ -7,7 +7,6 @@ package org.bane8006.MusicStudio.beans;
 
 
 import org.bane8006.MusicStudio.service.Room;
-import org.bane8006.MusicStudio.service.Studio;
 
 /**
  *
@@ -16,34 +15,27 @@ import org.bane8006.MusicStudio.service.Studio;
 public class RoomBean implements Room{
     private String roomID;
     private String roomName;
-    private Studio s;
+    private String studioID;
 
-    private boolean roomReserved;
+    public RoomBean() {
+    }
 
-   
-
-
-    public RoomBean(String roomID, String roomName, boolean roomReserved) {
+    
+    public RoomBean(String roomID, String roomName,String studioID) {
 
         this.roomID = roomID;
         this.roomName = roomName;
-        this.roomReserved = roomReserved;
+        this.studioID = studioID;
     }
-
-    public Studio getS() {
-        return s;
-    }
-
-    public void setS(Studio s) {
-        this.s = s;
-    }
-    
 
     public String getRoomID() {
         return roomID;
     }
 
     public void setRoomID(String roomID) {
+        assert roomID!=null;
+        assert !roomID.equals(" ");
+        assert !roomID.equals("");
         this.roomID = roomID;
     }
 
@@ -52,15 +44,26 @@ public class RoomBean implements Room{
     }
 
     public void setRoomName(String roomName) {
+        assert roomName!=null;
+        assert !roomName.equals(" ");
+        assert !roomName.equals("");
         this.roomName = roomName;
     }
 
-    public boolean isRoomReserved() {
-        return roomReserved;
+    public String getStudioID() {
+        return studioID;
     }
 
-    public void setRoomReserved(boolean roomReserved) {
-        this.roomReserved = roomReserved;
+    public void setStudioID(String studioID) {
+        assert studioID!=null;
+        assert !studioID.equals(" ");
+        assert !studioID.equals("");
+        this.studioID = studioID;
     }
+        public boolean equals(Object o){
+            RoomBean r = (RoomBean)(o);
+            if(roomID.equals(r.getRoomID())&&studioID.equals(r.getStudioID())){return true;}
+                else return false;
+        }
 
 }

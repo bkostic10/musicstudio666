@@ -31,4 +31,6 @@ public interface User {
 
     public void setUserName(String userName);
 
+    public boolean equals(Object o);
+
 }

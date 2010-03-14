@@ -3,16 +3,16 @@
       xmlns:p="tapestry:parameter">
 <head></head><body>
     <p>Choose a Studio:</p>
-    
-    
-        
+
+
+
     <div t:type="loop" t:source="allStudios" t:value="studio">
     
         <t:ActionLink t:context="studio.studioName"
         t:id="studioDetailsLink">${studio.studioName}</t:ActionLink>
-    
+
     </div>
-    
+
 </body>
 <p:sidebar><br/>
         <h1>Welcome:</h1>

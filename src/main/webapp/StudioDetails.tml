@@ -4,9 +4,7 @@
 <head></head><body>
     <p></p>
     <div>
-    <div>
-        <div>Studio Name: ${studio.studioName}</div>
-    </div>
+        <div>Studio Name:${studio.studioName}</div>
     <div>
         <div>Studio Address: ${studio.studioAddress}</div>
     </div>
@@ -20,8 +18,8 @@
     </div>
 
 
-        <p><t:PageLink
-        t:page="Rooms">See the rooms:</t:PageLink></p>
+        <p><t:ActionLink
+        t:id="roomsLink">See the rooms:</t:ActionLink></p>
 
     <t:PageLink t:page="Studios">Back</t:PageLink>
 </body>

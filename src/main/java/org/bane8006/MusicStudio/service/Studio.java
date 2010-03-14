@@ -33,6 +33,7 @@ public interface Studio {
 
     public int getNumberOfRooms();
 
+    public boolean equals(Object o);
    
 
 }

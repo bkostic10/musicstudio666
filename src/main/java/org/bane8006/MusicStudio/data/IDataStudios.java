@@ -6,7 +6,6 @@
 package org.bane8006.MusicStudio.data;
 
 import java.util.ArrayList;
-import org.bane8006.MusicStudio.beans.RoomBean;
 import org.bane8006.MusicStudio.beans.StudioBean;
 
 /**

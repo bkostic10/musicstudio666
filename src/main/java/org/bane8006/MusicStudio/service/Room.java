@@ -19,7 +19,9 @@ public interface Room {
 
     public void setRoomName(String roomName);
 
-    public boolean isRoomReserved();
+    public String getStudioID();
 
-    public void setRoomReserved(boolean roomReserved);
+    public void setStudioID(String studioID);
+
+        public boolean equals(Object o);
 }

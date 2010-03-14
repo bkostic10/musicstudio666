@@ -1,0 +1,24 @@
+<html t:type="layout" title="Registration"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      xmlns:p="tapestry:parameter">
+<head></head><body>
+    Registration:
+    <br/><br/>
+    <t:form t:id="addStudioForm">
+        Room ID:<br/>
+        <div><t:textfield t:value="roomID"/></div>
+
+        Room Name:<br/>
+        <div><t:textfield t:value="roomName"/></div>
+
+        Studio ID:<br/>
+        <div><t:textfield t:value="studioID"/></div>
+
+        <br/>
+        <input type="submit" value="Submit"/>
+    </t:form>
+    <br/>
+    <div>${name}</div>
+    <t:pagelink page="Studios">Back</t:pagelink>
+</body>
+</html>

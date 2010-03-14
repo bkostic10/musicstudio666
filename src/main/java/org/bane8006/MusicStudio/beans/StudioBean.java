@@ -24,13 +24,11 @@ public class StudioBean implements Studio{
 
     public StudioBean() {
     }
-
-    public StudioBean(String studioID, String studioName, String studioAddress, int numberOfJRooms, int numberOfRRooms) {
+    
+    public StudioBean(String studioID, String studioName, String studioAddress) {
         this.studioID = studioID;
         this.studioName = studioName;
         this.studioAddress = studioAddress;
-        this.numberOfJRooms = numberOfJRooms;
-        this.numberOfRRooms = numberOfRRooms;
     }
 
     public int getNumberOfJRooms() {
@@ -58,6 +56,9 @@ public class StudioBean implements Studio{
     }
 
     public void setStudioAddress(String studioAddress) {
+        assert studioAddress!=null;
+        assert !studioAddress.equals(" ");
+        assert !studioAddress.equals("");
         this.studioAddress = studioAddress;
     }
 
@@ -66,6 +67,9 @@ public class StudioBean implements Studio{
     }
 
     public void setStudioID(String studioID) {
+        assert studioID!=null;
+        assert !studioID.equals(" ");
+        assert !studioID.equals("");
         this.studioID = studioID;
     }
 
@@ -74,6 +78,15 @@ public class StudioBean implements Studio{
     }
 
     public void setStudioName(String studioName) {
+        assert studioName!=null;
+        assert !studioName.equals(" ");
+        assert !studioName.equals("");
         this.studioName = studioName;
+    }
+    @Override
+    public boolean equals(Object o){
+        StudioBean s = (StudioBean)(o);
+        if(studioID.equals(s.getStudioID())){return true;}
+        else return false;
     }
 }

@@ -37,14 +37,14 @@ public class Rooms {
         return null;
     }
     @OnEvent(component="roomDetailsLink")
-    Object onShowDetails(String name){
-        RoomBean roomBean = dataRooms.getRoomByName(name);
+    Object onShowDetails(String id){
+        RoomBean roomBean = dataRooms.getRoomById(id);
         rdPage.setRoom(roomBean);
         return rdPage;
     }
 
     public ArrayList<RoomBean> getAllRooms(){
-        return dataRooms.getAllRooms();
+        return dataRooms.getCertainRooms();
     }
     public RoomBean getRoom(){
         return roomBean;

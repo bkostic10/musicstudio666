@@ -5,7 +5,7 @@
    <p>Choose a Room:</p>
     <p></p>
     <div t:type="loop" t:source="allRooms" t:value="room">
-        <t:ActionLink t:context="room.roomName"
+        <t:ActionLink t:context="room.roomId"
         t:id="roomDetailsLink">${room.roomName}</t:ActionLink>
     </div>
 

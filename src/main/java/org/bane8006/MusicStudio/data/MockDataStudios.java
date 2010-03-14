@@ -15,12 +15,12 @@ import org.bane8006.MusicStudio.beans.StudioBean;
  */
 public class MockDataStudios implements IDataStudios{
 
-    private List<StudioBean>studios = new ArrayList<StudioBean>();
+    private static List<StudioBean>studios = new ArrayList<StudioBean>();
 
     public MockDataStudios() {
-        addStudioBean(new StudioBean("001","Prvi","AA 1",4,2));
-        addStudioBean(new StudioBean("001","Drugi","AA 2",3,1));
-        addStudioBean(new StudioBean("003","Treci","AA 3",3,0));
+        addStudioBean(new StudioBean("001","1st Studio","AA 1"));
+        addStudioBean(new StudioBean("002","2nd Studio","AA 2"));
+        addStudioBean(new StudioBean("003","3rd Studio","AA 3"));
     }
 
 
@@ -30,7 +30,7 @@ public class MockDataStudios implements IDataStudios{
     }
 
     public StudioBean getStudioByName(String name) {
-        for(StudioBean sb:studios){
+        for(StudioBean sb:getAllStudios()){
             if(sb.getStudioName().equals(name))
                 return sb;
         }
@@ -38,13 +38,9 @@ public class MockDataStudios implements IDataStudios{
     }
 
     public void addStudioBean(StudioBean sb) {
-        studios.add(sb);
+        if(!getAllStudios().contains(sb)){
+            studios.add(sb);
+        }
+        else System.out.println("Studio exists!");
     }
-
-
-
-
-
-    
-
 }
