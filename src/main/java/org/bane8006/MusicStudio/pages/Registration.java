@@ -7,6 +7,7 @@ package org.bane8006.MusicStudio.pages;
 
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
+import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.beans.UserBean;
 import org.bane8006.MusicStudio.data.IDataUser;
 import org.bane8006.MusicStudio.data.MockDataUser;
@@ -114,6 +115,7 @@ public class Registration {
         user.setPersonalNumber(personalNumber);
         user.setUserName(userName);
         user.setPassword(password);
+        user.setPrivilege(Privilege.User);
         
         if(!a.getAllUsers().contains((UserBean)user)){
             a.addUserBean((UserBean) user);

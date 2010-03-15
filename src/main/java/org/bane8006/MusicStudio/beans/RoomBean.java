@@ -74,6 +74,7 @@ public class RoomBean implements Room{
     }
 
     public void setRoomType(RoomType roomType) {
+        assert roomType!=null;
         this.roomType = roomType;
     }
 

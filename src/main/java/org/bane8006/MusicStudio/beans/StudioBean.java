@@ -36,6 +36,7 @@ public class StudioBean implements Studio{
     }
 
     public void setNumberOfJRooms(int numberOfJRooms) {
+        assert numberOfJRooms!=0;
         this.numberOfJRooms = numberOfJRooms;
     }
 

@@ -137,4 +137,26 @@ public class UserBeanTest {
         userUnderTest.setPassword(name);
     }
 
+    @Test
+    public void testPrivilege() {
+        assertNull(userUnderTest.getPrivilege());
+        Privilege p = Privilege.User;
+        userUnderTest.setPrivilege(p);
+        assertSame(p, userUnderTest.getPrivilege());
+    }
+
+    @Test
+    public void testPrivilege2() {
+        assertNull(userUnderTest.getPrivilege());
+        Privilege p = Privilege.Admin;
+        userUnderTest.setPrivilege(p);
+        assertSame(p, userUnderTest.getPrivilege());
+    }
+
+    @Test(expectedExceptions = AssertionError.class)
+    public void testPrivilegeInvalid() {
+        assertNull(userUnderTest.getPrivilege());
+        Privilege p = null;
+        userUnderTest.setPrivilege(p);
+    }
 }

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.OnEvent;
+import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.beans.RoomBean;
 import org.bane8006.MusicStudio.data.MockDataRooms;
 import org.bane8006.MusicStudio.service.User;
@@ -33,8 +34,10 @@ public class Rooms {
     
     Object onActivate()
     {
-        if (!userExists) return Index.class;
-        return null;
+        if (!userExists){
+            return Index.class;
+        }
+        else return null;
     }
     @OnEvent(component="roomDetailsLink")
     Object onShowDetails(String id){

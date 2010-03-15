@@ -7,6 +7,7 @@ package org.bane8006.MusicStudio.data;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.beans.UserBean;
 import org.bane8006.MusicStudio.service.User;
 
@@ -19,7 +20,7 @@ public class MockDataUser implements IDataUser{
     private static List<UserBean> users = new ArrayList<UserBean>();
 
     public MockDataUser() {
-        addUserBean(new UserBean("Pera", "Pampur", "0706987483921", "pera111", "pera111"));
+        addUserBean(new UserBean("Pera", "Pampur", "0706987483921", "pera111", "pera111",Privilege.Admin));
     }
 
     public ArrayList<UserBean> getAllUsers() {
@@ -45,7 +46,9 @@ public class MockDataUser implements IDataUser{
             if(getAllUsers().get(i).getUserName().equals(userName)&&getAllUsers().get(i).getPassword().equals(password)){
                 String firstName = getAllUsers().get(i).getFirstName();
                 String lastName = getAllUsers().get(i).getLastName();
-                return new UserBean(firstName,lastName);
+                String personalNumber = getAllUsers().get(i).getPersonalNumber();
+                Privilege p = getAllUsers().get(i).getPrivilege();
+                return new UserBean(firstName,lastName,personalNumber,userName,p);
             }
         }
         return null;

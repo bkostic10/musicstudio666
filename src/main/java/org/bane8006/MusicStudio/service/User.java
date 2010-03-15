@@ -5,6 +5,8 @@
 
 package org.bane8006.MusicStudio.service;
 
+import org.bane8006.MusicStudio.beans.Privilege;
+
 /**
  *
  * @author Baxter
@@ -30,6 +32,10 @@ public interface User {
     public String getUserName();
 
     public void setUserName(String userName);
+
+    public Privilege getPrivilege();
+
+    public void setPrivilege(Privilege privilege);
 
     public boolean equals(Object o);
 

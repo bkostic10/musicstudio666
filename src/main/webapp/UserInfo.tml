@@ -1,0 +1,17 @@
+<html t:type="layout" title="User Info"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      xmlns:p="tapestry:parameter">
+<head></head><body>
+    
+    <user><div>
+        <div>First Name: ${user.firstName}</div>
+    <div>
+        <div>Last Name: ${user.lastName}</div>
+    </div>
+    <div>
+        <div>User Name: ${user.username}</div>
+    </div>
+    </div></user><br/><br/>
+    <t:PageLink t:page="Studios">Back</t:PageLink>
+</body>
+</html>

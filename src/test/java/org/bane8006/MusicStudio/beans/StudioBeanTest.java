@@ -106,4 +106,18 @@ public class StudioBeanTest {
         String studioAddress = null;
         studioUnderTest.setStudioAddress(studioAddress);
     }
+    @Test(expectedExceptions = AssertionError.class)
+    public void testJRooms() {
+        assertNull(studioUnderTest.getNumberOfJRooms());
+        int jr = 0;
+        studioUnderTest.setNumberOfJRooms(jr);
+        assertSame(jr, studioUnderTest.getNumberOfJRooms());
+    }
+    @Test(expectedExceptions = AssertionError.class)
+    public void testRRooms() {
+        assertNull(studioUnderTest.getNumberOfRRooms());
+        int rr = 0;
+        studioUnderTest.setNumberOfRRooms(rr);
+        assertSame(rr, studioUnderTest.getNumberOfRRooms());
+    }
 }

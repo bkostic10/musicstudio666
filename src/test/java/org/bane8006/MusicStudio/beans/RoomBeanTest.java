@@ -109,9 +109,24 @@ public class RoomBeanTest {
 
     @Test
     public void testRoomType() {
-        assertNull(roomUnderTest.getRoomID());
+        assertNull(roomUnderTest.getRoomType());
         RoomType rt = RoomType.Jamming;
         roomUnderTest.setRoomType(rt);
         assertSame(rt, roomUnderTest.getRoomType());
+    }
+
+    @Test
+    public void testRoomType2() {
+        assertNull(roomUnderTest.getRoomType());
+        RoomType rt = RoomType.Recording;
+        roomUnderTest.setRoomType(rt);
+        assertSame(rt, roomUnderTest.getRoomType());
+    }
+
+    @Test(expectedExceptions = AssertionError.class)
+    public void testRoomTypeInvalid() {
+        assertNull(roomUnderTest.getRoomType());
+        RoomType rt = null;
+        roomUnderTest.setRoomType(rt);
     }
 }
