@@ -5,6 +5,8 @@
 
 package org.bane8006.MusicStudio.service;
 
+import org.bane8006.MusicStudio.beans.RoomType;
+
 /**
  *
  * @author Baxter
@@ -23,5 +25,9 @@ public interface Room {
 
     public void setStudioID(String studioID);
 
-        public boolean equals(Object o);
+    public RoomType getRoomType();
+
+    public void setRoomType(RoomType roomType);
+
+    public boolean equals(Object o);
 }

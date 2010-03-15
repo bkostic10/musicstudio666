@@ -8,6 +8,7 @@ package org.bane8006.MusicStudio.pages;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.bane8006.MusicStudio.beans.RoomBean;
+import org.bane8006.MusicStudio.beans.RoomType;
 import org.bane8006.MusicStudio.data.IDataRooms;
 import org.bane8006.MusicStudio.data.MockDataRooms;
 import org.bane8006.MusicStudio.service.Room;
@@ -21,7 +22,7 @@ public class AddRooms {
     private String roomID;
     private String roomName;
     private String studioID;
-    private boolean roomReserved;
+    private RoomType roomType = RoomType.Recording;
 
     private String name;
     @ApplicationState
@@ -57,14 +58,19 @@ public class AddRooms {
         this.studioID = studioID;
     }
 
-    public boolean isRoomReserved() {
-        return roomReserved;
+    public RoomType getRoomType() {
+        return roomType;
     }
 
-    public void setRoomReserved(boolean roomReserved) {
-        this.roomReserved = roomReserved;
+    public void setRoomType(RoomType roomType) {
+        this.roomType = roomType;
     }
-
+    public RoomType getRecording(){
+        return RoomType.Recording;
+    }
+        public RoomType getJamming(){
+        return RoomType.Jamming;
+    }
     public String getName() {
         return name;
     }
@@ -90,6 +96,7 @@ public class AddRooms {
         room.setRoomID(roomID);
         room.setRoomName(roomName);
         room.setStudioID(studioID);
+        room.setRoomType(roomType);
 
         if(!a.getAllRooms().contains((RoomBean)room)){
             a.addRoomBean((RoomBean) room);

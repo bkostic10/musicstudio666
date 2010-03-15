@@ -39,13 +39,13 @@ public class StudioDetails {
     }
     @OnEvent(component="roomsLink")
     Object onShowRooms(){
-        IDataRooms ar = new MockDataRooms();
-        ar.getCertainRooms().clear();
-        for (int i = 0; i < ar.getAllRooms().size(); i++) {
-            if(s.getStudioID().equals(ar.getAllRooms().get(i).getStudioID())){
-                ar.addCertainRoomBean(ar.getAllRooms().get(i));
-            }
-        }
+//        IDataRooms ar = new MockDataRooms();
+//        ar.getCertainRooms().clear();
+//        for (int i = 0; i < ar.getAllRooms().size(); i++) {
+//            if(s.getStudioID().equals(ar.getAllRooms().get(i).getStudioID())){
+//                ar.addCertainRoomBean(ar.getAllRooms().get(i));
+//            }
+//        }
         return r;
     }
     public void setStudio(Studio s)

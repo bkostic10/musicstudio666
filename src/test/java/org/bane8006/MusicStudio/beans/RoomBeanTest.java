@@ -106,4 +106,12 @@ public class RoomBeanTest {
         String studioID = null;
         roomUnderTest.setStudioID(studioID);
     }
+
+    @Test
+    public void testRoomType() {
+        assertNull(roomUnderTest.getRoomID());
+        RoomType rt = RoomType.Jamming;
+        roomUnderTest.setRoomType(rt);
+        assertSame(rt, roomUnderTest.getRoomType());
+    }
 }

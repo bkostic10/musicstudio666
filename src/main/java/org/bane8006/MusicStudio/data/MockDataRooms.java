@@ -8,6 +8,7 @@ package org.bane8006.MusicStudio.data;
 import java.util.ArrayList;
 import java.util.List;
 import org.bane8006.MusicStudio.beans.RoomBean;
+import org.bane8006.MusicStudio.beans.RoomType;
 
 
 /**
@@ -21,10 +22,10 @@ public class MockDataRooms implements IDataRooms{
 
     public MockDataRooms() {
 
-        addRoomBean(new RoomBean("001001","1S:1st Room","001"));
-        addRoomBean(new RoomBean("002001","2S:1st Room","002"));
-        addRoomBean(new RoomBean("002002","2S:2nd Room","002"));
-        addRoomBean(new RoomBean("003001","3S:1st Room","003"));
+        addRoomBean(new RoomBean("001001","1S:1st Room","001",RoomType.Jamming));
+        addRoomBean(new RoomBean("002001","2S:1st Room","002",RoomType.Recording));
+        addRoomBean(new RoomBean("002002","2S:2nd Room","002",RoomType.Jamming));
+        addRoomBean(new RoomBean("003001","3S:1st Room","003",RoomType.Jamming));
     }
 
     public int getNumberOfRooms(){

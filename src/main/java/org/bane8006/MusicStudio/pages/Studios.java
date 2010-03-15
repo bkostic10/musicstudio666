@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.OnEvent;
+import org.bane8006.MusicStudio.beans.RoomType;
 import org.bane8006.MusicStudio.beans.StudioBean;
 import org.bane8006.MusicStudio.data.IDataRooms;
 import org.bane8006.MusicStudio.data.MockDataRooms;
@@ -46,13 +47,17 @@ public class Studios {
         IDataRooms ar = new MockDataRooms();
         ar.getCertainRooms().clear();
         int a = 0;
+        int b = 0;
         for (int i = 0; i < ar.getAllRooms().size(); i++) {
             if(studioBean.getStudioID().equals(ar.getAllRooms().get(i).getStudioID())){
                 ar.addCertainRoomBean(ar.getAllRooms().get(i));
+                if(ar.getAllRooms().get(i).getRoomType().equals(RoomType.Jamming))
                 a++;
+                else b++;
             }
         }
         studioBean.setNumberOfJRooms(a);
+        studioBean.setNumberOfRRooms(b);
         sdPage.setStudio(studioBean);
         return sdPage;
     }

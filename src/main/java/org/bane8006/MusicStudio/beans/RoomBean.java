@@ -16,8 +16,16 @@ public class RoomBean implements Room{
     private String roomID;
     private String roomName;
     private String studioID;
+    private RoomType roomType;
 
     public RoomBean() {
+    }
+
+    public RoomBean(String roomID, String roomName, String studioID, RoomType roomType) {
+        this.roomID = roomID;
+        this.roomName = roomName;
+        this.studioID = studioID;
+        this.roomType = roomType;
     }
 
     
@@ -60,10 +68,19 @@ public class RoomBean implements Room{
         assert !studioID.equals("");
         this.studioID = studioID;
     }
-        public boolean equals(Object o){
-            RoomBean r = (RoomBean)(o);
-            if(roomID.equals(r.getRoomID())&&studioID.equals(r.getStudioID())){return true;}
-                else return false;
-        }
+
+    public RoomType getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(RoomType roomType) {
+        this.roomType = roomType;
+    }
+
+    public boolean equals(Object o){
+        RoomBean r = (RoomBean)(o);
+        if(roomID.equals(r.getRoomID())&&studioID.equals(r.getStudioID())){return true;}
+            else return false;
+    }
 
 }

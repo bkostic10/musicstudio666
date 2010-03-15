@@ -13,7 +13,14 @@
 
         Studio ID:<br/>
         <div><t:textfield t:value="studioID"/></div>
-
+        
+        Room type:<br/>
+        <div>
+            <t:radiogroup t:value="roomType">
+                <input type="radio" t:type="radio" t:value="jamming"/> Jamming
+                <input type="radio" t:type="radio" t:value="recording"/> Recording
+            </t:radiogroup>
+        </div>
         <br/>
         <input type="submit" value="Submit"/>
     </t:form>
