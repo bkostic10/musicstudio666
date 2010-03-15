@@ -129,4 +129,31 @@ public class RoomBeanTest {
         RoomType rt = null;
         roomUnderTest.setRoomType(rt);
     }
+
+    @Test
+    public void testDescription() {
+        assertNull(roomUnderTest.getDescription());
+        String d = "Gear";
+        roomUnderTest.setDescription(d);
+        assertSame(d, roomUnderTest.getDescription());
+    }
+
+    @Test(expectedExceptions = AssertionError.class)
+    public void testDescInvalid() {
+        assertNull(roomUnderTest.getDescription());
+        String d = null;
+        roomUnderTest.setDescription(d);
+    }
+    @Test(expectedExceptions = AssertionError.class)
+    public void testDescInvalid2() {
+        assertNull(roomUnderTest.getDescription());
+        String d = "";
+        roomUnderTest.setDescription(d);
+    }
+    @Test(expectedExceptions = AssertionError.class)
+    public void testDescInvalid3() {
+        assertNull(roomUnderTest.getDescription());
+        String d = " ";
+        roomUnderTest.setDescription(d);
+    }
 }

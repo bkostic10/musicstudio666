@@ -24,6 +24,7 @@ public class AddRooms {
     private String roomName;
     private String studioID;
     private RoomType roomType = RoomType.Recording;
+    private String description = "Studio has:\nGuitar Head:\nGuitar Speaker:\nBass head:\nBass Speaker:\nMixer:\nVoice Speaker:\nDrums:";
 
     private String name;
     @ApplicationState
@@ -81,6 +82,15 @@ public class AddRooms {
         public RoomType getJamming(){
         return RoomType.Jamming;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+   
     public String getName() {
         return name;
     }
@@ -107,6 +117,7 @@ public class AddRooms {
         room.setRoomName(roomName);
         room.setStudioID(studioID);
         room.setRoomType(roomType);
+        room.setDescription(description);
 
         if(!a.getAllRooms().contains((RoomBean)room)){
             a.addRoomBean((RoomBean) room);

@@ -12,7 +12,7 @@
         <div><t:textfield t:value="roomName"/></div>
 
         Studio ID:<br/>
-        <div><t:textfield t:value="studioID"/></div>
+        <div><t:textfield t:value="studioID"/></div><br/>
         
         Room type:<br/>
         <div>
@@ -20,7 +20,9 @@
                 <input type="radio" t:type="radio" t:value="jamming"/> Jamming
                 <input type="radio" t:type="radio" t:value="recording"/> Recording
             </t:radiogroup>
-        </div>
+        </div><br/>
+        Description:<br/>
+        <div><t:textarea t:value="description" cols="50" rows="10"/></div>
         <br/>
         <input type="submit" value="Submit"/>
     </t:form>

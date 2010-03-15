@@ -7,10 +7,18 @@
 
     <div>
         Room Name: ${room.roomName}
-    </div>
+    </div><br/>
     <div>
         Room Type: ${room.roomType}
+    </div><br/>
+    <div>
+        Description:<br/>
+        <t:form>
+
+            <t:textarea t:readonly="readonly" t:value="room.description" cols="50" rows="10"/>
+        </t:form><br/>
     </div>
+    
     <p><t:PageLink t:page="Rooms">Back:</t:PageLink></p>
 </body>
 <p:sidebar><br/>

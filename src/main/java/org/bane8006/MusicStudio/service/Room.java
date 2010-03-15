@@ -29,5 +29,9 @@ public interface Room {
 
     public void setRoomType(RoomType roomType);
 
+    public String getDescription();
+
+    public void setDescription(String description);
+
     public boolean equals(Object o);
 }

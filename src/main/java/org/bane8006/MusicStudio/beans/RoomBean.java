@@ -17,24 +17,28 @@ public class RoomBean implements Room{
     private String roomName;
     private String studioID;
     private RoomType roomType;
+    private String description;
 
     public RoomBean() {
     }
 
-    public RoomBean(String roomID, String roomName, String studioID, RoomType roomType) {
+    public RoomBean(String roomID, String roomName, String studioID, RoomType roomType, String description) {
         this.roomID = roomID;
         this.roomName = roomName;
         this.studioID = studioID;
         this.roomType = roomType;
+        this.description = description;
     }
+
+
 
     
-    public RoomBean(String roomID, String roomName,String studioID) {
-
-        this.roomID = roomID;
-        this.roomName = roomName;
-        this.studioID = studioID;
-    }
+//    public RoomBean(String roomID, String roomName,String studioID) {
+//
+//        this.roomID = roomID;
+//        this.roomName = roomName;
+//        this.studioID = studioID;
+//    }
 
     public String getRoomID() {
         return roomID;
@@ -77,6 +81,18 @@ public class RoomBean implements Room{
         assert roomType!=null;
         this.roomType = roomType;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        assert description!=null;
+        assert !description.equals("");
+        assert !description.equals(" ");
+        this.description = description;
+    }
+
 
     public boolean equals(Object o){
         RoomBean r = (RoomBean)(o);
