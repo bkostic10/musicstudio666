@@ -1,0 +1,37 @@
+<html t:type="layout" title="Edit Info"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      xmlns:p="tapestry:parameter">
+<head></head><body>
+    Edit Info:
+    <br/><br/>
+    <t:form t:id="editUserForm">
+        First Name:<br/>
+        <div><t:textfield t:value="firstName"/></div>
+
+        Last Name:<br/>
+        <div><t:textfield t:value="lastName"/></div>
+
+        Personal Number:<br/>
+        <div><t:textfield t:value="personalNumber"/></div>
+
+        User Name:<br/>
+        <div><t:textfield t:value="userName"/></div>
+
+        Old Password:<br/>
+        <div><t:passwordfield t:value="oldPassword"/></div>
+
+        New Password:<br/>
+        <div><t:passwordfield t:value="password"/></div>
+
+        Retype Password:<br/>
+        <div><t:passwordfield t:value="password2"/></div>
+
+        <br/>
+        <input type="submit" value="Submit"/>
+    </t:form>
+    <br/>
+    <div>${name}</div>
+
+<t:PageLink t:page="UserInfo">Back</t:PageLink>
+</body>
+</html>

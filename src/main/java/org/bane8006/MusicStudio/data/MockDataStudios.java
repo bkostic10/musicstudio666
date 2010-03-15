@@ -18,9 +18,7 @@ public class MockDataStudios implements IDataStudios{
     private static List<StudioBean>studios = new ArrayList<StudioBean>();
 
     public MockDataStudios() {
-        addStudioBean(new StudioBean("001","1st Studio","AA 1"));
-        addStudioBean(new StudioBean("002","2nd Studio","AA 2"));
-        addStudioBean(new StudioBean("003","3rd Studio","AA 3"));
+        addStudioBean(new StudioBean("001","1st Studio","Michael Jordan Street 23,11000 Belgrade"));
     }
 
 

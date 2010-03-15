@@ -7,6 +7,7 @@ package org.bane8006.MusicStudio.pages;
 
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
+import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.beans.RoomBean;
 import org.bane8006.MusicStudio.beans.RoomType;
 import org.bane8006.MusicStudio.data.IDataRooms;
@@ -33,7 +34,16 @@ public class AddRooms {
 
     @InjectPage
     private AddRooms page;
-
+    Object onActivate()
+    {
+        if (!userExists) {
+            return Index.class;
+        }
+        else if(user.getPrivilege().equals(Privilege.User)){
+            return Studios.class;
+        }
+        else return null;
+    }
     public String getRoomID() {
         return roomID;
     }
@@ -89,7 +99,7 @@ public class AddRooms {
         return name;
     }
 
-    Object onSubmitFromAddStudioForm(){
+    Object onSubmitFromAddRoomForm(){
         System.out.println("Handling form submission!");
         IDataRooms a = new MockDataRooms();
         room = new RoomBean();

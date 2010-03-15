@@ -22,10 +22,9 @@ public class MockDataRooms implements IDataRooms{
 
     public MockDataRooms() {
 
-        addRoomBean(new RoomBean("001001","1S:1st Room","001",RoomType.Jamming));
-        addRoomBean(new RoomBean("002001","2S:1st Room","002",RoomType.Recording));
-        addRoomBean(new RoomBean("002002","2S:2nd Room","002",RoomType.Jamming));
-        addRoomBean(new RoomBean("003001","3S:1st Room","003",RoomType.Jamming));
+        addRoomBean(new RoomBean("001001","1S - 1st Room","001",RoomType.Recording));
+        addRoomBean(new RoomBean("001002","1S - 2nd Room","001",RoomType.Jamming));
+        addRoomBean(new RoomBean("001003","1S - 3rd Room","001",RoomType.Jamming));
     }
 
     public int getNumberOfRooms(){

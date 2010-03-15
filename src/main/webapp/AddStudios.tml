@@ -1,8 +1,8 @@
-<html t:type="layout" title="Registration"
+<html t:type="layout" title="Add Studio"
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
       xmlns:p="tapestry:parameter">
 <head></head><body>
-    Registration:
+    Add Studio:
     <br/><br/>
     <t:form t:id="addStudioForm">
         Studio ID:<br/>
@@ -18,7 +18,8 @@
         <input type="submit" value="Submit"/>
     </t:form>
     <br/>
-    <div>${name}</div>
+    <div>${name}</div><br/>
+    <t:pagelink page="AddRooms">Add Room</t:pagelink><br/><br/>
     <t:pagelink page="Studios">Back</t:pagelink>
 </body>
 </html>

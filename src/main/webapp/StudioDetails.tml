@@ -20,7 +20,10 @@
 
         <p><t:ActionLink
         t:id="roomsLink">See the rooms:</t:ActionLink></p>
-
+    
+    <div><t:if t:test="admin">
+        <t:PageLink t:page="AddRooms">Add Room</t:PageLink>
+    </t:if></div><br/><br/>
     <t:PageLink t:page="Studios">Back</t:PageLink>
 </body>
 <p:sidebar><br/>

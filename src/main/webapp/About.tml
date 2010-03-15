@@ -2,6 +2,8 @@
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
       xmlns:p="tapestry:parameter">
 <head></head><body>
-    <user><p>About MusicStudio application ...</p></user>
+    <user><p>About<br/>MusicStudio application ...</p></user>
+    <br/><br/>
+    <t:pagelink page="Studios">Back</t:pagelink>
 </body>
 </html>

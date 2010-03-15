@@ -5,6 +5,7 @@
 
 package org.bane8006.MusicStudio.pages;
 
+import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.beans.UserBean;
@@ -12,25 +13,26 @@ import org.bane8006.MusicStudio.data.IDataUser;
 import org.bane8006.MusicStudio.data.MockDataUser;
 import org.bane8006.MusicStudio.service.User;
 
-
 /**
  *
  * @author Baxter
  */
-public class Registration {
+public class EditUser {
     private String firstName;
     private String lastName;
     private String personalNumber;
     private String userName;
+    private String oldPassword;
     private String password;
     private String password2;
 
     private String name;
-    
+    @ApplicationState
+    private User user2;
+    private boolean userExists;
     private User user;
-    
     @InjectPage
-    private Registration registration;
+    private EditUser edit;
 
     public String getFirstName() {
         return firstName;
@@ -65,6 +67,15 @@ public class Registration {
 
     public void setPassword2(String password2) {
         this.password2 = password2;
+    }
+
+    public String getOldPassword() {
+        return oldPassword;
+    }
+
+    public void setOldPassword(String oldPassword) {
+        System.out.println("Setting password: " + password);
+        this.oldPassword = oldPassword;
     }
 
     public String getPersonalNumber() {
@@ -105,7 +116,16 @@ public class Registration {
         return name;
     }
 
-    Object onSubmitFromRegistrationForm(){
+    public User getUser2() {
+        return user2;
+    }
+
+    public void setUser2(User user2) {
+        this.user2 = user2;
+    }
+
+
+    Object onSubmitFromEditUserForm(){
         System.out.println("Handling form submission!");
         IDataUser a = new MockDataUser();
         user = new UserBean();
@@ -114,15 +134,14 @@ public class Registration {
         user.setPersonalNumber(personalNumber);
         user.setUserName(userName);
         user.setPassword(password);
-        user.setPrivilege(Privilege.User);
-        
-        if(!a.getAllUsers().contains((UserBean)user)&&getPassword()!=null&&getPassword().equals(getPassword2())){
-            a.addUserBean((UserBean) user);
-            registration.setName(getFullName()+" is successfuly registered!");
+        if(getOldPassword().equals(user2.getPassword())&&getPassword()!=null&&getPassword().equals(getPassword2())){
+            a.replace((UserBean) user2,(UserBean) user);
+            edit.setName("Info is changed");
+            setUser2(null);
         }
         else{
-            registration.setName("Data invalid!!!");
+            edit.setName("Data invalid!!!");
         }
-        return registration;
+        return edit;
     }
 }

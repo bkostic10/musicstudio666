@@ -7,6 +7,7 @@ package org.bane8006.MusicStudio.pages;
 
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
+import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.beans.StudioBean;
 import org.bane8006.MusicStudio.data.IDataStudios;
 import org.bane8006.MusicStudio.data.MockDataStudios;
@@ -31,7 +32,16 @@ public class AddStudios {
 
     @InjectPage
     private AddStudios page;
-
+    Object onActivate()
+    {
+        if (!userExists) {
+            return Index.class;
+        }
+        else if(user.getPrivilege().equals(Privilege.User)){
+            return Studios.class;
+        }
+        else return null;
+    }
     public String getStudioAddress() {
         return studioAddress;
     }

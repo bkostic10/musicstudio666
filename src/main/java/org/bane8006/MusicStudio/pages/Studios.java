@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.OnEvent;
+import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.beans.RoomType;
 import org.bane8006.MusicStudio.beans.StudioBean;
 import org.bane8006.MusicStudio.data.IDataRooms;
@@ -78,6 +79,10 @@ public class Studios {
     public void setUser(User user) {
         this.user = user;
     }
-    
+    public boolean getAdmin(){
+        if(user.getPrivilege().equals(Privilege.Admin))
+            return true;
+        else return false;
+    }
     
 }

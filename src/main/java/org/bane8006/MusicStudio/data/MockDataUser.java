@@ -20,7 +20,7 @@ public class MockDataUser implements IDataUser{
     private static List<UserBean> users = new ArrayList<UserBean>();
 
     public MockDataUser() {
-        addUserBean(new UserBean("Pera", "Pampur", "0706987483921", "pera111", "pera111",Privilege.Admin));
+        addUserBean(new UserBean("Pera", "Pampur", "0706987483921", "admin", "admin",Privilege.Admin));
     }
 
     public ArrayList<UserBean> getAllUsers() {
@@ -40,6 +40,16 @@ public class MockDataUser implements IDataUser{
         }
         else System.out.println("User exists!");
     }
+    public void replace(UserBean b2,UserBean b){
+        for (int i = 0; i < users.size(); i++) {
+            if(users.get(i).getUserName().equals(b2.getUserName())){
+                Privilege p = users.get(i).getPrivilege();
+                users.remove(i);
+                users.add(i, b);
+                users.get(i).setPrivilege(p);
+            }
+        }
+    }
 
     public User authenticate(String userName,String password){
         for (int i = 0; i < getAllUsers().size(); i++) {
@@ -48,7 +58,7 @@ public class MockDataUser implements IDataUser{
                 String lastName = getAllUsers().get(i).getLastName();
                 String personalNumber = getAllUsers().get(i).getPersonalNumber();
                 Privilege p = getAllUsers().get(i).getPrivilege();
-                return new UserBean(firstName,lastName,personalNumber,userName,p);
+                return new UserBean(firstName,lastName,personalNumber,userName,password,p);
             }
         }
         return null;

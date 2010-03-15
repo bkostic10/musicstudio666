@@ -11,6 +11,7 @@ import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
+import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.service.Studio;
 import org.bane8006.MusicStudio.service.User;
 
@@ -54,5 +55,10 @@ public class StudioDetails {
 
     public void setUser(User user) {
         this.user = user;
-    }   
+    }
+    public boolean getAdmin(){
+        if(user.getPrivilege().equals(Privilege.Admin))
+            return true;
+        else return false;
+    }
 }
