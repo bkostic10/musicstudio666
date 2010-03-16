@@ -6,7 +6,13 @@
 package org.bane8006.MusicStudio.pages;
 
 import org.apache.tapestry5.annotations.ApplicationState;
+import org.apache.tapestry5.annotations.InjectPage;
+import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
+import org.bane8006.MusicStudio.beans.Privilege;
+import org.bane8006.MusicStudio.beans.RoomBean;
+import org.bane8006.MusicStudio.data.IDataRooms;
+import org.bane8006.MusicStudio.data.MockDataRooms;
 import org.bane8006.MusicStudio.service.Room;
 import org.bane8006.MusicStudio.service.User;
 
@@ -22,6 +28,9 @@ public class RoomDetails {
     @ApplicationState
     private User user;
     private boolean userExists;
+
+    @InjectPage
+    private Studios page;
     
     Object onActivate()
     {
@@ -39,5 +48,16 @@ public class RoomDetails {
 
     public User getUser() {
         return user;
+    }
+    @OnEvent(component="deleteRoomLink")
+    Object onDeleteRoom(){
+        IDataRooms ar = new MockDataRooms();
+        ar.deleteRoom((RoomBean) r);
+        return page;
+    }
+        public boolean getAdmin(){
+        if(user.getPrivilege().equals(Privilege.Admin))
+            return true;
+        else return false;
     }
 }

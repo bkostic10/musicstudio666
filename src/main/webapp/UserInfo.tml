@@ -13,6 +13,7 @@
     </div>
     </div></user><br/><br/>
 <t:PageLink t:page="EditUser">Edit info</t:PageLink><br/><br/>
+<t:PageLink t:page="DeleteAccount">Delete Account</t:PageLink><br/><br/>
     <t:PageLink t:page="Studios">Back</t:PageLink>
 </body>
 </html>

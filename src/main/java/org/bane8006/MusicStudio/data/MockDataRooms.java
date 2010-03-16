@@ -59,4 +59,7 @@ public class MockDataRooms implements IDataRooms{
         }
         else System.out.println("Room exists!");
     }
+    public void deleteRoom(RoomBean r){
+        rooms.remove(r);
+    }
 }

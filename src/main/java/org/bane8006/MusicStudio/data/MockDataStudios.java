@@ -41,4 +41,7 @@ public class MockDataStudios implements IDataStudios{
         }
         else System.out.println("Studio exists!");
     }
+    public void deleteStudio(StudioBean s){
+        studios.remove(s);
+    }
 }

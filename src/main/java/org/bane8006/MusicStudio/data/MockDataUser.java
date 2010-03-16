@@ -50,6 +50,9 @@ public class MockDataUser implements IDataUser{
             }
         }
     }
+    public void remove(UserBean b){
+        users.remove(b);
+    }
 
     public User authenticate(String userName,String password){
         for (int i = 0; i < getAllUsers().size(); i++) {

@@ -18,8 +18,10 @@
             <t:textarea t:readonly="readonly" t:value="room.description" cols="50" rows="10"/>
         </t:form><br/>
     </div>
-    
-    <p><t:PageLink t:page="Rooms">Back:</t:PageLink></p>
+    <p><t:if t:test="admin">
+        <t:ActionLink t:id="deleteRoomLink">Delete Room</t:ActionLink></t:if>
+    </p>
+    <p><t:PageLink t:page="Rooms">Back</t:PageLink></p>
 </body>
 <p:sidebar><br/>
         <h1>Welcome:</h1>

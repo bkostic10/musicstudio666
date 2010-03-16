@@ -1,0 +1,16 @@
+<html t:type="layout" title="Delete Account"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      xmlns:p="tapestry:parameter">
+<head></head><body>
+    <user>Delete Account:</user>
+    <br/><br/>
+    <t:form t:id="deleteAccountForm">
+        <div>Are you sure?</div>
+        <br/>
+        <input type="submit" value="Delete Account"/>
+    </t:form>
+    <br/>
+    <div>${name}</div><br/>
+    <t:PageLink t:page="Studios">Back</t:PageLink>
+</body>
+</html>

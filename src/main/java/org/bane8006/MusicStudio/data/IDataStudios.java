@@ -16,5 +16,5 @@ public interface IDataStudios {
     public ArrayList<StudioBean> getAllStudios();
     public StudioBean getStudioByName(String name);
     public void addStudioBean(StudioBean sb);
-
+    public void deleteStudio(StudioBean s);
 }

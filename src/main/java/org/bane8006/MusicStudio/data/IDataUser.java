@@ -18,5 +18,6 @@ public interface IDataUser {
     public UserBean getUserByUserName(String name);
     public void addUserBean(UserBean ub);
     public void replace(UserBean b2,UserBean b);
+    public void remove(UserBean b);
     public User authenticate(String userName,String password);
 }

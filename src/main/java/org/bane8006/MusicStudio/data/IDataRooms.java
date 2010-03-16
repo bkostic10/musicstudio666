@@ -20,4 +20,5 @@ public interface IDataRooms {
     public void addCertainRoomBean(RoomBean rb);
     public RoomBean getRoomById(String id);
     public void addRoomBean(RoomBean rb);
+    public void deleteRoom(RoomBean r);
 }
