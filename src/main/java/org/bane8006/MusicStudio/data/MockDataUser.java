@@ -17,7 +17,7 @@ import org.bane8006.MusicStudio.service.User;
  */
 public class MockDataUser implements IDataUser{
 
-    private static List<UserBean> users = new ArrayList<UserBean>();
+    private List<UserBean> users = new ArrayList<UserBean>();
 
     public MockDataUser() {
         addUserBean(new UserBean("Pera", "Pampur", "0706987483921", "admin", "admin",Privilege.Admin));

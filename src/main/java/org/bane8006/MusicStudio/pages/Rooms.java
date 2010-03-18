@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.OnEvent;
+import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.beans.RoomBean;
+import org.bane8006.MusicStudio.data.IDataRooms;
 import org.bane8006.MusicStudio.data.MockDataRooms;
 import org.bane8006.MusicStudio.service.User;
 
@@ -23,8 +25,8 @@ public class Rooms {
     private User user;
     private boolean userExists;
 
-    @ApplicationState
-    private MockDataRooms dataRooms;
+    @Inject
+    private IDataRooms dataRooms;
 
     @InjectPage
     private RoomDetails rdPage;

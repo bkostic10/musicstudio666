@@ -7,6 +7,7 @@ package org.bane8006.MusicStudio.pages;
 
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
+import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.beans.UserBean;
 import org.bane8006.MusicStudio.data.IDataUser;
@@ -30,7 +31,12 @@ public class EditUser {
     @ApplicationState
     private User user2;
     private boolean userExists;
+
+    @Inject
+    private IDataUser a;
+
     private User user;
+
     @InjectPage
     private EditUser edit;
 
@@ -127,7 +133,6 @@ public class EditUser {
 
     Object onSubmitFromEditUserForm(){
         System.out.println("Handling form submission!");
-        IDataUser a = new MockDataUser();
         user = new UserBean();
         user.setFirstName(firstName);
         user.setLastName(lastName);

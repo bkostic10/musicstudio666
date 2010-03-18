@@ -7,6 +7,8 @@ package org.bane8006.MusicStudio.pages;
 
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
+import org.apache.tapestry5.annotations.Persist;
+import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.beans.StudioBean;
 import org.bane8006.MusicStudio.data.IDataStudios;
@@ -24,14 +26,20 @@ public class AddStudios {
     private String studioAddress;
 
     private String name;
+
     @ApplicationState
     private User user;
     private boolean userExists;
-    @ApplicationState
+
+    @Persist
     private Studio studio;
+
+    @Inject
+    private IDataStudios a;
 
     @InjectPage
     private AddStudios page;
+    
     Object onActivate()
     {
         if (!userExists) {
@@ -86,7 +94,6 @@ public class AddStudios {
 
     Object onSubmitFromAddStudioForm(){
         System.out.println("Handling form submission!");
-        IDataStudios a = new MockDataStudios();
         studio = new StudioBean();
         studio.setStudioID(studioID);
         studio.setStudioName(studioName);

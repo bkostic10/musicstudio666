@@ -2,9 +2,9 @@ package org.bane8006.MusicStudio.pages;
 
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
+import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.service.User;
 import org.bane8006.MusicStudio.data.IDataUser;
-import org.bane8006.MusicStudio.data.MockDataUser;
 
 
 /**
@@ -14,15 +14,19 @@ public class Index
 {
     private String userName;
     private String password;
+
     @InjectPage
     private Studios studios;
+    
+    @Inject
+    private IDataUser a;
+
     @ApplicationState
     private User user;
 
     Object onSubmitFromLoginForm(){
         Class nextPage = null;
         User aUser = null;
-        IDataUser a = new MockDataUser();
         aUser = a.authenticate(userName, password);
         if(aUser!=null){
             user = aUser;

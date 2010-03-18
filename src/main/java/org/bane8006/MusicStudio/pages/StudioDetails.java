@@ -11,8 +11,10 @@ import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
+import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.beans.StudioBean;
+import org.bane8006.MusicStudio.data.IDataRooms;
 import org.bane8006.MusicStudio.data.IDataStudios;
 import org.bane8006.MusicStudio.data.MockDataStudios;
 import org.bane8006.MusicStudio.service.Studio;
@@ -33,6 +35,12 @@ public class StudioDetails {
     @InjectPage
     private Studios st;
 
+    @Inject
+    private IDataRooms dr;
+
+    @Inject
+    private IDataStudios ds;
+
     @ApplicationState
     private User user;
     private boolean userExists;
@@ -48,8 +56,13 @@ public class StudioDetails {
     }
     @OnEvent(component="deleteStudioLink")
     Object onDeleteStudio(){
-        IDataStudios ds = new MockDataStudios();
         ds.deleteStudio((StudioBean) s);
+        for (int i = 0; i < dr.getAllRooms().size(); i++) {
+            if(s.getStudioID().equals(dr.getAllRooms().get(i).getStudioID())){
+                dr.getAllRooms().remove(i);
+            }
+
+        }
         return st;
     }
     public void setStudio(Studio s)

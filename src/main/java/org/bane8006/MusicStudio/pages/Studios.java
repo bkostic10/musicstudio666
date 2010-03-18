@@ -9,12 +9,12 @@ import java.util.ArrayList;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.OnEvent;
+import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.beans.RoomType;
 import org.bane8006.MusicStudio.beans.StudioBean;
 import org.bane8006.MusicStudio.data.IDataRooms;
-import org.bane8006.MusicStudio.data.MockDataRooms;
-import org.bane8006.MusicStudio.data.MockDataStudios;
+import org.bane8006.MusicStudio.data.IDataStudios;
 import org.bane8006.MusicStudio.service.User;
 
 /**
@@ -27,8 +27,11 @@ public class Studios {
     private User user;
     private boolean userExists;
 
-    @ApplicationState
-    private MockDataStudios dataStudios;
+    @Inject
+    private IDataStudios dataStudios;
+
+    @Inject
+    private IDataRooms ar;
 
     @InjectPage
     private StudioDetails sdPage;
@@ -45,7 +48,6 @@ public class Studios {
     @OnEvent(component="studioDetailsLink")
     Object onShowDetails(String name){
         StudioBean studioBean = dataStudios.getStudioByName(name);
-        IDataRooms ar = new MockDataRooms();
         ar.getCertainRooms().clear();
         int a = 0;
         int b = 0;

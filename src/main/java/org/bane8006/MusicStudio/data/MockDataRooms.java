@@ -17,8 +17,8 @@ import org.bane8006.MusicStudio.beans.RoomType;
  */
 public class MockDataRooms implements IDataRooms{
 
-    private static List<RoomBean> rooms = new ArrayList<RoomBean>();
-    private static List<RoomBean> certainRooms = new ArrayList<RoomBean>();
+    private List<RoomBean> rooms = new ArrayList<RoomBean>();
+    private List<RoomBean> certainRooms = new ArrayList<RoomBean>();
 
     public MockDataRooms() {
 

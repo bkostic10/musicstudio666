@@ -15,7 +15,7 @@ import org.bane8006.MusicStudio.beans.StudioBean;
  */
 public class MockDataStudios implements IDataStudios{
 
-    private static List<StudioBean>studios = new ArrayList<StudioBean>();
+    private List<StudioBean>studios = new ArrayList<StudioBean>();
 
     public MockDataStudios() {
         addStudioBean(new StudioBean("001","1st Studio","Michael Jordan Street 23,11000 Belgrade"));

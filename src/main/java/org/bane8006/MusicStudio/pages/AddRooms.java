@@ -7,11 +7,12 @@ package org.bane8006.MusicStudio.pages;
 
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
+import org.apache.tapestry5.annotations.Persist;
+import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.beans.RoomBean;
 import org.bane8006.MusicStudio.beans.RoomType;
 import org.bane8006.MusicStudio.data.IDataRooms;
-import org.bane8006.MusicStudio.data.MockDataRooms;
 import org.bane8006.MusicStudio.service.Room;
 import org.bane8006.MusicStudio.service.User;
 
@@ -27,14 +28,20 @@ public class AddRooms {
     private String description = "Studio has:\nGuitar Head:\nGuitar Speaker:\nBass head:\nBass Speaker:\nMixer:\nVoice Speaker:\nDrums:";
 
     private String name;
+    
     @ApplicationState
     private User user;
     private boolean userExists;
-    @ApplicationState
+
+    @Persist
     private Room room;
+
+    @Inject
+    private IDataRooms a;
 
     @InjectPage
     private AddRooms page;
+
     Object onActivate()
     {
         if (!userExists) {
@@ -111,7 +118,6 @@ public class AddRooms {
 
     Object onSubmitFromAddRoomForm(){
         System.out.println("Handling form submission!");
-        IDataRooms a = new MockDataRooms();
         room = new RoomBean();
         room.setRoomID(roomID);
         room.setRoomName(roomName);

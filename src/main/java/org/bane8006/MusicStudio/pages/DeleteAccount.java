@@ -7,9 +7,9 @@ package org.bane8006.MusicStudio.pages;
 
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
+import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.beans.UserBean;
 import org.bane8006.MusicStudio.data.IDataUser;
-import org.bane8006.MusicStudio.data.MockDataUser;
 import org.bane8006.MusicStudio.service.User;
 
 /**
@@ -20,6 +20,9 @@ public class DeleteAccount {
     @ApplicationState
     private User user;
     private boolean userExists;
+
+    @Inject
+    private IDataUser a;
 
     @InjectPage
     private DeleteAccount page;
@@ -54,7 +57,6 @@ public class DeleteAccount {
     }
     Object onSubmitFromDeleteAccountForm(){
         System.out.println("Handling form submission!");
-        IDataUser a = new MockDataUser();
         a.remove((UserBean) user);
         page.setName(getFullName()+" is successfuly deleted!");
         setUser(null);
