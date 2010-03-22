@@ -5,8 +5,7 @@
 
 package org.bane8006.MusicStudio.data;
 
-import java.util.ArrayList;
-import org.bane8006.MusicStudio.beans.UserBean;
+import java.util.List;
 import org.bane8006.MusicStudio.service.User;
 
 /**
@@ -14,10 +13,10 @@ import org.bane8006.MusicStudio.service.User;
  * @author Baxter
  */
 public interface IDataUser {
-    public ArrayList<UserBean> getAllUsers();
-    public UserBean getUserByUserName(String name);
-    public void addUserBean(UserBean ub);
-    public void replace(UserBean b2,UserBean b);
-    public void remove(UserBean b);
+    public List<User> getAllUsers();
+    public User getUserByUserName(String name);
+    public void addUser(User ub);
+    public void replace(User b2,User b);
+    public void remove(User b);
     public User authenticate(String userName,String password);
 }

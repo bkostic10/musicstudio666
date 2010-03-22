@@ -4,20 +4,29 @@
  */
 
 package org.bane8006.MusicStudio.beans;
-import static org.testng.AssertJUnit.assertNull;
-import static org.testng.AssertJUnit.assertSame;
+import org.bane8006.MusicStudio.service.Room;
+import static org.testng.AssertJUnit.assertNotNull;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import java.util.ArrayList;
+import java.util.List;
+import org.bane8006.MusicStudio.service.Studio;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+import static org.testng.AssertJUnit.assertSame;
+import static org.testng.AssertJUnit.assertNull;
 /**
  *
  * @author Baxter
  */
 public class StudioBeanTest {
-    private StudioBean studioUnderTest;
+    private Studio studioUnderTest;
+    private List<Room> rooms;
 
     @BeforeMethod
     public void setUp() {
-        studioUnderTest = new StudioBean();
+        rooms = new ArrayList<Room>();
+        studioUnderTest = new StudioBean(rooms);
     }
 
     @Test
@@ -106,18 +115,49 @@ public class StudioBeanTest {
         String studioAddress = null;
         studioUnderTest.setStudioAddress(studioAddress);
     }
-    @Test(expectedExceptions = AssertionError.class)
-    public void testJRooms() {
-        assertNull(studioUnderTest.getNumberOfJRooms());
-        int jr = 0;
-        studioUnderTest.setNumberOfJRooms(jr);
-        assertSame(jr, studioUnderTest.getNumberOfJRooms());
+    
+    @Test
+    public void testRooms(){
+        assertNotNull(studioUnderTest.getAllRooms());
+
     }
-    @Test(expectedExceptions = AssertionError.class)
-    public void testRRooms() {
-        assertNull(studioUnderTest.getNumberOfRRooms());
-        int rr = 0;
-        studioUnderTest.setNumberOfRRooms(rr);
-        assertSame(rr, studioUnderTest.getNumberOfRRooms());
+
+    @Test
+    public void testGetAllRooms(){
+        assertSame(rooms, studioUnderTest.getAllRooms());
+    }
+
+    @Test
+    public void testGetRoomById(){
+        Room room = mock(Room.class);
+	String roomID = "001001";
+        String roomName = "1S - 1st Studio";
+        RoomType roomType = RoomType.Jamming;
+	when(room.getRoomID()).thenReturn(roomID);
+        when(room.getRoomName()).thenReturn(roomName);
+        when(room.getRoomType()).thenReturn(roomType);
+	studioUnderTest.addRoom(room);
+	assertSame(room,studioUnderTest.getRoomById(roomID));
+        assertNull(studioUnderTest.getRoomById("Other ID"));
+    }
+    @Test
+    public void testAddRoom(){
+        Room room = mock(Room.class);
+	String roomID = "001001";
+        String roomName = "1S - 1st Studio";
+        RoomType roomType = RoomType.Jamming;
+	when(room.getRoomID()).thenReturn(roomID);
+        when(room.getRoomName()).thenReturn(roomName);
+        when(room.getRoomType()).thenReturn(roomType);
+	studioUnderTest.addRoom(room);
+	assertSame(room,studioUnderTest.getRoomById(roomID));
+    }
+    @Test
+    public void testDeleteRoom(){
+        Room room = mock(Room.class);
+	String roomID = "001001";
+	when(room.getRoomID()).thenReturn(roomID);
+	studioUnderTest.deleteRoom(room);
+	assertSame(studioUnderTest.getRoomById(roomID), null);
     }
 }

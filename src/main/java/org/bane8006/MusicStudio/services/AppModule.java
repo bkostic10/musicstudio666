@@ -14,10 +14,8 @@ import org.apache.tapestry5.services.Response;
 import org.bane8006.MusicStudio.beans.RoomBean;
 import org.bane8006.MusicStudio.beans.StudioBean;
 import org.bane8006.MusicStudio.beans.UserBean;
-import org.bane8006.MusicStudio.data.IDataRooms;
 import org.bane8006.MusicStudio.data.IDataStudios;
 import org.bane8006.MusicStudio.data.IDataUser;
-import org.bane8006.MusicStudio.data.MockDataRooms;
 import org.bane8006.MusicStudio.data.MockDataStudios;
 import org.bane8006.MusicStudio.data.MockDataUser;
 import org.bane8006.MusicStudio.service.Room;
@@ -130,9 +128,6 @@ public class AppModule
     }
     public static IDataUser buildIDataUser() {
 	return new MockDataUser();
-    }
-    public static IDataRooms buildIDataRooms() {
-	return new MockDataRooms();
     }
     public static IDataStudios buildIDataStudios() {
 	return new MockDataStudios();

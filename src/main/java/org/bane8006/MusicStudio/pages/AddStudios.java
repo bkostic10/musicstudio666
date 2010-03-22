@@ -5,6 +5,8 @@
 
 package org.bane8006.MusicStudio.pages;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
@@ -12,7 +14,7 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.beans.StudioBean;
 import org.bane8006.MusicStudio.data.IDataStudios;
-import org.bane8006.MusicStudio.data.MockDataStudios;
+import org.bane8006.MusicStudio.service.Room;
 import org.bane8006.MusicStudio.service.Studio;
 import org.bane8006.MusicStudio.service.User;
 
@@ -24,7 +26,7 @@ public class AddStudios {
     private String studioID;
     private String studioName;
     private String studioAddress;
-
+    private List<Room> rooms;
     private String name;
 
     @ApplicationState
@@ -74,6 +76,14 @@ public class AddStudios {
         this.studioName = studioName;
     }
 
+    public List<Room> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
+    }
+
     public String getName() {
         return name;
     }
@@ -98,9 +108,10 @@ public class AddStudios {
         studio.setStudioID(studioID);
         studio.setStudioName(studioName);
         studio.setStudioAddress(studioAddress);
+        studio.setRooms(new ArrayList<Room>());
 
-        if(!a.getAllStudios().contains((StudioBean)studio)){
-            a.addStudioBean((StudioBean) studio);
+        if(!a.getAllStudios().contains(studio)){
+            a.addStudioBean(studio);
             page.setName("Studio "+getStudioName()+" is successfuly added!");
         }
         else{

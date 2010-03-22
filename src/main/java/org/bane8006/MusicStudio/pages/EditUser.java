@@ -8,10 +8,8 @@ package org.bane8006.MusicStudio.pages;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.beans.UserBean;
 import org.bane8006.MusicStudio.data.IDataUser;
-import org.bane8006.MusicStudio.data.MockDataUser;
 import org.bane8006.MusicStudio.service.User;
 
 /**
@@ -140,7 +138,7 @@ public class EditUser {
         user.setUserName(userName);
         user.setPassword(password);
         if(getOldPassword().equals(user2.getPassword())&&getPassword()!=null&&getPassword().equals(getPassword2())){
-            a.replace((UserBean) user2,(UserBean) user);
+            a.replace(user2, user);
             edit.setName("Info is changed");
             setUser2(null);
         }

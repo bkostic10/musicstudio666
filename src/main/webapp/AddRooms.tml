@@ -10,9 +10,6 @@
 
         Room Name:<br/>
         <div><t:textfield t:value="roomName"/></div>
-
-        Studio ID:<br/>
-        <div><t:textfield t:value="studioID"/></div><br/>
         
         Room type:<br/>
         <div>

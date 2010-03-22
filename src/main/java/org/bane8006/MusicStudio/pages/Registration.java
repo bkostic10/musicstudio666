@@ -10,7 +10,6 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.beans.UserBean;
 import org.bane8006.MusicStudio.data.IDataUser;
-import org.bane8006.MusicStudio.data.MockDataUser;
 import org.bane8006.MusicStudio.service.User;
 
 
@@ -119,8 +118,8 @@ public class Registration {
         user.setPassword(password);
         user.setPrivilege(Privilege.User);
         
-        if(!a.getAllUsers().contains((UserBean)user)&&getPassword()!=null&&getPassword().equals(getPassword2())){
-            a.addUserBean((UserBean) user);
+        if(!a.getAllUsers().contains(user)&&getPassword()!=null&&getPassword().equals(getPassword2())){
+            a.addUser(user);
             registration.setName(getFullName()+" is successfuly registered!");
         }
         else{

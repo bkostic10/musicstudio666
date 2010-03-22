@@ -11,12 +11,11 @@ import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
+import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.beans.Privilege;
-import org.bane8006.MusicStudio.beans.StudioBean;
-import org.bane8006.MusicStudio.data.IDataRooms;
 import org.bane8006.MusicStudio.data.IDataStudios;
-import org.bane8006.MusicStudio.data.MockDataStudios;
+import org.bane8006.MusicStudio.service.Room;
 import org.bane8006.MusicStudio.service.Studio;
 import org.bane8006.MusicStudio.service.User;
 
@@ -26,61 +25,69 @@ import org.bane8006.MusicStudio.service.User;
  */
 public class StudioDetails {
 
+    
+    
     @Persist
-    private Studio s;
+    private Studio studio;
 
+    private Room room;
     @InjectPage
     private Rooms r;
+
+    @InjectPage
+    private AddRooms ar;
 
     @InjectPage
     private Studios st;
 
     @Inject
-    private IDataRooms dr;
-
-    @Inject
     private IDataStudios ds;
-
+    @Property
     @ApplicationState
     private User user;
     private boolean userExists;
 
+    private String name;
     Object onActivate()
     {
         if (!userExists) return Index.class;
         return null;
     }
     @OnEvent(component="roomsLink")
-    Object onShowRooms(){
+    Object onEvent(String id){
+        Studio studio = ds.getStudioById(id);
+        r.setStudio(studio);
         return r;
+    }
+    @OnEvent(component="addRoomsLink")
+    Object onAdd(String id){
+        Studio studio = ds.getStudioById(id);
+        ar.setStudio(studio);
+        return ar;
     }
     @OnEvent(component="deleteStudioLink")
     Object onDeleteStudio(){
-        ds.deleteStudio((StudioBean) s);
-        for (int i = 0; i < dr.getAllRooms().size(); i++) {
-            if(s.getStudioID().equals(dr.getAllRooms().get(i).getStudioID())){
-                dr.getAllRooms().remove(i);
-            }
-
-        }
+        ds.deleteStudio(studio);
         return st;
     }
-    public void setStudio(Studio s)
+    public void setStudio(Studio studio)
     {
-        this.s = s;
+        this.studio = studio;
     }
     public Studio getStudio()
     {
-        return s;
+        return studio;
     }
 
-    public User getUser() {
-        return user;
+    public Room getRoom() {
+        return room;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setRoom(Room room) {
+        this.room = room;
     }
+    
+    
     public boolean getAdmin(){
         if(user.getPrivilege().equals(Privilege.Admin))
             return true;

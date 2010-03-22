@@ -8,12 +8,11 @@ package org.bane8006.MusicStudio.pages;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
-import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.beans.RoomBean;
 import org.bane8006.MusicStudio.beans.RoomType;
-import org.bane8006.MusicStudio.data.IDataRooms;
 import org.bane8006.MusicStudio.service.Room;
+import org.bane8006.MusicStudio.service.Studio;
 import org.bane8006.MusicStudio.service.User;
 
 /**
@@ -23,7 +22,6 @@ import org.bane8006.MusicStudio.service.User;
 public class AddRooms {
     private String roomID;
     private String roomName;
-    private String studioID;
     private RoomType roomType = RoomType.Recording;
     private String description = "Studio has:\nGuitar Head:\nGuitar Speaker:\nBass head:\nBass Speaker:\nMixer:\nVoice Speaker:\nDrums:";
 
@@ -32,12 +30,11 @@ public class AddRooms {
     @ApplicationState
     private User user;
     private boolean userExists;
-
-    @Persist
+    
     private Room room;
 
-    @Inject
-    private IDataRooms a;
+    @Persist
+    private Studio studio;
 
     @InjectPage
     private AddRooms page;
@@ -66,14 +63,6 @@ public class AddRooms {
 
     public void setRoomName(String roomName) {
         this.roomName = roomName;
-    }
-
-    public String getStudioID() {
-        return studioID;
-    }
-
-    public void setStudioID(String studioID) {
-        this.studioID = studioID;
     }
 
     public RoomType getRoomType() {
@@ -106,6 +95,14 @@ public class AddRooms {
         this.name = name;
     }
 
+    public Studio getStudio() {
+        return studio;
+    }
+
+    public void setStudio(Studio studio) {
+        this.studio = studio;
+    }
+
 
 
     void onActivate(String room){
@@ -121,12 +118,12 @@ public class AddRooms {
         room = new RoomBean();
         room.setRoomID(roomID);
         room.setRoomName(roomName);
-        room.setStudioID(studioID);
         room.setRoomType(roomType);
         room.setDescription(description);
 
-        if(!a.getAllRooms().contains((RoomBean)room)){
-            a.addRoomBean((RoomBean) room);
+
+        if(!studio.getAllRooms().contains(room)){
+            studio.addRoom(room);
             page.setName("Room "+getRoomName()+" is successfuly added!");
         }
         else{

@@ -5,6 +5,8 @@
 
 package org.bane8006.MusicStudio.service;
 
+import java.util.Collection;
+import java.util.List;
 /**
  *
  * @author Baxter
@@ -13,11 +15,7 @@ public interface Studio {
     
     public int getNumberOfJRooms();
 
-    public void setNumberOfJRooms(int numberOfJRooms);
-
     public int getNumberOfRRooms();
-
-    public void setNumberOfRRooms(int numberOfRRooms);
 
     public String getStudioAddress();
 
@@ -35,5 +33,13 @@ public interface Studio {
 
     public boolean equals(Object o);
    
+    public Collection<Room> getAllRooms();
 
+    public Room getRoomById(String id);
+
+    public void addRoom(Room rb);
+
+    public void deleteRoom(Room r);
+
+    public void setRooms(List<Room> rooms);
 }

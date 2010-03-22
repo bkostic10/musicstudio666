@@ -19,7 +19,7 @@
         </t:form><br/>
     </div>
     <p><t:if t:test="admin">
-        <t:ActionLink t:id="deleteRoomLink">Delete Room</t:ActionLink></t:if>
+        <t:ActionLink t:context="room.roomId" t:id="deleteRoomLink">Delete Room</t:ActionLink></t:if>
     </p>
     <p><t:PageLink t:page="Rooms">Back</t:PageLink></p>
 </body>

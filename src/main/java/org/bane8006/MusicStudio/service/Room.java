@@ -21,10 +21,6 @@ public interface Room {
 
     public void setRoomName(String roomName);
 
-    public String getStudioID();
-
-    public void setStudioID(String studioID);
-
     public RoomType getRoomType();
 
     public void setRoomType(RoomType roomType);

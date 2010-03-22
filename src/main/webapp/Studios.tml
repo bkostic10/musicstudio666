@@ -8,13 +8,13 @@
 
     <div t:type="loop" t:source="allStudios" t:value="studio">
     
-        <t:ActionLink t:context="studio.studioName"
+        <t:ActionLink t:context="studio.studioId"
         t:id="studioDetailsLink">${studio.studioName}</t:ActionLink>
 
     </div><br/><br/>
     <div><t:if t:test="admin">
         <t:PageLink t:page="AddStudios">Add Studio</t:PageLink>
-    </t:if></div>
+    </t:if></div><br/><div>${name}</div>
 </body>
 <p:sidebar><br/>
         <h1>Welcome:</h1>

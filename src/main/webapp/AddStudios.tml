@@ -19,7 +19,7 @@
     </t:form>
     <br/>
     <div>${name}</div><br/>
-    <t:pagelink page="AddRooms">Add Room</t:pagelink><br/><br/>
+    
     <t:pagelink page="Studios">Back</t:pagelink>
 </body>
 </html>

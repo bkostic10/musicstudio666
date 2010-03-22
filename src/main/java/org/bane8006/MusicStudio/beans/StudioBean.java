@@ -5,6 +5,10 @@
 
 package org.bane8006.MusicStudio.beans;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import org.bane8006.MusicStudio.service.Room;
 import org.bane8006.MusicStudio.service.Studio;
 
 
@@ -16,40 +20,44 @@ public class StudioBean implements Studio{
     private String studioID;
     private String studioName;
     private String studioAddress;
-    private int numberOfJRooms;
-    private int numberOfRRooms;
-
-    
+    private List<Room> rooms;
 
 
-    public StudioBean() {
-    }
-    
     public StudioBean(String studioID, String studioName, String studioAddress) {
         this.studioID = studioID;
         this.studioName = studioName;
         this.studioAddress = studioAddress;
     }
-
-    public int getNumberOfJRooms() {
-        return numberOfJRooms;
+    public StudioBean(List<Room> rooms){
+        super();
+        this.rooms = rooms;
+    }
+    public StudioBean(){
+        this(new ArrayList<Room>());
     }
 
-    public void setNumberOfJRooms(int numberOfJRooms) {
-        assert numberOfJRooms!=0;
-        this.numberOfJRooms = numberOfJRooms;
+    public int getNumberOfJRooms() {
+        int a = 0;
+        for (int i = 0; i < rooms.size(); i++) {
+            if(rooms.get(i).getRoomType()==RoomType.Jamming){
+                a++;
+            }        
+        }
+        return a;
     }
 
     public int getNumberOfRRooms() {
-        return numberOfRRooms;
-    }
-
-    public void setNumberOfRRooms(int numberOfRRooms) {
-        this.numberOfRRooms = numberOfRRooms;
+        int a = 0;
+        for (int i = 0; i < rooms.size(); i++) {
+            if(rooms.get(i).getRoomType()==RoomType.Recording){
+                a++;
+            }
+        }
+        return a;
     }
 
     public int getNumberOfRooms() {
-        return getNumberOfRRooms()+getNumberOfJRooms();
+        return rooms.size();
     }
 
     public String getStudioAddress() {
@@ -86,8 +94,38 @@ public class StudioBean implements Studio{
     }
     @Override
     public boolean equals(Object o){
-        StudioBean s = (StudioBean)(o);
+        Studio s = (StudioBean)(o);
         if(studioID.equals(s.getStudioID())){return true;}
         else return false;
+    }
+
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
+    }
+    
+
+    public Collection<Room> getAllRooms() {
+        return rooms;
+    }
+
+    public Room getRoomById(String id) {
+        for(Room rb:getAllRooms()){
+            if(rb.getRoomID().equals(id))
+                return rb;
+        }
+        return null;
+    }
+    public void addRoom(Room rb) {
+        if(!getAllRooms().contains(rb)){
+            assert rb != null;
+            assert rb.getRoomID() != null;
+            assert !rb.getRoomID().equals(" ");
+            assert !rb.getRoomID().equals("");
+            rooms.add(rb);
+        }
+        else System.out.println("Room exists!");
+    }
+    public void deleteRoom(Room r){
+        rooms.remove(r);
     }
 }

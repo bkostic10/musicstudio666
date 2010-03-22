@@ -9,11 +9,12 @@ import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
+import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.beans.Privilege;
-import org.bane8006.MusicStudio.beans.RoomBean;
-import org.bane8006.MusicStudio.data.IDataRooms;
+import org.bane8006.MusicStudio.data.IDataStudios;
 import org.bane8006.MusicStudio.service.Room;
+import org.bane8006.MusicStudio.service.Studio;
 import org.bane8006.MusicStudio.service.User;
 
 /**
@@ -23,14 +24,17 @@ import org.bane8006.MusicStudio.service.User;
 public class RoomDetails {
 
     @Persist
-    private Room r;
-
+    private Room room;
+    @Property
     @ApplicationState
     private User user;
     private boolean userExists;
 
     @Inject
-    private IDataRooms ar;
+    private IDataStudios dataStudios;
+
+    @Persist
+    private Studio studio;
 
     @InjectPage
     private Studios page;
@@ -42,19 +46,24 @@ public class RoomDetails {
     }
 
     public Room getRoom() {
-        return r;
+        return room;
     }
 
-    public void setRoom(Room r) {
-        this.r = r;
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
-    public User getUser() {
-        return user;
+    public Studio getStudio() {
+        return studio;
+    }
+
+    public void setStudio(Studio studio) {
+        this.studio = studio;
     }
     @OnEvent(component="deleteRoomLink")
-    Object onDeleteRoom(){
-        ar.deleteRoom((RoomBean) r);
+    Object onDeleteRoom(String id){
+        Room room = studio.getRoomById(id);
+        studio.deleteRoom(room);
         return page;
     }
         public boolean getAdmin(){

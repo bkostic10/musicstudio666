@@ -24,7 +24,7 @@ public class UserBeanTest {
     @Test
     public void testFirstName() {
         assertNull(userUnderTest.getFirstName());
-        String firstName = "Jova";
+        String firstName = "Freddie";
         userUnderTest.setFirstName(firstName);
         assertSame(firstName, userUnderTest.getFirstName());
     }
@@ -53,7 +53,7 @@ public class UserBeanTest {
     @Test
     public void testLastName() {
         assertNull(userUnderTest.getLastName());
-        String lastName = "Jovic";
+        String lastName = "Mercury";
         userUnderTest.setLastName(lastName);
         assertSame(lastName, userUnderTest.getLastName());
     }
@@ -82,7 +82,7 @@ public class UserBeanTest {
     @Test
     public void testUserName() {
         assertNull(userUnderTest.getUserName());
-        String userName = "jojo";
+        String userName = "mika55";
         userUnderTest.setUserName(userName);
         assertSame(userName, userUnderTest.getUserName());
     }
@@ -111,7 +111,7 @@ public class UserBeanTest {
     @Test
     public void testPassword() {
         assertNull(userUnderTest.getPassword());
-        String pass = "some123";
+        String pass = "mika55";
         userUnderTest.setPassword(pass);
         assertSame(pass, userUnderTest.getPassword());
     }

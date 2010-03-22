@@ -4,6 +4,7 @@
  */
 
 package org.bane8006.MusicStudio.beans;
+import org.bane8006.MusicStudio.service.Room;
 import static org.testng.AssertJUnit.assertNull;
 import static org.testng.AssertJUnit.assertSame;
 import org.testng.annotations.BeforeMethod;
@@ -13,7 +14,7 @@ import org.testng.annotations.Test;
  * @author Baxter
  */
 public class RoomBeanTest {
-    private RoomBean roomUnderTest;
+    private Room roomUnderTest;
 
     @BeforeMethod
     public void setUp() {
@@ -76,35 +77,6 @@ public class RoomBeanTest {
         assertNull(roomUnderTest.getRoomName());
         String roomName = null;
         roomUnderTest.setRoomName(roomName);
-    }
-
-    @Test
-    public void testStudioID() {
-        assertNull(roomUnderTest.getStudioID());
-        String studioID = "001";
-        roomUnderTest.setStudioID(studioID);
-        assertSame(studioID, roomUnderTest.getStudioID());
-    }
-
-    @Test(expectedExceptions = AssertionError.class)
-    public void testStudioIDInvalid() {
-        assertNull(roomUnderTest.getStudioID());
-        String studioID = "";
-        roomUnderTest.setStudioID(studioID);
-    }
-
-    @Test(expectedExceptions = AssertionError.class)
-    public void testStudioIDInvalid2() {
-        assertNull(roomUnderTest.getStudioID());
-        String studioID = " ";
-        roomUnderTest.setStudioID(studioID);
-    }
-
-    @Test(expectedExceptions = AssertionError.class)
-    public void testStudioIDInvalid3() {
-        assertNull(roomUnderTest.getStudioID());
-        String studioID = null;
-        roomUnderTest.setStudioID(studioID);
     }
 
     @Test

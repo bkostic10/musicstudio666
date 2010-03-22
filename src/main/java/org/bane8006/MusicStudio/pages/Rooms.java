@@ -4,14 +4,15 @@
  */
 
 package org.bane8006.MusicStudio.pages;
-import java.util.ArrayList;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.OnEvent;
+import org.apache.tapestry5.annotations.Persist;
+import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.bane8006.MusicStudio.beans.RoomBean;
-import org.bane8006.MusicStudio.data.IDataRooms;
-import org.bane8006.MusicStudio.data.MockDataRooms;
+import org.bane8006.MusicStudio.data.IDataStudios;
+import org.bane8006.MusicStudio.service.Room;
+import org.bane8006.MusicStudio.service.Studio;
 import org.bane8006.MusicStudio.service.User;
 
 /**
@@ -21,17 +22,20 @@ import org.bane8006.MusicStudio.service.User;
 public class Rooms {
 
 
+    @Persist
+    private Studio studio;
+    @Property
     @ApplicationState
     private User user;
     private boolean userExists;
 
     @Inject
-    private IDataRooms dataRooms;
+    private IDataStudios dataStudios;
 
     @InjectPage
     private RoomDetails rdPage;
-
-    private RoomBean roomBean;
+    
+    private Room room;
     
     Object onActivate()
     {
@@ -42,26 +46,25 @@ public class Rooms {
     }
     @OnEvent(component="roomDetailsLink")
     Object onShowDetails(String id){
-        RoomBean roomBean = dataRooms.getRoomById(id);
-        rdPage.setRoom(roomBean);
+        Room room = studio.getRoomById(id);
+        rdPage.setRoom(room);
+        rdPage.setStudio(studio);
         return rdPage;
     }
 
-    public ArrayList<RoomBean> getAllRooms(){
-        return dataRooms.getCertainRooms();
+    public Room getRoom(){
+        return room;
     }
-    public RoomBean getRoom(){
-        return roomBean;
-    }
-    public void setRoom(RoomBean r){
-        roomBean = r;
+    public void setRoom(Room r){
+        room = r;
     }
 
-    public User getUser() {
-        return user;
+    public Studio getStudio() {
+        return studio;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setStudio(Studio studio) {
+        this.studio = studio;
     }
+    
 }

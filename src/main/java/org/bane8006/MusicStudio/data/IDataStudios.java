@@ -5,16 +5,18 @@
 
 package org.bane8006.MusicStudio.data;
 
-import java.util.ArrayList;
-import org.bane8006.MusicStudio.beans.StudioBean;
+import java.util.Collection;
+import org.bane8006.MusicStudio.service.Room;
+import org.bane8006.MusicStudio.service.Studio;
 
 /**
  *
  * @author Baxter
  */
 public interface IDataStudios {
-    public ArrayList<StudioBean> getAllStudios();
-    public StudioBean getStudioByName(String name);
-    public void addStudioBean(StudioBean sb);
-    public void deleteStudio(StudioBean s);
+    public Collection<Studio> getAllStudios();
+    public Studio getStudioById(String id);
+    public void addStudioBean(Studio sb);
+    public void deleteStudio(Studio s);
+    public void load();
 }

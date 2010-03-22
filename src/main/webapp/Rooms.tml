@@ -4,7 +4,7 @@
 <head></head><body>
    <p>Choose a Room:</p>
     <p></p>
-    <div t:type="loop" t:source="allRooms" t:value="room">
+    <div t:type="loop" t:source="studio.getAllRooms()" t:value="room">
         <t:ActionLink t:context="room.roomId"
         t:id="roomDetailsLink">${room.roomName}</t:ActionLink>
     </div>
