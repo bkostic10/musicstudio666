@@ -4,6 +4,12 @@
 <head></head><body>
     <user><p>About<br/>MusicStudio application ...</p></user>
     <br/><br/>
+    <div t:type="loop" t:source="allUsers" t:value="user">
+
+    ${user.firstName} ${user.lastName} ${user.privilege}
+
+    </div><br/><br/>
     <t:pagelink page="Studios">Back</t:pagelink>
+
 </body>
 </html>

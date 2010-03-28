@@ -5,6 +5,7 @@
 
 package org.bane8006.MusicStudio.data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import org.bane8006.MusicStudio.beans.Privilege;
@@ -33,20 +34,21 @@ public class MockDataUser implements IDataUser{
         return  users;
     }
 
-    public User getUserByUserName(String name) {
+    public User getUserByUserName(Serializable name) {
          for(User ub:users){
             if(ub.getUserName().equals(name))
                 return ub;
         }
         return null;
     }
-    public void addUser(User ub){
+    public User addUser(User ub){
         if(!users.contains(ub)){
             assert ub.getUserName()!=null;
             assert ub.getUserName().length()>4;
             users.add(ub);
+            return ub;
         }
-        else System.out.println("User exists!");
+        else return null;//System.out.println("User exists!");
     }
     public void replace(User b2,User b){
         for (int i = 0; i < users.size(); i++) {

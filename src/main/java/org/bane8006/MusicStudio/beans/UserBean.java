@@ -5,18 +5,42 @@
 
 package org.bane8006.MusicStudio.beans;
 
+import java.io.Serializable;
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import org.bane8006.MusicStudio.service.User;
 
 /**
  *
  * @author Baxter
  */
-public class UserBean implements User{
+
+
+@Entity
+public class UserBean implements User,Serializable{
+    
+
+    public UserBean(String firstName, String lastName, String password, String personalNumber, Privilege privilege, String userName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.personalNumber = personalNumber;
+        this.userName = userName;
+        this.password = password;
+        this.privilege = privilege;
+    }
+    
+    @Basic
     private String firstName;
+    @Basic
     private String lastName;
+    @Basic
     private String personalNumber;
+    @Id
     private String userName;
+    @Basic
     private String password;
+    @Basic
     private Privilege privilege;
 
     public UserBean() {
@@ -110,7 +134,7 @@ public class UserBean implements User{
     }
     
     public boolean equals(Object o){
-        UserBean u = (UserBean)(o);
+        User u = (UserBean)(o);
         if(userName.equals(u.getUserName()))return true;
         else return false;
     }

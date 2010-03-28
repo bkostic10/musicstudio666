@@ -6,22 +6,22 @@
     <br/><br/>
     <t:form t:id="registrationForm">
         First Name:<br/>
-        <div><t:textfield t:value="firstName"/></div>
+        <div><t:textfield t:value="user.firstName"/></div>
 
         Last Name:<br/>
-        <div><t:textfield t:value="lastName"/></div>
+        <div><t:textfield t:value="user.lastName"/></div>
 
         Personal Number:<br/>
-        <div><t:textfield t:value="personalNumber"/></div>
+        <div><t:textfield t:value="user.personalNumber"/></div>
 
         User Name:<br/>
-        <div><t:textfield t:value="userName"/></div>
+        <div><t:textfield t:value="user.userName"/></div>
 
         Password:<br/>
-        <div><t:passwordfield t:value="password"/></div>
+        <div><t:passwordfield t:value="user.password"/></div>
 
         Retype Password:<br/>
-        <div><t:passwordfield t:value="password2"/></div>
+        <div><t:passwordfield t:value="user.password"/></div>
 
         <br/>
         <input type="submit" value="Submit"/>

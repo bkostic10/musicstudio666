@@ -6,7 +6,6 @@
 package org.bane8006.MusicStudio.data;
 
 import java.util.Collection;
-import org.bane8006.MusicStudio.service.Room;
 import org.bane8006.MusicStudio.service.Studio;
 
 /**
