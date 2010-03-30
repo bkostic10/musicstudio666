@@ -7,7 +7,9 @@ package org.bane8006.MusicStudio.beans;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import org.bane8006.MusicStudio.service.User;
 
@@ -29,14 +31,18 @@ public class UserBean implements User,Serializable{
         this.password = password;
         this.privilege = privilege;
     }
-    
+
+    @Id
+    @GeneratedValue
+    private long id;
+
     @Basic
     private String firstName;
     @Basic
     private String lastName;
     @Basic
     private String personalNumber;
-    @Id
+    @Column(name = "userName",nullable=false,unique=true)
     private String userName;
     @Basic
     private String password;
@@ -137,5 +143,9 @@ public class UserBean implements User,Serializable{
         User u = (UserBean)(o);
         if(userName.equals(u.getUserName()))return true;
         else return false;
+    }
+
+    public long getId() {
+        return id;
     }
 }

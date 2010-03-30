@@ -48,11 +48,11 @@ public class MockDataUser implements IDataUser{
             users.add(ub);
             return ub;
         }
-        else return null;//System.out.println("User exists!");
+        else return null;
     }
-    public void replace(User b2,User b){
+    public void replace(Serializable b2,User b){
         for (int i = 0; i < users.size(); i++) {
-            if(users.get(i).getUserName().equals(b2.getUserName())){
+            if(users.get(i).getUserName().equals(b2)){
                 Privilege p = users.get(i).getPrivilege();
                 users.remove(i);
                 assert b.getUserName()!=null;

@@ -38,5 +38,6 @@ public interface User {
     public void setPrivilege(Privilege privilege);
 
     public boolean equals(Object o);
-
+    
+    public long getId();
 }

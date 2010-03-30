@@ -15,7 +15,10 @@ public class About
 
     @Property
     private User user;
-
+    
+    public long getCurrentPersonId() {
+        return User.class.cast(user).getId();
+    }
     public List<User> getAllUsers(){
         return users.getAllUsers();
     }

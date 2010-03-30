@@ -6,9 +6,7 @@
 package org.bane8006.MusicStudio.data.hibernate;
 
 import java.io.Serializable;
-import java.util.Iterator;
 import java.util.List;
-import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.beans.UserBean;
 import org.bane8006.MusicStudio.data.IDataUser;
 import org.bane8006.MusicStudio.service.User;
@@ -39,18 +37,25 @@ public class DataUserHibernate implements IDataUser{
         return (User)session.get(UserBean.class, session.save(ub));
     }
 
-    public void replace(User b2, User b) {
-        //session.update((String) session.get(UserBean.class, b2.getUserName()),session.save(b));
+    public void replace(Serializable id, User b) {
+        User u = (User) session.get(UserBean.class, id);
+        u.setFirstName(b.getFirstName());
+        u.setLastName(b.getLastName());
+        u.setPersonalNumber(b.getPersonalNumber());
+        u.setUserName(b.getUserName());
+        u.setPassword(b.getPassword());
+        u.setPrivilege(b.getPrivilege());
     }
-
     public void remove(User b) {
-        //session.delete(b.getUserName(), b);
+        long a = b.getId();
+        b = (User) session.load(UserBean.class, a);
+        session.delete(b);
     }
 
     public User authenticate(String userName, String password) {
         for (int i = 0; i < getAllUsers().size(); i++) {
             if(getAllUsers().get(i).getUserName().equals(userName)&&getAllUsers().get((int) i).getPassword().equals(password)){
-                return getUserByUserName(i);
+                return getAllUsers().get(i);
             }
         }
         return null;

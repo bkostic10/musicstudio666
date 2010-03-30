@@ -23,6 +23,8 @@ public class Registration {
 
     private String name;
 
+    private String password2;
+
     @Inject
     private IDataUser a;
     
@@ -39,6 +41,14 @@ public class Registration {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPassword2() {
+        return password2;
+    }
+
+    public void setPassword2(String password2) {
+        this.password2 = password2;
     }
 
     void onActivate(String fullName){
@@ -58,14 +68,18 @@ public class Registration {
         if(user.getUserName().equals("admin")&&user.getPassword().equals("admin")){
             user.setPrivilege(Privilege.Admin);
         }else{
-        user.setPrivilege(Privilege.User);}
-        if (!a.getAllUsers().contains(user)) {
+            user.setPrivilege(Privilege.User);
+        }
+        if (!a.getAllUsers().contains(user)&&user.getPassword().equals(password2)) {
             a.addUser(user);
             registration.setName("Successful registration: "+user.getFirstName()+" "+user.getLastName());
         }
         else{
-            registration.setName("User exists");
+            registration.setName("Data invalid!!!");
         }
         return registration;
+    }
+    public long getId(){
+        return User.class.cast(user).getId();
     }
 }

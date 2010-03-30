@@ -19,7 +19,9 @@ public interface IDataUser {
     public User getUserByUserName(Serializable id);
     @CommitAfter
     public User addUser(User ub);
-    public void replace(User b2,User b);
+    @CommitAfter
+    public void replace(Serializable b2,User b);
+    @CommitAfter
     public void remove(User b);
     public User authenticate(String userName,String password);
 }

@@ -21,7 +21,7 @@
         <div><t:passwordfield t:value="user.password"/></div>
 
         Retype Password:<br/>
-        <div><t:passwordfield t:value="user.password"/></div>
+        <div><t:passwordfield t:value="password2"/></div>
 
         <br/>
         <input type="submit" value="Submit"/>

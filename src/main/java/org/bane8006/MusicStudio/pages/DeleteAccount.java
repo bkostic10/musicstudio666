@@ -6,7 +6,7 @@
 package org.bane8006.MusicStudio.pages;
 
 import org.apache.tapestry5.annotations.ApplicationState;
-import org.apache.tapestry5.annotations.InjectPage;
+import org.apache.tapestry5.annotations.InjectPage;;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.data.IDataUser;
 import org.bane8006.MusicStudio.service.User;
@@ -56,7 +56,7 @@ public class DeleteAccount {
     }
     Object onSubmitFromDeleteAccountForm(){
         System.out.println("Handling form submission!");
-        a.remove(user);
+        a.remove(getUser());
         page.setName(getFullName()+" is successfuly deleted!");
         setUser(null);
         return page;
