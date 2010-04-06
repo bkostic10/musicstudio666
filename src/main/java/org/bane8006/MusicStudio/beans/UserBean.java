@@ -11,7 +11,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import org.bane8006.MusicStudio.service.User;
+import org.bane8006.MusicStudio.aints.User;
 
 /**
  *

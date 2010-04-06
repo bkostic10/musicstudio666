@@ -5,15 +5,19 @@
 
 package org.bane8006.MusicStudio.pages;
 
+import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SetupRender;
+import org.apache.tapestry5.corelib.components.Form;
+import org.apache.tapestry5.corelib.components.PasswordField;
+import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.beans.UserBean;
-import org.bane8006.MusicStudio.data.IDataUser;
-import org.bane8006.MusicStudio.service.User;
+import org.bane8006.MusicStudio.service.IDataUserService;
+import org.bane8006.MusicStudio.aints.User;
 
 /**
  *
@@ -26,7 +30,7 @@ public class Registration {
     private String password2;
 
     @Inject
-    private IDataUser a;
+    private IDataUserService a;
     
     @Property
     @Persist("flash")
@@ -70,12 +74,15 @@ public class Registration {
         }else{
             user.setPrivilege(Privilege.User);
         }
-        if (!a.getAllUsers().contains(user)&&user.getPassword().equals(password2)) {
-            a.addUser(user);
-            registration.setName("Successful registration: "+user.getFirstName()+" "+user.getLastName());
+        if(!user.getPassword().equals(password2)){
+            registration.setName("Passwords doesn't match!!!");
+        }
+        else if (a.getAllUsers().contains(user)) {
+            registration.setName("Username exists!!!");
         }
         else{
-            registration.setName("Data invalid!!!");
+            a.addUser(user);
+            registration.setName("Successful registration: "+user.getFirstName()+" "+user.getLastName());
         }
         return registration;
     }

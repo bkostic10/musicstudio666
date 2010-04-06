@@ -11,11 +11,7 @@
             <artifactId>tapestry-core</artifactId>
             <version>5.2.0-SNAPSHOT</version>
         </dependency>
-        <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-all</artifactId>
-      <version>1.8.1</version>
-    </dependency>
+
         <!-- A dependency on either JUnit or TestNG is required, or the surefire plugin (which runs the tests)
 will fail, preventing Maven from packaging the WAR. Tapestry includes a large number
 of testing facilities designed for use with TestNG (http://testng.org/), so it's recommended. -->
@@ -27,34 +23,19 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.easymock</groupId>
-            <artifactId>easymock</artifactId>
-            <version>2.4</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.tapestry</groupId>
-            <artifactId>tapestry-test</artifactId>
-            <version>5.2.0-SNAPSHOT</version>
-            <scope>test</scope>
-        </dependency>
-      <dependency>
+
+
+<!--      <dependency>
         <groupId>org.apache.tapestry</groupId>
         <artifactId>tapestry-hibernate-core</artifactId>
         <version>5.1.0.5</version>
         <type>jar</type>
-      </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
-            <scope>provided</scope>
-        </dependency>
+      </dependency>-->
+
     <dependency>
       <groupId>org.apache.tapestry</groupId>
       <artifactId>tapestry-hibernate</artifactId>
-      <version>5.2.0-SNAPSHOT</version>
+      <version>${tapestry-version}</version>
     </dependency>
     <dependency>
       <groupId>org.hibernate</groupId>
@@ -66,7 +47,35 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
       <artifactId>hsqldb</artifactId>
       <version>1.8.0.7</version>
     </dependency>
-
+    <dependency>
+            <groupId>org.easymock</groupId>
+            <artifactId>easymock</artifactId>
+            <version>2.4</version>
+            <scope>test</scope>
+     </dependency>
+     <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-all</artifactId>
+      <version>1.8.1</version>
+    </dependency>
+    <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>provided</scope>
+    </dependency>
+    <dependency>
+            <groupId>org.apache.tapestry</groupId>
+            <artifactId>tapestry-test</artifactId>
+            <version>5.2.0-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+    <dependency>
+ 	  <groupId>org.apache.tapestry</groupId>
+            <artifactId>tapestry5-annotations</artifactId>
+            <version>5.2.0-SNAPSHOT</version>
+            <type>jar</type>
+    </dependency>
     </dependencies>
     <build>
         <finalName>MusicStudio</finalName>
@@ -75,8 +84,8 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.5</source>
-                    <target>1.5</target>
+                    <source>1.6</source>
+                    <target>1.6</target>
                     <optimize>true</optimize>
                 </configuration>
             </plugin>
@@ -102,10 +111,10 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
 
         <!-- Adds a report detailing the components, mixins and base classes defined by this module. -->
         <plugins>
-            <plugin>
+         <plugin>
                 <groupId>org.apache.tapestry</groupId>
                 <artifactId>tapestry-component-report</artifactId>
-                <version>5.2.0-SNAPSHOT</version>
+                <version>${tapestry-release-version}</version>
                 <configuration>
                     <rootPackage>org.bane8006.MusicStudio</rootPackage>
                 </configuration>
@@ -151,7 +160,7 @@ of a Tapestry Maven plugin is not required.   -->
     </pluginRepositories>
 
     <properties>
-        <!--<tapestry-release-version>5.2.0-SNAPSHOT</tapestry-release-version>-->
+        <tapestry-version>5.2.0-SNAPSHOT</tapestry-version>
         <netbeans.hint.deploy.server>Tomcat60</netbeans.hint.deploy.server>
     </properties>
 </project>

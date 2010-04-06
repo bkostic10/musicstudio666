@@ -12,10 +12,10 @@ import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.beans.Privilege;
-import org.bane8006.MusicStudio.data.IDataStudios;
-import org.bane8006.MusicStudio.service.Room;
-import org.bane8006.MusicStudio.service.Studio;
-import org.bane8006.MusicStudio.service.User;
+import org.bane8006.MusicStudio.service.IDataStudiosService;
+import org.bane8006.MusicStudio.aints.Room;
+import org.bane8006.MusicStudio.aints.Studio;
+import org.bane8006.MusicStudio.aints.User;
 
 /**
  *
@@ -31,7 +31,7 @@ public class RoomDetails {
     private boolean userExists;
 
     @Inject
-    private IDataStudios dataStudios;
+    private IDataStudiosService dataStudios;
 
     @Persist
     private Studio studio;

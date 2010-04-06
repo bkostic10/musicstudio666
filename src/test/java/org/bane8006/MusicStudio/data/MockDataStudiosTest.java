@@ -4,9 +4,11 @@
  */
 
 package org.bane8006.MusicStudio.data;
+import org.bane8006.MusicStudio.service.IDataStudiosService;
+import org.bane8006.MusicStudio.service.MockDataStudios;
 import java.util.ArrayList;
 import java.util.List;
-import org.bane8006.MusicStudio.service.Studio;
+import org.bane8006.MusicStudio.aints.Studio;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.testng.AssertJUnit.assertSame;
@@ -19,7 +21,7 @@ import org.testng.annotations.Test;
  * @author Baxter
  */
 public class MockDataStudiosTest {
-    private IDataStudios studiosUnderTest;
+    private IDataStudiosService studiosUnderTest;
     private List<Studio> studios;
 
     @BeforeMethod

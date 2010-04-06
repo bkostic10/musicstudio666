@@ -4,13 +4,13 @@
  */
 
 package org.bane8006.MusicStudio.beans;
-import org.bane8006.MusicStudio.service.Room;
+import org.bane8006.MusicStudio.aints.Room;
 import static org.testng.AssertJUnit.assertNotNull;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import java.util.ArrayList;
 import java.util.List;
-import org.bane8006.MusicStudio.service.Studio;
+import org.bane8006.MusicStudio.aints.Studio;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.testng.AssertJUnit.assertSame;

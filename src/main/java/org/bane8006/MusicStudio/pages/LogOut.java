@@ -1,7 +1,7 @@
 package org.bane8006.MusicStudio.pages;
 
 import org.apache.tapestry5.annotations.ApplicationState;
-import org.bane8006.MusicStudio.service.User;
+import org.bane8006.MusicStudio.aints.User;
 
 public class LogOut
 {

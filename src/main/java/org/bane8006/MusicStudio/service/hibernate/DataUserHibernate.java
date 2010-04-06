@@ -3,13 +3,13 @@
  * and open the template in the editor.
  */
 
-package org.bane8006.MusicStudio.data.hibernate;
+package org.bane8006.MusicStudio.service.hibernate;
 
 import java.io.Serializable;
 import java.util.List;
 import org.bane8006.MusicStudio.beans.UserBean;
-import org.bane8006.MusicStudio.data.IDataUser;
-import org.bane8006.MusicStudio.service.User;
+import org.bane8006.MusicStudio.service.IDataUserService;
+import org.bane8006.MusicStudio.aints.User;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 
@@ -17,7 +17,7 @@ import org.hibernate.Session;
  *
  * @author Baxter
  */
-public class DataUserHibernate implements IDataUser{
+public class DataUserHibernate implements IDataUserService{
     private final Session session;
 
     public DataUserHibernate(Session session) {

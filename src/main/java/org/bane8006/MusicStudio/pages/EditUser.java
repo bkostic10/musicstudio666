@@ -13,8 +13,8 @@ import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.beans.UserBean;
-import org.bane8006.MusicStudio.data.IDataUser;
-import org.bane8006.MusicStudio.service.User;
+import org.bane8006.MusicStudio.service.IDataUserService;
+import org.bane8006.MusicStudio.aints.User;
 
 /**
  *
@@ -31,7 +31,7 @@ public class EditUser {
     private boolean userExists;
 
     @Inject
-    private IDataUser a;
+    private IDataUserService a;
     @Property
     @Persist("flash")
     private User user;

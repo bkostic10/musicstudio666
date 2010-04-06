@@ -11,9 +11,9 @@ import org.apache.tapestry5.annotations.Persist;
 import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.beans.RoomBean;
 import org.bane8006.MusicStudio.beans.RoomType;
-import org.bane8006.MusicStudio.service.Room;
-import org.bane8006.MusicStudio.service.Studio;
-import org.bane8006.MusicStudio.service.User;
+import org.bane8006.MusicStudio.aints.Room;
+import org.bane8006.MusicStudio.aints.Studio;
+import org.bane8006.MusicStudio.aints.User;
 
 /**
  *

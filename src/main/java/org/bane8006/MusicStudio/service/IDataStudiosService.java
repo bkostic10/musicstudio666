@@ -3,16 +3,16 @@
  * and open the template in the editor.
  */
 
-package org.bane8006.MusicStudio.data;
+package org.bane8006.MusicStudio.service;
 
 import java.util.Collection;
-import org.bane8006.MusicStudio.service.Studio;
+import org.bane8006.MusicStudio.aints.Studio;
 
 /**
  *
  * @author Baxter
  */
-public interface IDataStudios {
+public interface IDataStudiosService {
     public Collection<Studio> getAllStudios();
     public Studio getStudioById(String id);
     public void addStudioBean(Studio sb);

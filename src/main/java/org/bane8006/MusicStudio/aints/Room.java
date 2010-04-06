@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package org.bane8006.MusicStudio.service;
+package org.bane8006.MusicStudio.aints;
 
 import org.bane8006.MusicStudio.beans.RoomType;
 

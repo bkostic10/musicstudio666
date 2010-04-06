@@ -8,8 +8,8 @@ package org.bane8006.MusicStudio.pages;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.bane8006.MusicStudio.data.IDataUser;
-import org.bane8006.MusicStudio.service.User;
+import org.bane8006.MusicStudio.service.IDataUserService;
+import org.bane8006.MusicStudio.aints.User;
 
 /**
  *
@@ -21,7 +21,7 @@ public class DeleteAccount {
     private boolean userExists;
 
     @Inject
-    private IDataUser a;
+    private IDataUserService a;
 
     @InjectPage
     private DeleteAccount page;

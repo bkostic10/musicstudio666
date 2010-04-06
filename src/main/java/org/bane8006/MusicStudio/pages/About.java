@@ -3,13 +3,13 @@ package org.bane8006.MusicStudio.pages;
 import java.util.List;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.bane8006.MusicStudio.data.IDataUser;
-import org.bane8006.MusicStudio.service.User;
+import org.bane8006.MusicStudio.service.IDataUserService;
+import org.bane8006.MusicStudio.aints.User;
 
 public class About
 {
     @Inject
-    private IDataUser users;
+    private IDataUserService users;
 
 
 

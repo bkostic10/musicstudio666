@@ -3,8 +3,8 @@ package org.bane8006.MusicStudio.pages;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.bane8006.MusicStudio.service.User;
-import org.bane8006.MusicStudio.data.IDataUser;
+import org.bane8006.MusicStudio.aints.User;
+import org.bane8006.MusicStudio.service.IDataUserService;
 
 
 /**
@@ -19,7 +19,7 @@ public class Index
     private Studios studios;
     
     @Inject
-    private IDataUser a;
+    private IDataUserService a;
 
     @ApplicationState
     private User user;

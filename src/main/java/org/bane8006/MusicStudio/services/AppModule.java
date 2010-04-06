@@ -2,28 +2,30 @@ package org.bane8006.MusicStudio.services;
 
 import org.apache.tapestry5.*;
 import org.apache.tapestry5.hibernate.HibernateSymbols;
+import org.apache.tapestry5.hibernate.HibernateTransactionAdvisor;
 import org.apache.tapestry5.hibernate.HibernateTransactionDecorator;
 import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.MappedConfiguration;
+import org.apache.tapestry5.ioc.MethodAdviceReceiver;
 import org.apache.tapestry5.ioc.ServiceBinder;
 import org.apache.tapestry5.ioc.annotations.Match;
 import org.bane8006.MusicStudio.beans.RoomBean;
 import org.bane8006.MusicStudio.beans.StudioBean;
 import org.bane8006.MusicStudio.beans.UserBean;
-import org.bane8006.MusicStudio.data.IDataStudios;
-import org.bane8006.MusicStudio.data.IDataUser;
-import org.bane8006.MusicStudio.data.MockDataStudios;
-import org.bane8006.MusicStudio.data.MockDataUser;
-import org.bane8006.MusicStudio.data.hibernate.DataUserHibernate;
-import org.bane8006.MusicStudio.service.Room;
-import org.bane8006.MusicStudio.service.Studio;
-import org.bane8006.MusicStudio.service.User;
+import org.bane8006.MusicStudio.service.IDataStudiosService;
+import org.bane8006.MusicStudio.service.IDataUserService;
+import org.bane8006.MusicStudio.service.MockDataStudios;
+import org.bane8006.MusicStudio.service.MockDataUser;
+import org.bane8006.MusicStudio.service.hibernate.DataUserHibernate;
+import org.bane8006.MusicStudio.aints.Room;
+import org.bane8006.MusicStudio.aints.Studio;
+import org.bane8006.MusicStudio.aints.User;
 
 
 public class AppModule{
 
     public static void bind(ServiceBinder binder){
-        binder.bind(IDataUser.class, DataUserHibernate.class);
+        binder.bind(IDataUserService.class, DataUserHibernate.class);
     }
     
     public static void contributeApplicationDefaults(MappedConfiguration<String, String> configuration){        
@@ -37,16 +39,20 @@ public class AppModule{
         configuration.add("org.bane8006.MusicStudio.beans");
     }
 
-    @Match("*IDataUser")
+    @Match("*IDataUserService")
     public static <T> T decorateTransactionally(HibernateTransactionDecorator decorator, Class<T> serviceInterface,T delegate, String serviceId) {
         return decorator.build(serviceInterface, delegate, serviceId);
     }
+    @Match("*Service")
+    public static void adviseTransactions(HibernateTransactionAdvisor advisor, MethodAdviceReceiver receiver){
+        advisor.addTransactionCommitAdvice(receiver);
+    };
 
 //    public static IDataUser buildIDataUser() {
 //	return new MockDataUser();
 //    }
 
-    public static IDataStudios buildIDataStudios() {
+    public static IDataStudiosService buildIDataStudios() {
 	return new MockDataStudios();
     }
 

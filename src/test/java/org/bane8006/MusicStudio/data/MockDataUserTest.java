@@ -4,10 +4,12 @@
  */
 
 package org.bane8006.MusicStudio.data;
+import org.bane8006.MusicStudio.service.IDataUserService;
+import org.bane8006.MusicStudio.service.MockDataUser;
 import java.util.ArrayList;
 import java.util.List;
 import org.bane8006.MusicStudio.beans.UserBean;
-import org.bane8006.MusicStudio.service.User;
+import org.bane8006.MusicStudio.aints.User;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.testng.AssertJUnit.assertSame;
@@ -22,7 +24,7 @@ import org.testng.annotations.Test;
  */
 public class MockDataUserTest {
 
-    private IDataUser usersUnderTest;
+    private IDataUserService usersUnderTest;
     private List<User> users;
 
     @BeforeMethod

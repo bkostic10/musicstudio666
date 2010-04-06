@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package org.bane8006.MusicStudio.data;
+package org.bane8006.MusicStudio.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,14 +11,14 @@ import java.util.List;
 import org.bane8006.MusicStudio.beans.RoomBean;
 import org.bane8006.MusicStudio.beans.RoomType;
 import org.bane8006.MusicStudio.beans.StudioBean;
-import org.bane8006.MusicStudio.service.Room;
-import org.bane8006.MusicStudio.service.Studio;
+import org.bane8006.MusicStudio.aints.Room;
+import org.bane8006.MusicStudio.aints.Studio;
 
 /**
  *
  * @author Baxter
  */
-public class MockDataStudios implements IDataStudios{
+public class MockDataStudios implements IDataStudiosService{
 
     private List<Studio>studios;
 
@@ -29,13 +29,15 @@ public class MockDataStudios implements IDataStudios{
 
     public MockDataStudios() {
         this(new ArrayList<Studio>());
-        load();
+        //load();
     }
     
+    @Override
     public Collection<Studio> getAllStudios() {
         return studios;
     }
 
+    @Override
     public Studio getStudioById(String id) {
         for(Studio sb:getAllStudios()){
             if(sb.getStudioID().equals(id))
@@ -43,6 +45,7 @@ public class MockDataStudios implements IDataStudios{
         }
         return null;
     }
+    @Override
     public void addStudioBean(Studio sb) {
         if(!getAllStudios().contains(sb)){
             assert sb != null;
@@ -53,10 +56,12 @@ public class MockDataStudios implements IDataStudios{
         }
         else System.out.println("Studio exists!");
     }
+    @Override
     public void deleteStudio(Studio s){
         studios.remove(s);
     }
 
+    @Override
     public void load() {
         List<Room> rooms = new ArrayList<Room>();
         List<Room> rooms1 = new ArrayList<Room>();
