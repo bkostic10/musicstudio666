@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package org.bane8006.MusicStudio.aints;
+package org.bane8006.MusicStudio;
 
 import java.util.Collection;
 import java.util.List;

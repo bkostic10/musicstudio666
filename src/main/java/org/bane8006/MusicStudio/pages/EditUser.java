@@ -14,7 +14,7 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.beans.UserBean;
 import org.bane8006.MusicStudio.service.IDataUserService;
-import org.bane8006.MusicStudio.aints.User;
+import org.bane8006.MusicStudio.User;
 
 /**
  *

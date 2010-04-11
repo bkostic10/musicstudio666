@@ -17,9 +17,9 @@ import org.bane8006.MusicStudio.service.IDataUserService;
 import org.bane8006.MusicStudio.service.MockDataStudios;
 import org.bane8006.MusicStudio.service.MockDataUser;
 import org.bane8006.MusicStudio.service.hibernate.DataUserHibernate;
-import org.bane8006.MusicStudio.aints.Room;
-import org.bane8006.MusicStudio.aints.Studio;
-import org.bane8006.MusicStudio.aints.User;
+import org.bane8006.MusicStudio.Room;
+import org.bane8006.MusicStudio.Studio;
+import org.bane8006.MusicStudio.User;
 
 
 public class AppModule{

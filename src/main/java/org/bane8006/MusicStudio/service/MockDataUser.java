@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.beans.UserBean;
-import org.bane8006.MusicStudio.aints.User;
+import org.bane8006.MusicStudio.User;
 
 /**
  *

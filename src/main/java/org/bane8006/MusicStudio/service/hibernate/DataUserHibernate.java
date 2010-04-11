@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.List;
 import org.bane8006.MusicStudio.beans.UserBean;
 import org.bane8006.MusicStudio.service.IDataUserService;
-import org.bane8006.MusicStudio.aints.User;
+import org.bane8006.MusicStudio.User;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 

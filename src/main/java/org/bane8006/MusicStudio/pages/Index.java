@@ -3,7 +3,7 @@ package org.bane8006.MusicStudio.pages;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.bane8006.MusicStudio.aints.User;
+import org.bane8006.MusicStudio.User;
 import org.bane8006.MusicStudio.service.IDataUserService;
 
 

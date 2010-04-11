@@ -11,8 +11,8 @@ import java.util.List;
 import org.bane8006.MusicStudio.beans.RoomBean;
 import org.bane8006.MusicStudio.beans.RoomType;
 import org.bane8006.MusicStudio.beans.StudioBean;
-import org.bane8006.MusicStudio.aints.Room;
-import org.bane8006.MusicStudio.aints.Studio;
+import org.bane8006.MusicStudio.Room;
+import org.bane8006.MusicStudio.Studio;
 
 /**
  *

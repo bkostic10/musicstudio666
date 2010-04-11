@@ -5,35 +5,36 @@
 
 package org.bane8006.MusicStudio.pages;
 
-import org.apache.tapestry5.annotations.Component;
+import java.io.Serializable;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.annotations.SetupRender;
-import org.apache.tapestry5.corelib.components.Form;
-import org.apache.tapestry5.corelib.components.PasswordField;
-import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.beans.UserBean;
 import org.bane8006.MusicStudio.service.IDataUserService;
-import org.bane8006.MusicStudio.aints.User;
+import org.bane8006.MusicStudio.User;
 
 /**
  *
  * @author Baxter
  */
 public class Registration {
-
+    private Serializable id;
+    @Persist("flash")
     private String name;
-
+    private String firstName;
+    private String lastName;
+    private String personalNumber;
+    private String userName;
+    private String password;
     private String password2;
 
     @Inject
     private IDataUserService a;
     
     @Property
-    @Persist("flash")
+//    @Persist("flash")
     private User user;
     
     @InjectPage
@@ -55,20 +56,73 @@ public class Registration {
         this.password2 = password2;
     }
 
-    void onActivate(String fullName){
-        System.out.println("Activated:"+fullName);
-        this.name = fullName;
+    public String getFirstName() {
+        return firstName;
     }
-    String onPassivate(){
-        return name;
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
-    @SetupRender
-    public void createObject(){
-        user = new UserBean();
+
+    public String getLastName() {
+        return lastName;
     }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPersonalNumber() {
+        return personalNumber;
+    }
+
+    public void setPersonalNumber(String personalNumber) {
+        this.personalNumber = personalNumber;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+    
+    void onActivate(Serializable id){
+        System.out.println("Activated:"+id);
+        this.id = getId();
+    }
+    Serializable onPassivate(){
+        return id;
+    }
+//    void onActivate(String fullName){
+//        System.out.println("Activated:"+fullName);
+//        this.name = fullName;
+//    }
+//    String onPassivate(){
+//        return name;
+//    }
+//    @SetupRender
+//    public void createObject(){
+//        user = new UserBean();
+//    }
 
     Object onSubmitFromRegistrationForm(){
         System.out.println("Handling form submission!");
+        user = new UserBean();
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setPersonalNumber(personalNumber);
+        user.setUserName(userName);
+        user.setPassword(password);
         if(user.getUserName().equals("admin")&&user.getPassword().equals("admin")){
             user.setPrivilege(Privilege.Admin);
         }else{
@@ -85,6 +139,10 @@ public class Registration {
             registration.setName("Successful registration: "+user.getFirstName()+" "+user.getLastName());
         }
         return registration;
+    }
+
+    public void setId(Serializable id){
+        this.id = id;
     }
     public long getId(){
         return User.class.cast(user).getId();

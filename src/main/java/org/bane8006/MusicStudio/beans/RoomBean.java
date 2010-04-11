@@ -6,7 +6,7 @@
 package org.bane8006.MusicStudio.beans;
 
 
-import org.bane8006.MusicStudio.aints.Room;
+import org.bane8006.MusicStudio.Room;
 
 /**
  *

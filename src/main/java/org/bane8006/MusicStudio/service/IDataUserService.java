@@ -8,7 +8,7 @@ package org.bane8006.MusicStudio.service;
 import java.io.Serializable;
 import java.util.List;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
-import org.bane8006.MusicStudio.aints.User;
+import org.bane8006.MusicStudio.User;
 
 /**
  *

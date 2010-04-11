@@ -8,8 +8,8 @@ package org.bane8006.MusicStudio.beans;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import org.bane8006.MusicStudio.aints.Room;
-import org.bane8006.MusicStudio.aints.Studio;
+import org.bane8006.MusicStudio.Room;
+import org.bane8006.MusicStudio.Studio;
 
 
 /**
