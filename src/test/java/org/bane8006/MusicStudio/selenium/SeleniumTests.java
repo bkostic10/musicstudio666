@@ -21,6 +21,7 @@ public class SeleniumTests extends AbstractIntegrationTestSuite {
         }
         @Test
         void testRegistrationFailure() {
+            testApplicationStartup();
             click("link=Register");
             waitForPageToLoad("30000");
             type("firstname", "");
@@ -48,7 +49,7 @@ public class SeleniumTests extends AbstractIntegrationTestSuite {
         }
         @Test
         void testRegistrationSucces() {
-            open(BASE_URL);
+            testApplicationStartup();
             click("link=Register");
             waitForPageToLoad("30000");
             type("firstname", "Pera");
@@ -62,7 +63,9 @@ public class SeleniumTests extends AbstractIntegrationTestSuite {
         }
         @Test
         void testLoginSucces() {
-            open(BASE_URL);
+            testRegistrationSucces();
+            click("link=Back To The Hello Page");
+            waitForPageToLoad("30000");
             type("userName", "admin");
             type("password", "admin");
             click("submit");
