@@ -14,40 +14,60 @@ import org.testng.annotations.Test;
  */
 public class SeleniumTests extends AbstractIntegrationTestSuite {
 
-//        @Test
-//        void testApplicationStartup() {
-//                open(BASE_URL);
-//                assertTextPresent("Hello");
-//                waitForPageToLoad("10000");//This is just for demonstration purposes. You usually do not need to use this.
-//        }
-         @Test
-        void testRegistration() {
+        @Test
+        void testApplicationStartup() {
             open(BASE_URL);
-		click("link=Register");
-		waitForPageToLoad("30000");
-		click("submit");
-		//click("firstname");
-		type("firstname", "a");
-		type("lastname", "a");
-		type("personalnumber", "a");
-		type("username", "a");
-		type("password", "a");
-		type("password2", "a");
-		click("submit");
-		//click("firstname");
-		type("firstname", "aaaaa");
-		type("lastname", "aaaaa");
-		click("submit");
-		type("firstname", "Pera");
-		type("lastname", "Peric");
-		type("personalnumber", "123123123");
-		type("username", "admin");
-		type("password", "admin");
-		type("password2", "admin");
-		click("submit");
-		waitForPageToLoad("30000");
+            waitForPageToLoad("30000");
         }
-
+        @Test
+        void testRegistrationFailure() {
+            click("link=Register");
+            waitForPageToLoad("30000");
+            type("firstname", "");
+            type("lastname", "");
+            type("personalnumber", "");
+            type("username", "");
+            type("password", "");
+            type("password2", "");
+            click("submit");
+            type("firstname", "a");
+            type("lastname", "a");
+            type("personalnumber", "a");
+            type("username", "a");
+            type("password", "a");
+            type("password2", "a");
+            click("submit");
+            type("firstname", "Pera");
+            type("lastname", "Peric");
+            type("personalnumber", "123123123");
+            type("username", "admin");
+            type("password", "admin");
+            type("password2", "admin2");
+            click("submit");
+            waitForPageToLoad("30000");
+        }
+        @Test
+        void testRegistrationSucces() {
+            open(BASE_URL);
+            click("link=Register");
+            waitForPageToLoad("30000");
+            type("firstname", "Pera");
+            type("lastname", "Peric");
+            type("personalnumber", "123123123");
+            type("username", "admin");
+            type("password", "admin");
+            type("password2", "admin");
+            click("submit");
+            waitForPageToLoad("30000");
+        }
+        @Test
+        void testLoginSucces() {
+            open(BASE_URL);
+            type("userName", "admin");
+            type("password", "admin");
+            click("submit");
+            waitForPageToLoad("30000");
+        }
 
 }
 

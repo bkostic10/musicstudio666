@@ -8,7 +8,7 @@ import org.bane8006.MusicStudio.service.IDataStudiosService;
 import org.bane8006.MusicStudio.service.MockDataStudios;
 import java.util.ArrayList;
 import java.util.List;
-import org.bane8006.MusicStudio.aints.Studio;
+import org.bane8006.MusicStudio.Studio;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.testng.AssertJUnit.assertSame;

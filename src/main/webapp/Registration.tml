@@ -7,23 +7,23 @@
     <t:form t:id="registrationForm">
     <t:errors/>
         First Name:<br/>
-        <div><t:textfield t:id="firstname" t:value="user.firstName"
+        <div><t:textfield t:id="firstname" t:value="firstName"
         t:validate="required,minlength=2,regexp=^[A-Z][a-z]+$"/></div>
 
         Last Name:<br/>
-        <div><t:textfield t:id="lastname" t:value="user.lastName"
+        <div><t:textfield t:id="lastname" t:value="lastName"
         t:validate="required,minlength=2,regexp=^[A-Z][a-z]+$"/></div>
 
         Personal Number:<br/>
-        <div><t:textfield t:id="personalnumber" t:value="user.personalNumber"
+        <div><t:textfield t:id="personalnumber" t:value="personalNumber"
         t:validate="required,minlength=2"/></div>
 
         User Name:<br/>
-        <div><t:textfield t:id="username" t:value="user.userName"
+        <div><t:textfield t:id="username" t:value="userName"
         t:validate="required,minlength=5"/></div>
 
         Password:<br/>
-        <div><t:passwordfield t:id="password" t:value="user.password"
+        <div><t:passwordfield t:id="password" t:value="password"
         t:validate="required,minlength=5"/></div>
 
         Retype Password:<br/>

@@ -141,9 +141,6 @@ public class Registration {
         return registration;
     }
 
-    public void setId(Serializable id){
-        this.id = id;
-    }
     public long getId(){
         return User.class.cast(user).getId();
     }

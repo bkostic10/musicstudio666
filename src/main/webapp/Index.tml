@@ -28,7 +28,7 @@
 <br/>
 <div>
     <div colspan="2" align="left">
-        <input type="submit" value="Log In"/>
+        <input id="submit" type="submit" value="Log In"/>
     </div>
 </div>
 </t:form>

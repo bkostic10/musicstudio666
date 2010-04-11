@@ -9,7 +9,7 @@ import org.bane8006.MusicStudio.service.MockDataUser;
 import java.util.ArrayList;
 import java.util.List;
 import org.bane8006.MusicStudio.beans.UserBean;
-import org.bane8006.MusicStudio.aints.User;
+import org.bane8006.MusicStudio.User;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.testng.AssertJUnit.assertSame;
