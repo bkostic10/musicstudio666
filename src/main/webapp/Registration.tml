@@ -20,11 +20,11 @@
 
         User Name:<br/>
         <div><t:textfield t:id="username" t:value="userName"
-        t:validate="required,minlength=5"/></div>
+        t:validate="required,minlength=5,maxlength=15"/></div>
 
         Password:<br/>
         <div><t:passwordfield t:id="password" t:value="password"
-        t:validate="required,minlength=5"/></div>
+        t:validate="required,minlength=5,maxlength=15"/></div>
 
         Retype Password:<br/>
         <div><t:passwordfield t:id="password2" t:value="password2"/></div>

@@ -12,7 +12,8 @@
     </div>
     <div>
         <input type="text" t:id="userName"
-        t:type="TextField" t:value="userName"/>
+        t:type="TextField" t:value="userName"
+        t:validate="required"/>
     </div>
 </div>
 <div>
@@ -22,7 +23,8 @@
     </div>
     <div>
         <input type="text" t:id="password"
-        t:type="PasswordField" t:value="password"/>
+        t:type="PasswordField" t:value="password"
+        t:validate="required"/>
     </div>
 </div>
 <br/>

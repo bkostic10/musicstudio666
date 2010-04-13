@@ -41,11 +41,10 @@ public class SeleniumTests extends AbstractIntegrationTestSuite {
             type("firstname", "Pera");
             type("lastname", "Peric");
             type("personalnumber", "123123123");
-            type("username", "admin");
-            type("password", "admin");
+            type("username", "adminadminadminadmin");
+            type("password", "adminadminadminadmin");
             type("password2", "admin2");
             click("submit");
-            waitForPageToLoad("30000");
         }
         @Test
         void testRegistrationSucces() {
@@ -58,6 +57,22 @@ public class SeleniumTests extends AbstractIntegrationTestSuite {
             type("username", "admin");
             type("password", "admin");
             type("password2", "admin");
+            click("submit");
+            waitForPageToLoad("30000");
+        }
+        @Test
+        void testLoginFailure(){
+            testRegistrationSucces();
+            click("link=Back To The Hello Page");
+            waitForPageToLoad("30000");
+            type("userName", "");
+            type("password", "");
+            click("submit");
+            type("userName", "a");
+            type("password", "a");
+            click("submit");
+            type("userName", "admin");
+            type("password", "a");
             click("submit");
             waitForPageToLoad("30000");
         }
