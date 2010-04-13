@@ -33,7 +33,7 @@ public class AddStudios {
     private User user;
     private boolean userExists;
 
-    @Persist
+    
     private Studio studio;
 
     @Inject
