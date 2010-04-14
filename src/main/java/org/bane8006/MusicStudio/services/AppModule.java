@@ -56,9 +56,9 @@ public class AppModule{
 	return new MockDataStudios();
     }
 
-    public static User buildUser(){
-        return new UserBean();
-    }
+//    public static User buildUser(){
+//        return new UserBean();
+//    }
 
     public static Room buildRoom(){
         return new RoomBean();

@@ -33,7 +33,7 @@
         <input id="submit" type="submit" value="Submit"/>
     </t:form>
     <br/>
-    <div>${name}</div>
+    <div>${name}</div><br/>
     <t:pagelink page="Index">Back To The Hello Page</t:pagelink>
 </body>
 </html>

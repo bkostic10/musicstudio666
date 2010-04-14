@@ -20,6 +20,7 @@ import org.bane8006.MusicStudio.User;
  * @author Baxter
  */
 public class Registration {
+
     private Serializable id;
     @Persist("flash")
     private String name;
@@ -34,7 +35,6 @@ public class Registration {
     private IDataUserService a;
     
     @Property
-//    @Persist("flash")
     private User user;
     
     @InjectPage
@@ -103,17 +103,6 @@ public class Registration {
     Serializable onPassivate(){
         return id;
     }
-//    void onActivate(String fullName){
-//        System.out.println("Activated:"+fullName);
-//        this.name = fullName;
-//    }
-//    String onPassivate(){
-//        return name;
-//    }
-//    @SetupRender
-//    public void createObject(){
-//        user = new UserBean();
-//    }
 
     Object onSubmitFromRegistrationForm(){
         System.out.println("Handling form submission!");

@@ -4,8 +4,6 @@
 <head></head><body>
     <p>Choose a Studio:</p>
 
-
-
     <div t:type="loop" t:source="allStudios" t:value="studio">
     
         <t:ActionLink t:context="studio.studioId"
@@ -14,11 +12,11 @@
     </div><br/><br/>
     <div><t:if t:test="admin">
         <t:PageLink t:page="AddStudios">Add Studio</t:PageLink>
-    </t:if></div><br/><div>${name}</div>
+    </t:if></div>
 </body>
 <p:sidebar><br/>
         <h1>Welcome:</h1>
-        <center><user>${user.firstName} ${user.lastName}</user></center>
+        <center><user>${name}</user></center>
 <br/><br/>
     </p:sidebar>
 </html>

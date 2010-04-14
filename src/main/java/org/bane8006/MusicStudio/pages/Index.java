@@ -1,6 +1,5 @@
 package org.bane8006.MusicStudio.pages;
 
-import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.User;
@@ -14,25 +13,32 @@ public class Index
 {
     private String userName;
     private String password;
-
+    private String message;
     @InjectPage
     private Studios studios;
+    @InjectPage
+    private Index index;
     
     @Inject
     private IDataUserService a;
 
-    @ApplicationState
     private User user;
 
     Object onSubmitFromLoginForm(){
-        Class nextPage = null;
         User aUser = null;
         aUser = a.authenticate(userName, password);
         if(aUser!=null){
             user = aUser;
-            nextPage = Studios.class;
+            studios.setUser(user);
+            studios.setName(user.getFirstName()+" "+user.getLastName());
+            studios.setP(user.getPrivilege());
+            return studios;
         }
-        return nextPage;
+        else{
+            System.out.println("Username or password incorrect");
+            index.setMessage("Username or password incorrect");
+        }
+        return index;
     }
     public String getPassword() {
         return password;
@@ -48,6 +54,20 @@ public class Index
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+    void onActivate(String message){
+        this.message = message;
+    }
+    String onPassivate(){
+        return message;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
 }

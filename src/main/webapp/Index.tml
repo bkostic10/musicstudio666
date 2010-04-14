@@ -34,6 +34,7 @@
     </div>
 </div>
 </t:form>
+    <br/><div>${message}</div><br/>
 <p>
 <t:PageLink t:page="Registration">Register</t:PageLink>
 </p>
