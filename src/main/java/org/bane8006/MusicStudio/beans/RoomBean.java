@@ -28,10 +28,12 @@ public class RoomBean implements Room{
         this.description = description;
     }
 
+    @Override
     public String getRoomID() {
         return roomID;
     }
 
+    @Override
     public void setRoomID(String roomID) {
         assert roomID!=null;
         assert !roomID.equals(" ");
@@ -39,10 +41,12 @@ public class RoomBean implements Room{
         this.roomID = roomID;
     }
 
+    @Override
     public String getRoomName() {
         return roomName;
     }
 
+    @Override
     public void setRoomName(String roomName) {
         assert roomName!=null;
         assert !roomName.equals(" ");
@@ -50,19 +54,23 @@ public class RoomBean implements Room{
         this.roomName = roomName;
     }
 
+    @Override
     public RoomType getRoomType() {
         return roomType;
     }
 
+    @Override
     public void setRoomType(RoomType roomType) {
         assert roomType!=null;
         this.roomType = roomType;
     }
 
+    @Override
     public String getDescription() {
         return description;
     }
 
+    @Override
     public void setDescription(String description) {
         assert description!=null;
         assert !description.equals("");
@@ -71,6 +79,7 @@ public class RoomBean implements Room{
     }
 
 
+    @Override
     public boolean equals(Object o){
         Room r = (RoomBean)(o);
         if(roomID.equals(r.getRoomID())){return true;}

@@ -5,17 +5,16 @@
 
 package org.bane8006.MusicStudio.pages;
 
-import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
-import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.service.IDataStudiosService;
 import org.bane8006.MusicStudio.Room;
 import org.bane8006.MusicStudio.Studio;
 import org.bane8006.MusicStudio.User;
+import org.bane8006.MusicStudio.service.ILoggedUser;
 
 /**
  *
@@ -25,23 +24,22 @@ public class RoomDetails {
 
     @Persist
     private Room room;
-    @Property
-    @ApplicationState
-    private User user;
-    private boolean userExists;
 
     @Inject
     private IDataStudiosService dataStudios;
 
+    @Inject
+    private ILoggedUser lu;
+    
     @Persist
     private Studio studio;
 
     @InjectPage
-    private Studios page;
+    private Rooms page;
     
     Object onActivate()
     {
-        if (!userExists) return Index.class;
+        if (lu.getAllUsers().isEmpty()) return Index.class;
         return null;
     }
 
@@ -63,11 +61,15 @@ public class RoomDetails {
     @OnEvent(component="deleteRoomLink")
     Object onDeleteRoom(String id){
         Room room = studio.getRoomById(id);
+        page.setName(room.getRoomName()+" has been successfuly deleted!");
         studio.deleteRoom(room);
         return page;
     }
-        public boolean getAdmin(){
-        if(user.getPrivilege().equals(Privilege.Admin))
+    public User getUser(){
+        return lu.getFirst();
+    }
+    public boolean getAdmin(){
+        if(getUser().getPrivilege().equals(Privilege.Admin))
             return true;
         else return false;
     }

@@ -4,6 +4,7 @@ import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.User;
 import org.bane8006.MusicStudio.service.IDataUserService;
+import org.bane8006.MusicStudio.service.ILoggedUser;
 
 
 /**
@@ -21,17 +22,21 @@ public class Index
     
     @Inject
     private IDataUserService a;
-
+    @Inject
+    private ILoggedUser lu;
     private User user;
 
+    Object onActivate()
+    {
+        if (lu.getAllUsers().isEmpty()) return null;
+        return Studios.class;
+    }
     Object onSubmitFromLoginForm(){
         User aUser = null;
         aUser = a.authenticate(userName, password);
         if(aUser!=null){
             user = aUser;
-            studios.setUser(user);
-            studios.setName(user.getFirstName()+" "+user.getLastName());
-            studios.setP(user.getPrivilege());
+            lu.addUser(user);
             return studios;
         }
         else{

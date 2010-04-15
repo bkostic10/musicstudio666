@@ -14,6 +14,7 @@ import org.bane8006.MusicStudio.service.IDataStudiosService;
 import org.bane8006.MusicStudio.Room;
 import org.bane8006.MusicStudio.Studio;
 import org.bane8006.MusicStudio.User;
+import org.bane8006.MusicStudio.service.ILoggedUser;
 
 /**
  *
@@ -24,22 +25,26 @@ public class Rooms {
 
     @Persist
     private Studio studio;
-    @Property
-    @ApplicationState
-    private User user;
-    private boolean userExists;
-
+//    @Property
+//    @ApplicationState
+//    private User user;
+//    private boolean userExists;
+    @Inject
+    private ILoggedUser lu;
     @Inject
     private IDataStudiosService dataStudios;
 
     @InjectPage
     private RoomDetails rdPage;
-    
+
+    @Persist("flash")
+    private String name;
+
     private Room room;
     
     Object onActivate()
     {
-        if (!userExists){
+        if (lu.getAllUsers().isEmpty()){
             return Index.class;
         }
         else return null;
@@ -65,6 +70,17 @@ public class Rooms {
 
     public void setStudio(Studio studio) {
         this.studio = studio;
+    }
+    public User getUser(){
+        return lu.getFirst();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
     
 }

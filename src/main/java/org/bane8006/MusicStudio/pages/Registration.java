@@ -14,6 +14,7 @@ import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.beans.UserBean;
 import org.bane8006.MusicStudio.service.IDataUserService;
 import org.bane8006.MusicStudio.User;
+import org.bane8006.MusicStudio.service.ILoggedUser;
 
 /**
  *
@@ -39,7 +40,15 @@ public class Registration {
     
     @InjectPage
     private Registration registration;
-
+    
+    @Inject
+    private ILoggedUser lu;
+    
+    Object onActivate()
+    {
+        if (lu.getAllUsers().isEmpty()) return null;
+        return Studios.class;
+    }
     public String getName() {
         return name;
     }
@@ -131,6 +140,6 @@ public class Registration {
     }
 
     public long getId(){
-        return User.class.cast(user).getId();
+        return User.class.cast(user).getIdUser();
     }
 }

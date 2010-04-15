@@ -7,7 +7,7 @@
     <div t:type="loop" t:source="studio.getAllRooms()" t:value="room">
         <t:ActionLink t:context="room.roomId"
         t:id="roomDetailsLink">${room.roomName}</t:ActionLink>
-    </div>
+    </div><br/><div>${name}</div>
 
     <br/>
     <t:PageLink t:page="StudioDetails">Back To The Studio Details</t:PageLink>

@@ -1,21 +1,16 @@
 package org.bane8006.MusicStudio.pages;
 
-import org.apache.tapestry5.annotations.ApplicationState;
-import org.bane8006.MusicStudio.User;
+import org.apache.tapestry5.ioc.annotations.Inject;
+import org.bane8006.MusicStudio.service.ILoggedUser;
 
 public class LogOut
 {
-    @ApplicationState
-    private User user;
-    private boolean userExists;
+    @Inject
+    private ILoggedUser lu;
 
-    public void setUser(User user) {
-        this.user = user;
-    }
     Object onActivate()
     {
-        setUser(null);
-        if (!userExists) return Index.class;
-        return null;
+        lu.remove();
+        return Index.class;
     }
 }

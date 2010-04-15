@@ -20,6 +20,8 @@ import org.bane8006.MusicStudio.service.hibernate.DataUserHibernate;
 import org.bane8006.MusicStudio.Room;
 import org.bane8006.MusicStudio.Studio;
 import org.bane8006.MusicStudio.User;
+import org.bane8006.MusicStudio.service.ILoggedUser;
+import org.bane8006.MusicStudio.service.LoggedUser;
 
 
 public class AppModule{
@@ -48,9 +50,9 @@ public class AppModule{
         advisor.addTransactionCommitAdvice(receiver);
     };
 
-//    public static IDataUser buildIDataUser() {
-//	return new MockDataUser();
-//    }
+    public static ILoggedUser buildILoggedUser() {
+	return new LoggedUser();
+    }
 
     public static IDataStudiosService buildIDataStudios() {
 	return new MockDataStudios();

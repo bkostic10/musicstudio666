@@ -17,7 +17,7 @@ public class About
     private User user;
     
     public long getCurrentPersonId() {
-        return User.class.cast(user).getId();
+        return User.class.cast(user).getIdUser();
     }
     public List<User> getAllUsers(){
         return users.getAllUsers();

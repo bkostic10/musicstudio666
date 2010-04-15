@@ -9,14 +9,14 @@
         <t:ActionLink t:context="studio.studioId"
         t:id="studioDetailsLink">${studio.studioName}</t:ActionLink>
 
-    </div><br/><br/>
+    </div><br/>
     <div><t:if t:test="admin">
         <t:PageLink t:page="AddStudios">Add Studio</t:PageLink>
-    </t:if></div>
+    </t:if></div><br/><div>${name}</div>
 </body>
 <p:sidebar><br/>
         <h1>Welcome:</h1>
-        <center><user>${name}</user></center>
+        <center><user>${user.firstName} ${user.lastName}</user></center>
 <br/><br/>
     </p:sidebar>
 </html>

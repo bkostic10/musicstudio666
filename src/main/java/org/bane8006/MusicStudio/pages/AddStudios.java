@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
-import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.beans.StudioBean;
@@ -17,6 +16,7 @@ import org.bane8006.MusicStudio.service.IDataStudiosService;
 import org.bane8006.MusicStudio.Room;
 import org.bane8006.MusicStudio.Studio;
 import org.bane8006.MusicStudio.User;
+import org.bane8006.MusicStudio.service.ILoggedUser;
 
 /**
  *
@@ -29,10 +29,11 @@ public class AddStudios {
     private List<Room> rooms;
     private String name;
 
-    @ApplicationState
-    private User user;
-    private boolean userExists;
-
+//    @ApplicationState
+//    private User user;
+//    private boolean userExists;
+    @Inject
+    private ILoggedUser lu;
     
     private Studio studio;
 
@@ -44,10 +45,10 @@ public class AddStudios {
     
     Object onActivate()
     {
-        if (!userExists) {
+        if (lu.getAllUsers().isEmpty()) {
             return Index.class;
         }
-        else if(user.getPrivilege().equals(Privilege.User)){
+        else if(lu.getFirst().getPrivilege().equals(Privilege.User)){
             return Studios.class;
         }
         else return null;
@@ -91,8 +92,6 @@ public class AddStudios {
     public void setName(String name) {
         this.name = name;
     }
-
-
 
     void onActivate(String studio){
         System.out.println("Activated:"+studio);

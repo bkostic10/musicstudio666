@@ -6,28 +6,27 @@
 package org.bane8006.MusicStudio.pages;
 
 import org.apache.tapestry5.annotations.ApplicationState;
+import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.User;
+import org.bane8006.MusicStudio.service.ILoggedUser;
 
 /**
  *
  * @author Baxter
  */
 public class UserInfo {
-    @ApplicationState
-    private User user;
-    private boolean userExists;
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+    @Inject
+    private ILoggedUser lu;
+
 
     public User getUser() {
-        return user;
+        return lu.getFirst();
     }
     
     Object onActivate()
     {
-        if (!userExists) return Index.class;
+        if (lu.getAllUsers().isEmpty()) return Index.class;
         return null;
     }
 }

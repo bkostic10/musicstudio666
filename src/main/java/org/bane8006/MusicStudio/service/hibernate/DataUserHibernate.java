@@ -47,7 +47,7 @@ public class DataUserHibernate implements IDataUserService{
         u.setPrivilege(b.getPrivilege());
     }
     public void remove(User b) {
-        long a = b.getId();
+        long a = b.getIdUser();
         b = (User) session.load(UserBean.class, a);
         session.delete(b);
     }

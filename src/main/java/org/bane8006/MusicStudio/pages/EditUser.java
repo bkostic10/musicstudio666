@@ -5,39 +5,84 @@
 
 package org.bane8006.MusicStudio.pages;
 
-import org.apache.tapestry5.annotations.ApplicationState;
+import java.io.Serializable;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.beans.UserBean;
 import org.bane8006.MusicStudio.service.IDataUserService;
 import org.bane8006.MusicStudio.User;
+import org.bane8006.MusicStudio.service.ILoggedUser;
 
 /**
  *
  * @author Baxter
  */
 public class EditUser {
-
+    
+    private String firstName;
+    private String lastName;
+    private String personalNumber;
+    private String userName;
+    private String password;
     private String oldPassword;
     private String password2;
+    @Persist("flash")
     private String name;
-    
-    @ApplicationState
-    private User user2;
-    private boolean userExists;
+    private Serializable id;
+
+    @Inject
+    private ILoggedUser lu;
 
     @Inject
     private IDataUserService a;
+
     @Property
-    @Persist("flash")
     private User user;
 
     @InjectPage
     private EditUser edit;
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPersonalNumber() {
+        return personalNumber;
+    }
+
+    public void setPersonalNumber(String personalNumber) {
+        this.personalNumber = personalNumber;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public String getPassword2() {
         return password2;
@@ -64,37 +109,36 @@ public class EditUser {
         this.name = name;
     }
 
-    void onActivate(String fullName){
-        System.out.println("Activated:"+fullName);
-        this.name = fullName;
+    void onActivate(Serializable id){
+        System.out.println("Activated:"+id);
+        this.id = getIdUser();
     }
-    String onPassivate(){
-        return name;
+    Serializable onPassivate(){
+        return id;
     }
-
     public User getUser2() {
-        return user2;
-    }
-
-    public void setUser2(User user2) {
-        this.user2 = user2;
-    }
-    @SetupRender
-    public void createObject(){
-        user = new UserBean();
+        return lu.getFirst();
     }
 
     Object onSubmitFromEditUserForm(){
         System.out.println("Handling form submission!");
-        user.setPrivilege(user2.getPrivilege());
-        if(getOldPassword().equals(user2.getPassword())&&user.getPassword()!=null&&user.getPassword().equals(getPassword2())){
-            a.replace(user2.getId(), user);
+        user = new UserBean();
+        user.setPrivilege(getUser2().getPrivilege());
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setUserName(userName);
+        user.setPassword(password);
+        if(getOldPassword().equals(getUser2().getPassword())&&user.getPassword()!=null&&user.getPassword().equals(getPassword2())){
+            a.replace(getUser2().getIdUser(), user);
             edit.setName("Info is changed");
-            setUser2(null);
+            lu.remove();
         }
         else{
             edit.setName("Data invalid!!!");
         }
         return edit;
+    }
+    public long getIdUser(){
+        return User.class.cast(user).getIdUser();
     }
 }

@@ -75,10 +75,12 @@ public class UserBean implements User,Serializable{
         this.privilege = p;
     }
 
+    @Override
     public String getFirstName() {
         return firstName;
     }
 
+    @Override
     public void setFirstName(String firstName) {
         assert firstName!=null;
         assert !firstName.equals(" ");
@@ -86,10 +88,12 @@ public class UserBean implements User,Serializable{
         this.firstName = firstName;
     }
 
+    @Override
     public String getLastName() {
         return lastName;
     }
 
+    @Override
     public void setLastName(String lastName) {
         assert lastName!=null;
         assert !lastName.equals(" ");
@@ -97,10 +101,12 @@ public class UserBean implements User,Serializable{
         this.lastName = lastName;
     }
 
+    @Override
     public String getPersonalNumber() {
         return personalNumber;
     }
 
+    @Override
     public void setPersonalNumber(String personalNumber) {
         assert personalNumber!=null;
         assert !personalNumber.equals(" ");
@@ -108,10 +114,12 @@ public class UserBean implements User,Serializable{
         this.personalNumber = personalNumber;
     }
 
+    @Override
     public String getPassword() {
         return password;
     }
 
+    @Override
     public void setPassword(String password) {
         assert password!=null;
         assert !password.equals(" ");
@@ -119,10 +127,12 @@ public class UserBean implements User,Serializable{
         this.password = password;
     }
 
+    @Override
     public String getUserName() {
         return userName;
     }
 
+    @Override
     public void setUserName(String userName) {
         assert userName!=null;
         assert !userName.equals(" ");
@@ -130,22 +140,26 @@ public class UserBean implements User,Serializable{
         this.userName = userName;
     }
 
+    @Override
     public Privilege getPrivilege() {
         return privilege;
     }
 
+    @Override
     public void setPrivilege(Privilege privilege) {
         assert privilege!=null;
         this.privilege = privilege;
     }
     
+    @Override
     public boolean equals(Object o){
         User u = (UserBean)(o);
         if(userName.equals(u.getUserName()))return true;
         else return false;
     }
 
-    public long getId() {
+    @Override
+    public long getIdUser() {
         return id;
     }
 }

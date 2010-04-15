@@ -29,7 +29,7 @@ public class MockDataStudios implements IDataStudiosService{
 
     public MockDataStudios() {
         this(new ArrayList<Studio>());
-        //load();
+        load();
     }
     
     @Override

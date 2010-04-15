@@ -16,16 +16,13 @@ import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.service.IDataStudiosService;
 import org.bane8006.MusicStudio.Studio;
 import org.bane8006.MusicStudio.User;
+import org.bane8006.MusicStudio.service.ILoggedUser;
 
 /**
  *
  * @author Baxter
  */
 public class Studios {
-    
-    private Serializable id;
-
-    private User user;
 
     @Inject
     private IDataStudiosService dataStudios;
@@ -35,30 +32,31 @@ public class Studios {
 
     @Property
     private Studio studio;
-    @Persist
+    @Persist("flash")
     private String name;
-    @Persist
-    private Privilege p;
 
+    @Inject
+    private ILoggedUser lu;
+
+    Object onActivate()
+    {
+        if (lu.getAllUsers().isEmpty()) return Index.class;
+        return null;
+    }
     @OnEvent(component="studioDetailsLink")
     Object onShowDetails(String id){
         Studio studio = dataStudios.getStudioById(id);
-        sdPage.setStudio(studio);
+        if(studio!=null){
+            sdPage.setStudio(studio);
+        }
         return sdPage;
     }
     public Collection<Studio> getAllStudios(){
         return dataStudios.getAllStudios();
     }
 
-    public Privilege getP() {
-        return p;
-    }
-
-    public void setP(Privilege p) {
-        this.p = p;
-    }
     public boolean getAdmin(){
-        if(p.equals(Privilege.Admin))
+        if(getUser().getPrivilege().equals(Privilege.Admin))
             return true;
         else return false;
     }
@@ -69,23 +67,9 @@ public class Studios {
     public void setName(String name) {
         this.name = name;
     }
-    void onActivate(Serializable id){
-        System.out.println("Activated:"+id);
-        this.id = getId();
-    }
-    Serializable onPassivate(){
-        return id;
-    }
 
     public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-    public long getId(){
-        return User.class.cast(user).getId();
+        return lu.getFirst();
     }
     
 }

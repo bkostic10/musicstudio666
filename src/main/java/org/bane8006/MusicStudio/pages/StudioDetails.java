@@ -5,9 +5,6 @@
 
 package org.bane8006.MusicStudio.pages;
 
-
-
-import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
@@ -18,6 +15,7 @@ import org.bane8006.MusicStudio.service.IDataStudiosService;
 import org.bane8006.MusicStudio.Room;
 import org.bane8006.MusicStudio.Studio;
 import org.bane8006.MusicStudio.User;
+import org.bane8006.MusicStudio.service.ILoggedUser;
 
 /**
  *
@@ -25,12 +23,11 @@ import org.bane8006.MusicStudio.User;
  */
 public class StudioDetails {
 
-    
-    
     @Persist
     private Studio studio;
 
     private Room room;
+    
     @InjectPage
     private Rooms r;
 
@@ -42,15 +39,16 @@ public class StudioDetails {
 
     @Inject
     private IDataStudiosService ds;
-    @Property
-    @ApplicationState
-    private User user;
-    private boolean userExists;
 
+    @Persist
     private String name;
+
+    @Inject
+    private ILoggedUser lu;
+
     Object onActivate()
     {
-        if (!userExists) return Index.class;
+        if (lu.getAllUsers().isEmpty()) return Index.class;
         return null;
     }
     @OnEvent(component="roomsLink")
@@ -67,6 +65,7 @@ public class StudioDetails {
     }
     @OnEvent(component="deleteStudioLink")
     Object onDeleteStudio(){
+        st.setName(studio.getStudioName()+" has been successfuly deleted!");
         ds.deleteStudio(studio);
         return st;
     }
@@ -86,10 +85,20 @@ public class StudioDetails {
     public void setRoom(Room room) {
         this.room = room;
     }
-    
-    
+
+//
+//    public String getName() {
+//        return name;
+//    }
+//
+//    public void setName(String name) {
+//        this.name = name;
+//    }
+    public User getUser(){
+        return lu.getFirst();
+    }
     public boolean getAdmin(){
-        if(user.getPrivilege().equals(Privilege.Admin))
+        if(getUser().getPrivilege().equals(Privilege.Admin))
             return true;
         else return false;
     }

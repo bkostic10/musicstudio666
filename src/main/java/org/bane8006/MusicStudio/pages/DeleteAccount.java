@@ -6,7 +6,8 @@
 package org.bane8006.MusicStudio.pages;
 
 import org.apache.tapestry5.annotations.ApplicationState;
-import org.apache.tapestry5.annotations.InjectPage;;
+import org.apache.tapestry5.annotations.InjectPage;import org.bane8006.MusicStudio.service.ILoggedUser;
+;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.service.IDataUserService;
 import org.bane8006.MusicStudio.User;
@@ -16,10 +17,9 @@ import org.bane8006.MusicStudio.User;
  * @author Baxter
  */
 public class DeleteAccount {
-    @ApplicationState
-    private User user;
-    private boolean userExists;
 
+    @Inject
+    private ILoggedUser lu;
     @Inject
     private IDataUserService a;
 
@@ -28,12 +28,12 @@ public class DeleteAccount {
 
     private String name;
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 
     public User getUser() {
-        return user;
+        return lu.getFirst();
     }
         public String getName() {
         return name;
@@ -44,7 +44,7 @@ public class DeleteAccount {
     }
 
     public String getFullName(){
-        return user.getFirstName()+" "+user.getLastName();
+        return lu.getFirst().getFirstName()+" "+lu.getFirst().getLastName();
     }
 
     void onActivate(String fullName){
@@ -58,7 +58,8 @@ public class DeleteAccount {
         System.out.println("Handling form submission!");
         a.remove(getUser());
         page.setName(getFullName()+" is successfuly deleted!");
-        setUser(null);
+        lu.remove();
+        //setUser(null);
         return page;
     }
 }

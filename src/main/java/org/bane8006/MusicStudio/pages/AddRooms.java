@@ -5,15 +5,15 @@
 
 package org.bane8006.MusicStudio.pages;
 
-import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
+import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.beans.RoomBean;
 import org.bane8006.MusicStudio.beans.RoomType;
 import org.bane8006.MusicStudio.Room;
 import org.bane8006.MusicStudio.Studio;
-import org.bane8006.MusicStudio.User;
+import org.bane8006.MusicStudio.service.ILoggedUser;
 
 /**
  *
@@ -27,10 +27,12 @@ public class AddRooms {
 
     private String name;
     
-    @ApplicationState
-    private User user;
-    private boolean userExists;
-    
+//    @ApplicationState
+//    private User user;
+//    private boolean userExists;
+    @Inject
+    private ILoggedUser lu;
+
     private Room room;
 
     @Persist
@@ -41,10 +43,10 @@ public class AddRooms {
 
     Object onActivate()
     {
-        if (!userExists) {
+        if (lu.getAllUsers().isEmpty()) {
             return Index.class;
         }
-        else if(user.getPrivilege().equals(Privilege.User)){
+        else if(lu.getFirst().getPrivilege().equals(Privilege.User)){
             return Studios.class;
         }
         else return null;
@@ -75,7 +77,7 @@ public class AddRooms {
     public RoomType getRecording(){
         return RoomType.Recording;
     }
-        public RoomType getJamming(){
+    public RoomType getJamming(){
         return RoomType.Jamming;
     }
 

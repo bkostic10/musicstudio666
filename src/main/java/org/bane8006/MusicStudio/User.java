@@ -39,5 +39,5 @@ public interface User {
 
     public boolean equals(Object o);
     
-    public long getId();
+    public long getIdUser();
 }

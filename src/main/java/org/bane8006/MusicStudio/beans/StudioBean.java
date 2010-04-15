@@ -36,6 +36,7 @@ public class StudioBean implements Studio{
         this(new ArrayList<Room>());
     }
 
+    @Override
     public int getNumberOfJRooms() {
         int a = 0;
         for (int i = 0; i < rooms.size(); i++) {
@@ -46,6 +47,7 @@ public class StudioBean implements Studio{
         return a;
     }
 
+    @Override
     public int getNumberOfRRooms() {
         int a = 0;
         for (int i = 0; i < rooms.size(); i++) {
@@ -56,14 +58,17 @@ public class StudioBean implements Studio{
         return a;
     }
 
+    @Override
     public int getNumberOfRooms() {
         return rooms.size();
     }
 
+    @Override
     public String getStudioAddress() {
         return studioAddress;
     }
 
+    @Override
     public void setStudioAddress(String studioAddress) {
         assert studioAddress!=null;
         assert !studioAddress.equals(" ");
@@ -71,10 +76,12 @@ public class StudioBean implements Studio{
         this.studioAddress = studioAddress;
     }
 
+    @Override
     public String getStudioID() {
         return studioID;
     }
 
+    @Override
     public void setStudioID(String studioID) {
         assert studioID!=null;
         assert !studioID.equals(" ");
@@ -82,10 +89,12 @@ public class StudioBean implements Studio{
         this.studioID = studioID;
     }
 
+    @Override
     public String getStudioName() {
         return studioName;
     }
 
+    @Override
     public void setStudioName(String studioName) {
         assert studioName!=null;
         assert !studioName.equals(" ");
@@ -99,15 +108,18 @@ public class StudioBean implements Studio{
         else return false;
     }
 
+    @Override
     public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
     }
     
 
+    @Override
     public Collection<Room> getAllRooms() {
         return rooms;
     }
 
+    @Override
     public Room getRoomById(String id) {
         for(Room rb:getAllRooms()){
             if(rb.getRoomID().equals(id))
@@ -115,6 +127,7 @@ public class StudioBean implements Studio{
         }
         return null;
     }
+    @Override
     public void addRoom(Room rb) {
         if(!getAllRooms().contains(rb)){
             assert rb != null;
@@ -125,6 +138,7 @@ public class StudioBean implements Studio{
         }
         else System.out.println("Room exists!");
     }
+    @Override
     public void deleteRoom(Room r){
         rooms.remove(r);
     }
