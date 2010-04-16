@@ -5,11 +5,14 @@
     Add Room:
     <br/><br/>
     <t:form t:id="addRoomForm">
+    <t:errors/>
         Room ID:<br/>
-        <div><t:textfield t:value="roomID"/></div>
+        <div><t:textfield t:value="roomID"
+        t:validate="required"/></div>
 
         Room Name:<br/>
-        <div><t:textfield t:value="roomName"/></div>
+        <div><t:textfield t:value="roomName"
+        t:validate="required"/></div>
         
         Room type:<br/>
         <div>

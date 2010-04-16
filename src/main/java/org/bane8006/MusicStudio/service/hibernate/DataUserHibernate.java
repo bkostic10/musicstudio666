@@ -24,19 +24,23 @@ public class DataUserHibernate implements IDataUserService{
         this.session = session;
     }
 
+    @Override
     public List<User> getAllUsers() {
         Criteria criteria = session.createCriteria(UserBean.class);
         return criteria.list();
     }
 
+    @Override
     public User getUserByUserName(Serializable id) {
         return (User) session.get(UserBean.class, id);
     }
 
+    @Override
     public User addUser(User ub) {
         return (User)session.get(UserBean.class, session.save(ub));
     }
 
+    @Override
     public void replace(Serializable id, User b) {
         User u = (User) session.get(UserBean.class, id);
         u.setFirstName(b.getFirstName());
@@ -46,12 +50,14 @@ public class DataUserHibernate implements IDataUserService{
         u.setPassword(b.getPassword());
         u.setPrivilege(b.getPrivilege());
     }
+    @Override
     public void remove(User b) {
         long a = b.getIdUser();
         b = (User) session.load(UserBean.class, a);
         session.delete(b);
     }
 
+    @Override
     public User authenticate(String userName, String password) {
         for (int i = 0; i < getAllUsers().size(); i++) {
             if(getAllUsers().get(i).getUserName().equals(userName)&&getAllUsers().get((int) i).getPassword().equals(password)){

@@ -4,6 +4,7 @@
  */
 
 package org.bane8006.MusicStudio.beans;
+import org.bane8006.MusicStudio.User;
 import static org.testng.AssertJUnit.assertNull;
 import static org.testng.AssertJUnit.assertSame;
 import org.testng.annotations.BeforeMethod;
@@ -14,7 +15,7 @@ import org.testng.annotations.Test;
  * @author Baxter
  */
 public class UserBeanTest {
-    private UserBean userUnderTest;
+    private User userUnderTest;
 
     @BeforeMethod
     public void setUp() {

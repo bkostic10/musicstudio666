@@ -5,14 +5,18 @@
     Add Studio:
     <br/><br/>
     <t:form t:id="addStudioForm">
+    <t:errors/>
         Studio ID:<br/>
-        <div><t:textfield t:value="studioID"/></div>
+        <div><t:textfield t:value="studioID"
+        t:validate="required"/></div>
 
         Studio Name:<br/>
-        <div><t:textfield t:value="studioName"/></div>
+        <div><t:textfield t:value="studioName"
+        t:validate="required"/></div>
 
         Studio Address:<br/>
-        <div><t:textfield t:value="studioAddress"/></div>
+        <div><t:textfield t:value="studioAddress"
+        t:validate="required"/></div>
 
         <br/>
         <input type="submit" value="Submit"/>

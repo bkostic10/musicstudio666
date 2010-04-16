@@ -20,8 +20,8 @@ public class SeleniumTests extends AbstractIntegrationTestSuite {
             waitForPageToLoad("30000");
         }
         @Test
-        void testRegistrationFailure() {
-            testApplicationStartup();
+        void testRegistrationFailure03() {
+            open(BASE_URL);
             click("link=Register");
             waitForPageToLoad("30000");
             type("firstname", "");
@@ -31,6 +31,12 @@ public class SeleniumTests extends AbstractIntegrationTestSuite {
             type("password", "");
             type("password2", "");
             click("submit");
+        }
+        @Test
+        void testRegistrationFailure01() {
+            open(BASE_URL);
+            click("link=Register");
+            waitForPageToLoad("30000");
             type("firstname", "a");
             type("lastname", "a");
             type("personalnumber", "a");
@@ -38,6 +44,12 @@ public class SeleniumTests extends AbstractIntegrationTestSuite {
             type("password", "a");
             type("password2", "a");
             click("submit");
+        }
+        @Test
+        void testRegistrationFailure02() {
+            open(BASE_URL);
+            click("link=Register");
+            waitForPageToLoad("30000");
             type("firstname", "Pera");
             type("lastname", "Peric");
             type("personalnumber", "123123123");
@@ -47,8 +59,23 @@ public class SeleniumTests extends AbstractIntegrationTestSuite {
             click("submit");
         }
         @Test
-        void testRegistrationSucces() {
-            testApplicationStartup();
+        void testLoginFailure2(){
+            open(BASE_URL);
+            type("userName", "");
+            type("password", "");
+            click("submit");
+        }
+        @Test
+        void testLoginFailure1(){
+            open(BASE_URL);
+            type("userName", "admin");
+            type("password", "a");
+            click("submit");
+            waitForPageToLoad("30000");
+        }
+        @Test
+        void testRest(){
+            open(BASE_URL);
             click("link=Register");
             waitForPageToLoad("30000");
             type("firstname", "Pera");
@@ -59,33 +86,27 @@ public class SeleniumTests extends AbstractIntegrationTestSuite {
             type("password2", "admin");
             click("submit");
             waitForPageToLoad("30000");
-        }
-        @Test
-        void testLoginFailure(){
-            testRegistrationSucces();
             click("link=Back To The Hello Page");
             waitForPageToLoad("30000");
-            type("userName", "");
-            type("password", "");
-            click("submit");
-            type("userName", "a");
-            type("password", "a");
-            click("submit");
-            type("userName", "admin");
-            type("password", "a");
-            click("submit");
-            waitForPageToLoad("30000");
-        }
-        @Test
-        void testLoginSucces() {
-            testRegistrationSucces();
-            click("link=Back To The Hello Page");
-            waitForPageToLoad("30000");
+            open(BASE_URL);
             type("userName", "admin");
             type("password", "admin");
             click("submit");
             waitForPageToLoad("30000");
+            click("link=UserInfo");
+            waitForPageToLoad("30000");
+            click("link=Back");
+            waitForPageToLoad("30000");
+            click("link=About");
+            waitForPageToLoad("30000");
+            click("link=Back");
+            waitForPageToLoad("30000");
+            click("link=Contact");
+            waitForPageToLoad("30000");
+            click("link=Back");
+            waitForPageToLoad("30000");
+            click("link=LogOut");
+            waitForPageToLoad("30000");
         }
-
 }
 

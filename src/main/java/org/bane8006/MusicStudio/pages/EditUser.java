@@ -128,7 +128,7 @@ public class EditUser {
         user.setLastName(lastName);
         user.setUserName(userName);
         user.setPassword(password);
-        if(getOldPassword().equals(getUser2().getPassword())&&user.getPassword()!=null&&user.getPassword().equals(getPassword2())){
+        if(getOldPassword().equals(getUser2().getPassword())&&user.getPassword().equals(getPassword2())){
             a.replace(getUser2().getIdUser(), user);
             edit.setName("Info is changed");
             lu.remove();
