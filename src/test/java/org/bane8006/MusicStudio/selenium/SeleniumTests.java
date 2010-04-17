@@ -81,31 +81,98 @@ public class SeleniumTests extends AbstractIntegrationTestSuite {
             type("firstname", "Pera");
             type("lastname", "Peric");
             type("personalnumber", "123123123");
-            type("username", "admin");
-            type("password", "admin");
-            type("password2", "admin");
+            type("username", "pera111");
+            type("password", "pera111");
+            type("password2", "pera111");
             click("submit");
             waitForPageToLoad("30000");
+
             click("link=Back To The Hello Page");
             waitForPageToLoad("30000");
-            open(BASE_URL);
-            type("userName", "admin");
-            type("password", "admin");
+
+            type("userName", "pera111");
+            type("password", "pera111");
             click("submit");
             waitForPageToLoad("30000");
+
             click("link=UserInfo");
             waitForPageToLoad("30000");
+            click("link=Edit info");
+            waitForPageToLoad("30000");
+
+            type("firstname", "");
+            type("lastname", "");
+            type("personalnumber", "");
+            type("username", "");
+            type("oldPassword", "");
+            type("password", "");
+            type("password2", "");
+            click("submit");
+
+            type("firstname", "c");
+            type("lastname", "c");
+            type("personalnumber", "13123");
+            type("username", "c");
+            type("oldPassword", "c");
+            type("password", "c");
+            type("password2", "c");
+            click("submit");
+
+            type("firstname", "c");
+            type("lastname", "c");
+            type("personalnumber", "13123");
+            type("username", "c");
+            type("oldPassword", "c");
+            type("password", "c");
+            type("password2", "c");
+            click("submit");
+
+            type("firstname", "Cuca");
+            type("lastname", "Cucic");
+            type("personalnumber", "091237891264");
+            type("username", "cuca5cuca5cuca5cuca5");
+            type("oldPassword", "c");
+            type("password", "cuca5cuca5cuca5cuca5");
+            type("password2", "cuca5cuca5cuca5");
+            click("submit");
+
+            type("firstname", "Cuca");
+            type("lastname", "Cucic");
+            type("personalnumber", "091237891264");
+            type("username", "cuca5");
+            type("oldPassword", "c");
+            type("password", "cuca5");
+            type("password2", "cuc");
+            click("submit");
+            waitForPageToLoad("30000");
+            assertTextPresent("Data invalid!!!");
+
+            type("firstname", "Cuca");
+            type("lastname", "Cucic");
+            type("personalnumber", "091237891264");
+            type("username", "cuca5");
+            type("oldPassword", "pera111");
+            type("password", "cuca5");
+            type("password2", "cuca5");
+            click("submit");
+            waitForPageToLoad("30000");
+
+            assertTextPresent("Info is changed");
             click("link=Back");
             waitForPageToLoad("30000");
-            click("link=About");
+
+            type("userName", "cuca5");
+            type("password", "cuca5");
+            click("submit");
+            waitForPageToLoad("30000");
+
+            click("link=UserInfo");
+            waitForPageToLoad("30000");
+            click("link=Delete Account");
+            waitForPageToLoad("30000");
+            click("//input[@value='Delete Account']");
             waitForPageToLoad("30000");
             click("link=Back");
-            waitForPageToLoad("30000");
-            click("link=Contact");
-            waitForPageToLoad("30000");
-            click("link=Back");
-            waitForPageToLoad("30000");
-            click("link=LogOut");
             waitForPageToLoad("30000");
         }
 }

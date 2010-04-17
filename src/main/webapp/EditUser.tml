@@ -23,14 +23,14 @@
         t:validate="required,minlength=5,maxlength=15"/></div>
 
         Old Password:<br/>
-        <div><t:passwordfield t:value="oldPassword"/></div>
+        <div><t:passwordfield t:id="oldPassword" t:value="oldPassword"/></div>
 
         New Password:<br/>
         <div><t:passwordfield t:id="password" t:value="password"
         t:validate="required,minlength=5,maxlength=15"/></div>
 
         Retype Password:<br/>
-        <div><t:passwordfield t:value="password2"/></div>
+        <div><t:passwordfield t:id="password2" t:value="password2"/></div>
 
         <br/>
         <input id="submit" type="submit" value="Submit"/>

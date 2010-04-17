@@ -22,8 +22,8 @@ password
 privilege
 bg=blue
 fg=black</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>170</x><y>36</y><w>210</w><h>58</h></coordinates><panel_attributes>lt=-
-m1=*
-m2=1
+m2=*
+m1=1
 choose&gt;</panel_attributes><additional_attributes>9;34;190;34</additional_attributes></element><element><type>com.umlet.element.base.Class</type><coordinates><x>360</x><y>40</y><w>170</w><h>140</h></coordinates><panel_attributes>Studio
 --
 studioID

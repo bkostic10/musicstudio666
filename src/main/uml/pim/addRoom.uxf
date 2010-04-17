@@ -22,9 +22,9 @@ password: String
 privilege: Privilege
 bg=yellow
 fg=black</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>160</x><y>26</y><w>270</w><h>58</h></coordinates><panel_attributes>lt=-
-m1=0..*
+m2=0..*
 r1=User
-m2=1..1
+m1=1..1
 r2=Studio
 choose&gt;</panel_attributes><additional_attributes>9;34;250;34</additional_attributes></element><element><type>com.umlet.element.base.Class</type><coordinates><x>410</x><y>30</y><w>170</w><h>120</h></coordinates><panel_attributes>Room
 --

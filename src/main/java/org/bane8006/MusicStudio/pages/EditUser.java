@@ -30,7 +30,7 @@ public class EditUser {
     private String password2;
     @Persist("flash")
     private String name;
-    private Serializable id;
+//    private Serializable id;
 
     @Inject
     private ILoggedUser lu;
@@ -109,13 +109,13 @@ public class EditUser {
         this.name = name;
     }
 
-    void onActivate(Serializable id){
-        System.out.println("Activated:"+id);
-        this.id = getIdUser();
-    }
-    Serializable onPassivate(){
-        return id;
-    }
+//    void onActivate(Serializable id){
+//        System.out.println("Activated:"+id);
+//        this.id = getIdUser();
+//    }
+//    Serializable onPassivate(){
+//        return id;
+//    }
     public User getUser2() {
         return lu.getFirst();
     }
@@ -126,6 +126,7 @@ public class EditUser {
         user.setPrivilege(getUser2().getPrivilege());
         user.setFirstName(firstName);
         user.setLastName(lastName);
+        user.setPersonalNumber(personalNumber);
         user.setUserName(userName);
         user.setPassword(password);
         if(getOldPassword().equals(getUser2().getPassword())&&user.getPassword().equals(getPassword2())){

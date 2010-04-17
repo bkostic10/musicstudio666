@@ -41,11 +41,11 @@ public class AppModule{
         configuration.add("org.bane8006.MusicStudio.beans");
     }
 
-    @Match("*IDataUserService")
+    @Match({"*IDataUserService"})
     public static <T> T decorateTransactionally(HibernateTransactionDecorator decorator, Class<T> serviceInterface,T delegate, String serviceId) {
         return decorator.build(serviceInterface, delegate, serviceId);
     }
-    @Match("*Service")
+    @Match({"*Service"})
     public static void adviseTransactions(HibernateTransactionAdvisor advisor, MethodAdviceReceiver receiver){
         advisor.addTransactionCommitAdvice(receiver);
     };
