@@ -5,6 +5,7 @@
 
 package org.bane8006.MusicStudio.beans;
 
+
 /**
  *
  * @author Baxter

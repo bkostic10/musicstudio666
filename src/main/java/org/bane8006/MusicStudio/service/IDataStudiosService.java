@@ -5,7 +5,10 @@
 
 package org.bane8006.MusicStudio.service;
 
+import java.io.Serializable;
 import java.util.Collection;
+import org.apache.tapestry5.hibernate.annotations.CommitAfter;
+import org.bane8006.MusicStudio.Room;
 import org.bane8006.MusicStudio.Studio;
 
 /**
@@ -14,8 +17,11 @@ import org.bane8006.MusicStudio.Studio;
  */
 public interface IDataStudiosService {
     public Collection<Studio> getAllStudios();
-    public Studio getStudioById(String id);
-    public void addStudioBean(Studio sb);
+    public Studio getStudioById(Serializable id);
+    @CommitAfter
+    public Studio addStudioBean(Studio sb);
+    @CommitAfter
     public void deleteStudio(Studio s);
-    public void load();
+    //public void load();
+
 }

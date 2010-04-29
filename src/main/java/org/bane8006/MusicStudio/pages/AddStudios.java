@@ -5,10 +5,12 @@
 
 package org.bane8006.MusicStudio.pages;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
+import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.beans.StudioBean;
@@ -23,10 +25,12 @@ import org.bane8006.MusicStudio.service.ILoggedUser;
  * @author Baxter
  */
 public class AddStudios {
+    private Serializable id;
     private String studioID;
     private String studioName;
     private String studioAddress;
     private List<Room> rooms;
+    @Persist("flash")
     private String name;
 
 //    @ApplicationState
@@ -92,13 +96,12 @@ public class AddStudios {
     public void setName(String name) {
         this.name = name;
     }
-
-    void onActivate(String studio){
-        System.out.println("Activated:"+studio);
-        this.name = studio;
+    void onActivate(Serializable id){
+        System.out.println("Activated:"+id);
+        this.id = getId();
     }
-    String onPassivate(){
-        return name;
+    Serializable onPassivate(){
+        return id;
     }
 
     Object onSubmitFromAddStudioForm(){
@@ -111,11 +114,14 @@ public class AddStudios {
 
         if(!a.getAllStudios().contains(studio)){
             a.addStudioBean(studio);
-            page.setName("Studio "+getStudioName()+" is successfuly added!");
+            page.setName("Studio "+studio.getStudioName()+" is successfuly added!");
         }
         else{
             page.setName("Studio exists!!!");
         }
         return page;
+    }
+    public long getId(){
+        return Studio.class.cast(studio).getIdStudio();
     }
 }

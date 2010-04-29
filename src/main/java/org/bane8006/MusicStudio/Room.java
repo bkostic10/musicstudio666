@@ -13,6 +13,8 @@ import org.bane8006.MusicStudio.beans.RoomType;
  */
 public interface Room {
     
+    public long getIdRoom();
+
     public String getRoomID();
 
     public void setRoomID(String roomID);
@@ -29,5 +31,6 @@ public interface Room {
 
     public void setDescription(String description);
 
+    @Override
     public boolean equals(Object o);
 }

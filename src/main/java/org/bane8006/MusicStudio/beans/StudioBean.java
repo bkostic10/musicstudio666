@@ -5,24 +5,40 @@
 
 package org.bane8006.MusicStudio.beans;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import org.bane8006.MusicStudio.Room;
 import org.bane8006.MusicStudio.Studio;
 
 
-/**
- *
- * @author Baxter
- */
-public class StudioBean implements Studio{
+@Entity
+public class StudioBean implements Studio,Serializable{
+
+    @Id
+    @GeneratedValue
+    private long id;
+    @Column(name = "studioID",nullable=false,unique=true)
     private String studioID;
+    @Basic
     private String studioName;
+    @Basic
     private String studioAddress;
+    @OneToMany(targetEntity=RoomBean.class)
     private List<Room> rooms;
 
-
+    @Override
+    public long getIdStudio() {
+        return id;
+    }
+    
     public StudioBean(String studioID, String studioName, String studioAddress) {
         this.studioID = studioID;
         this.studioName = studioName;
@@ -39,7 +55,7 @@ public class StudioBean implements Studio{
     @Override
     public int getNumberOfJRooms() {
         int a = 0;
-        for (int i = 0; i < rooms.size(); i++) {
+        for (int i = 0; i < getAllRooms().size(); i++) {
             if(rooms.get(i).getRoomType()==RoomType.Jamming){
                 a++;
             }        
@@ -50,7 +66,7 @@ public class StudioBean implements Studio{
     @Override
     public int getNumberOfRRooms() {
         int a = 0;
-        for (int i = 0; i < rooms.size(); i++) {
+        for (int i = 0; i < getAllRooms().size(); i++) {
             if(rooms.get(i).getRoomType()==RoomType.Recording){
                 a++;
             }
@@ -120,7 +136,7 @@ public class StudioBean implements Studio{
     }
 
     @Override
-    public Room getRoomById(String id) {
+    public Room getRoomById(Serializable id) {
         for(Room rb:getAllRooms()){
             if(rb.getRoomID().equals(id))
                 return rb;
@@ -128,15 +144,16 @@ public class StudioBean implements Studio{
         return null;
     }
     @Override
-    public void addRoom(Room rb) {
+    public Room addRoom(Room rb) {
         if(!getAllRooms().contains(rb)){
             assert rb != null;
             assert rb.getRoomID() != null;
             assert !rb.getRoomID().equals(" ");
             assert !rb.getRoomID().equals("");
             rooms.add(rb);
+            return rb;
         }
-        else System.out.println("Room exists!");
+        else return null;//System.out.println("Room exists!");
     }
     @Override
     public void deleteRoom(Room r){

@@ -6,7 +6,7 @@
 
     <div t:type="loop" t:source="allStudios" t:value="studio">
     
-        <t:ActionLink t:context="studio.studioId"
+        <t:ActionLink t:context="studio.idStudio"
         t:id="studioDetailsLink">${studio.studioName}</t:ActionLink>
 
     </div><br/>

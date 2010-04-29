@@ -22,12 +22,14 @@ import org.bane8006.MusicStudio.Studio;
 import org.bane8006.MusicStudio.User;
 import org.bane8006.MusicStudio.service.ILoggedUser;
 import org.bane8006.MusicStudio.service.LoggedUser;
+import org.bane8006.MusicStudio.service.hibernate.DataStudioHibernate;
 
 
 public class AppModule{
 
     public static void bind(ServiceBinder binder){
         binder.bind(IDataUserService.class, DataUserHibernate.class);
+        binder.bind(IDataStudiosService.class,DataStudioHibernate.class);
     }
     
     public static void contributeApplicationDefaults(MappedConfiguration<String, String> configuration){        
@@ -41,7 +43,7 @@ public class AppModule{
         configuration.add("org.bane8006.MusicStudio.beans");
     }
 
-    @Match({"*IDataUserService"})
+    @Match({"*IDataUser","*IDataStudios"})
     public static <T> T decorateTransactionally(HibernateTransactionDecorator decorator, Class<T> serviceInterface,T delegate, String serviceId) {
         return decorator.build(serviceInterface, delegate, serviceId);
     }
@@ -54,9 +56,9 @@ public class AppModule{
 	return new LoggedUser();
     }
 
-    public static IDataStudiosService buildIDataStudios() {
-	return new MockDataStudios();
-    }
+//    public static IDataStudiosService buildIDataStudios() {
+//	return new MockDataStudios();
+//    }
 
 //    public static User buildUser(){
 //        return new UserBean();
@@ -66,8 +68,8 @@ public class AppModule{
         return new RoomBean();
     }
 
-    public static Studio buildStudio(){
-        return new StudioBean();
-    }
+//    public static Studio buildStudio(){
+//        return new StudioBean();
+//    }
 
 }

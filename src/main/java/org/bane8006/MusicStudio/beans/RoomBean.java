@@ -6,17 +6,31 @@
 package org.bane8006.MusicStudio.beans;
 
 
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import org.bane8006.MusicStudio.Room;
 
-/**
- *
- * @author Baxter
- */
+@Entity
 public class RoomBean implements Room{
+    @Id
+    @GeneratedValue
+    private long id;
+    @Column(name = "roomID",nullable=false,unique=true)
     private String roomID;
+    @Basic
     private String roomName;
+    @Basic
     private RoomType roomType;
+    @Basic
     private String description;
+
+    @Override
+    public long getIdRoom() {
+        return id;
+    }
 
     public RoomBean() {
     }

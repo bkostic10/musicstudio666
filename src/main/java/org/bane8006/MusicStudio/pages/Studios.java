@@ -44,7 +44,7 @@ public class Studios {
         return null;
     }
     @OnEvent(component="studioDetailsLink")
-    Object onShowDetails(String id){
+    Object onShowDetails(long id){
         Studio studio = dataStudios.getStudioById(id);
         if(studio!=null){
             sdPage.setStudio(studio);

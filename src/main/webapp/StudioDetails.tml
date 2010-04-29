@@ -8,18 +8,18 @@
 
         <div>Studio Address: ${studio.studioAddress}</div>
     
-        <div>Jamming Rooms: ${studio.getNumberOfJRooms()}</div>
+        <!--<div>Jamming Rooms: ${studio.getNumberOfJRooms()}</div>
     
-        <div>Recording Rooms: ${studio.getNumberOfRRooms()}</div>
+        <div>Recording Rooms: ${studio.getNumberOfRRooms()}</div>-->
         
 </div>
 
-        <p><t:ActionLink t:context="studio.studioId"
+        <p><t:ActionLink t:context="studio.idStudio"
         t:id="roomsLink">See the rooms:</t:ActionLink></p>
         <p><t:if t:test="admin"><t:ActionLink
         t:id="deleteStudioLink">Delete Studio</t:ActionLink></t:if></p>
     <div><t:if t:test="admin">
-        <t:ActionLink t:context="studio.studioId"
+        <t:ActionLink t:context="studio.idStudio"
         t:id="addRoomsLink">Add Room</t:ActionLink>
     </t:if></div><br/><br/>
     <t:PageLink t:page="Studios">Back</t:PageLink>

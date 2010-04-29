@@ -5,6 +5,7 @@
 
 package org.bane8006.MusicStudio;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 /**
@@ -12,6 +13,8 @@ import java.util.List;
  * @author Baxter
  */
 public interface Studio {
+    
+    public long getIdStudio();
     
     public int getNumberOfJRooms();
 
@@ -31,13 +34,14 @@ public interface Studio {
 
     public int getNumberOfRooms();
 
+    @Override
     public boolean equals(Object o);
    
     public Collection<Room> getAllRooms();
 
-    public Room getRoomById(String id);
+    public Room getRoomById(Serializable id);
 
-    public void addRoom(Room rb);
+    public Room addRoom(Room rb);
 
     public void deleteRoom(Room r);
 

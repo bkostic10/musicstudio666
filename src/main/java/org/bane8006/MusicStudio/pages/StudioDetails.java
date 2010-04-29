@@ -5,6 +5,7 @@
 
 package org.bane8006.MusicStudio.pages;
 
+import java.io.Serializable;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
@@ -23,6 +24,7 @@ import org.bane8006.MusicStudio.service.ILoggedUser;
  */
 public class StudioDetails {
 
+    private Serializable id;
     @Persist
     private Studio studio;
 
@@ -69,6 +71,13 @@ public class StudioDetails {
         ds.deleteStudio(studio);
         return st;
     }
+    void onActivate(Serializable id){
+        System.out.println("Activated:"+id);
+        this.id = getId();
+    }
+    Serializable onPassivate(){
+        return id;
+    }
     public void setStudio(Studio studio)
     {
         this.studio = studio;
@@ -101,5 +110,8 @@ public class StudioDetails {
         if(getUser().getPrivilege().equals(Privilege.Admin))
             return true;
         else return false;
+    }
+    public long getId(){
+        return Studio.class.cast(studio).getIdStudio();
     }
 }
