@@ -37,6 +37,9 @@ public class RoomDetails {
     @InjectPage
     private Rooms page;
     
+    @InjectPage
+    private StudioDetails studioDetails;
+
     Object onActivate()
     {
         if (lu.getAllUsers().isEmpty()) return Index.class;
@@ -59,10 +62,12 @@ public class RoomDetails {
         this.studio = studio;
     }
     @OnEvent(component="deleteRoomLink")
-    Object onDeleteRoom(String id){
+    Object onDeleteRoom(long id){
         Room room = studio.getRoomById(id);
         page.setName(room.getRoomName()+" has been successfuly deleted!");
-        studio.deleteRoom(room);
+        studio.getAllRooms().remove(room);
+        dataStudios.deleteRoom(studio, room);
+        studioDetails.setStudio(studio);
         return page;
     }
     public User getUser(){

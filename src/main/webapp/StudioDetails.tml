@@ -8,9 +8,9 @@
 
         <div>Studio Address: ${studio.studioAddress}</div>
     
-        <!--<div>Jamming Rooms: ${studio.getNumberOfJRooms()}</div>
+        <div>Jamming Rooms: ${studio.getNumberOfJRooms()}</div>
     
-        <div>Recording Rooms: ${studio.getNumberOfRRooms()}</div>-->
+        <div>Recording Rooms: ${studio.getNumberOfRRooms()}</div>
         
 </div>
 

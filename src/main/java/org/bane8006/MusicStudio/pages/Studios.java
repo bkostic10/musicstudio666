@@ -5,7 +5,6 @@
 
 package org.bane8006.MusicStudio.pages;
 
-import java.io.Serializable;
 import java.util.Collection;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.OnEvent;
@@ -40,7 +39,9 @@ public class Studios {
 
     Object onActivate()
     {
-        if (lu.getAllUsers().isEmpty()) return Index.class;
+        if (lu.getAllUsers().isEmpty()) {
+            return Index.class;
+        }
         return null;
     }
     @OnEvent(component="studioDetailsLink")

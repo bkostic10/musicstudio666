@@ -30,10 +30,12 @@ public class MockDataUser implements IDataUserService{
         addUser(new UserBean("Pera", "Pampur", "0706987483921", "admin", "admin",Privilege.Admin));
     }
 
+    @Override
     public List<User> getAllUsers() {
         return  users;
     }
 
+    @Override
     public User getUserByUserName(Serializable name) {
          for(User ub:users){
             if(ub.getUserName().equals(name))
@@ -41,6 +43,7 @@ public class MockDataUser implements IDataUserService{
         }
         return null;
     }
+    @Override
     public User addUser(User ub){
         if(!users.contains(ub)){
             assert ub.getUserName()!=null;
@@ -50,6 +53,7 @@ public class MockDataUser implements IDataUserService{
         }
         else return null;
     }
+    @Override
     public void replace(Serializable b2,User b){
         for (int i = 0; i < users.size(); i++) {
             if(users.get(i).getUserName().equals(b2)){
@@ -62,10 +66,12 @@ public class MockDataUser implements IDataUserService{
             }
         }
     }
+    @Override
     public void remove(User b){
         users.remove(b);
     }
 
+    @Override
     public User authenticate(String userName,String password){
         for (int i = 0; i < getAllUsers().size(); i++) {
             if(getAllUsers().get(i).getUserName().equals(userName)&&getAllUsers().get(i).getPassword().equals(password)){

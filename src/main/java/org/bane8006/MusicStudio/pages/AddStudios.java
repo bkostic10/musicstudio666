@@ -6,9 +6,7 @@
 package org.bane8006.MusicStudio.pages;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
-import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -17,7 +15,6 @@ import org.bane8006.MusicStudio.beans.StudioBean;
 import org.bane8006.MusicStudio.service.IDataStudiosService;
 import org.bane8006.MusicStudio.Room;
 import org.bane8006.MusicStudio.Studio;
-import org.bane8006.MusicStudio.User;
 import org.bane8006.MusicStudio.service.ILoggedUser;
 
 /**
@@ -33,9 +30,6 @@ public class AddStudios {
     @Persist("flash")
     private String name;
 
-//    @ApplicationState
-//    private User user;
-//    private boolean userExists;
     @Inject
     private ILoggedUser lu;
     
@@ -110,7 +104,6 @@ public class AddStudios {
         studio.setStudioID(studioID);
         studio.setStudioName(studioName);
         studio.setStudioAddress(studioAddress);
-        studio.setRooms(new ArrayList<Room>());
 
         if(!a.getAllStudios().contains(studio)){
             a.addStudioBean(studio);

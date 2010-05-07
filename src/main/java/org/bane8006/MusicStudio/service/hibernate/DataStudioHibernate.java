@@ -7,12 +7,12 @@ package org.bane8006.MusicStudio.service.hibernate;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 import org.bane8006.MusicStudio.Room;
 import org.bane8006.MusicStudio.Studio;
-import org.bane8006.MusicStudio.beans.RoomBean;
 import org.bane8006.MusicStudio.beans.StudioBean;
 import org.bane8006.MusicStudio.service.IDataStudiosService;
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 
 /**
@@ -29,8 +29,8 @@ public class DataStudioHibernate implements IDataStudiosService{
 
     @Override
     public Collection<Studio> getAllStudios() {
-        Criteria criteria = session.createCriteria(StudioBean.class);
-        return criteria.list();
+        List all = session.createQuery("from StudioBean").list();
+        return all;
     }
 
     @Override
@@ -47,6 +47,28 @@ public class DataStudioHibernate implements IDataStudiosService{
     public void deleteStudio(Studio s) {
         long a = s.getIdStudio();
         s = (Studio) session.load(StudioBean.class, a);
+        for(Iterator<Room> it = s.getAllRooms().iterator();it.hasNext();){
+            Room r = it.next();
+            it.remove();
+            session.delete(r);
+        }
         session.delete(s);
+    }
+
+    @Override
+    public void updateStudio(Studio s) {
+        session.update(s);
+    }
+    @Override
+    public void deleteRoom(Studio s,Room room){
+        long a = s.getIdStudio();
+        s = (Studio) session.load(StudioBean.class, a);
+        for(Iterator<Room> it = s.getAllRooms().iterator();it.hasNext();){
+            Room r = it.next();
+            if(r.getIdRoom()==room.getIdRoom()){
+                it.remove();
+                session.delete(r);
+            }
+        }
     }
 }

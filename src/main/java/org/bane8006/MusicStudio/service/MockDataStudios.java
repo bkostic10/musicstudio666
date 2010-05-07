@@ -9,9 +9,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import org.bane8006.MusicStudio.beans.RoomBean;
-import org.bane8006.MusicStudio.beans.RoomType;
-import org.bane8006.MusicStudio.beans.StudioBean;
 import org.bane8006.MusicStudio.Room;
 import org.bane8006.MusicStudio.Studio;
 
@@ -61,6 +58,16 @@ public class MockDataStudios implements IDataStudiosService{
     @Override
     public void deleteStudio(Studio s){
         studios.remove(s);
+    }
+
+    @Override
+    public void updateStudio(Studio s) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void deleteRoom(Studio s,Room r) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 

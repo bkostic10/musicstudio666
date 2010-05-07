@@ -26,7 +26,8 @@ public class StudioBeanTest {
     @BeforeMethod
     public void setUp() {
         rooms = new ArrayList<Room>();
-        studioUnderTest = new StudioBean(rooms);
+        studioUnderTest = new StudioBean();
+        studioUnderTest.setRooms(rooms);
     }
 
     @Test
@@ -129,35 +130,41 @@ public class StudioBeanTest {
 
     @Test
     public void testGetRoomById(){
-        Room room = mock(Room.class);
-	String roomID = "001001";
+        Room room = mock(RoomBean.class);
+	long idRoom = room.getIdRoom();
+        String roomID = "001001";
         String roomName = "1S - 1st Studio";
         RoomType roomType = RoomType.Jamming;
+        when(room.getIdRoom()).thenReturn(idRoom);
 	when(room.getRoomID()).thenReturn(roomID);
         when(room.getRoomName()).thenReturn(roomName);
         when(room.getRoomType()).thenReturn(roomType);
 	studioUnderTest.addRoom(room);
-	assertSame(room,studioUnderTest.getRoomById(roomID));
-        assertNull(studioUnderTest.getRoomById("Other ID"));
+	assertSame(room,studioUnderTest.getRoomById(idRoom));
+        assertNull(studioUnderTest.getRoomById(0));
     }
     @Test
     public void testAddRoom(){
-        Room room = mock(Room.class);
-	String roomID = "001001";
-        String roomName = "1S - 1st Studio";
+        Room room = mock(RoomBean.class);
+	long idRoom = room.getIdRoom();
+        String roomID = "001001";
+        String roomName = "1S - 1st Room";
         RoomType roomType = RoomType.Jamming;
+        when(room.getIdRoom()).thenReturn(idRoom);
 	when(room.getRoomID()).thenReturn(roomID);
         when(room.getRoomName()).thenReturn(roomName);
         when(room.getRoomType()).thenReturn(roomType);
 	studioUnderTest.addRoom(room);
-	assertSame(room,studioUnderTest.getRoomById(roomID));
+	assertSame(room,studioUnderTest.getRoomById(idRoom));
     }
     @Test
     public void testDeleteRoom(){
-        Room room = mock(Room.class);
-	String roomID = "001001";
+        Room room = mock(RoomBean.class);
+	long idRoom = room.getIdRoom();
+        String roomID = "001001";
+        when(room.getIdRoom()).thenReturn(idRoom);
 	when(room.getRoomID()).thenReturn(roomID);
 	studioUnderTest.deleteRoom(room);
-	assertSame(studioUnderTest.getRoomById(roomID), null);
+	assertSame(studioUnderTest.getRoomById(idRoom), null);
     }
 }

@@ -21,13 +21,4 @@ userName: String
 password: String
 privilege: Privilege
 bg=yellow
-fg=black</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>160</x><y>26</y><w>390</w><h>58</h></coordinates><panel_attributes>lt=-
-m1=0..*
-r1=User
-m2=1..1
-r2=IDataUserService
-edit&gt;</panel_attributes><additional_attributes>9;34;370;34</additional_attributes></element><element><type>com.umlet.element.base.Class</type><coordinates><x>530</x><y>30</y><w>130</w><h>90</h></coordinates><panel_attributes>IDataUserService
---
-session: Session
-bg=yellow
 fg=black</panel_attributes><additional_attributes/></element></umlet_diagram>

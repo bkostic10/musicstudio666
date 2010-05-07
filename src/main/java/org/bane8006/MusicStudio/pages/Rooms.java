@@ -4,13 +4,11 @@
  */
 
 package org.bane8006.MusicStudio.pages;
-import org.apache.tapestry5.annotations.ApplicationState;
+
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
-import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.bane8006.MusicStudio.service.IDataStudiosService;
 import org.bane8006.MusicStudio.Room;
 import org.bane8006.MusicStudio.Studio;
 import org.bane8006.MusicStudio.User;
@@ -22,17 +20,12 @@ import org.bane8006.MusicStudio.service.ILoggedUser;
  */
 public class Rooms {
 
-
     @Persist
     private Studio studio;
-//    @Property
-//    @ApplicationState
-//    private User user;
-//    private boolean userExists;
+
     @Inject
     private ILoggedUser lu;
-    @Inject
-    private IDataStudiosService dataStudios;
+
 
     @InjectPage
     private RoomDetails rdPage;
@@ -50,7 +43,7 @@ public class Rooms {
         else return null;
     }
     @OnEvent(component="roomDetailsLink")
-    Object onShowDetails(String id){
+    Object onShowDetails(long id){
         Room room = studio.getRoomById(id);
         rdPage.setRoom(room);
         rdPage.setStudio(studio);
@@ -82,5 +75,5 @@ public class Rooms {
     public void setName(String name) {
         this.name = name;
     }
-    
+
 }

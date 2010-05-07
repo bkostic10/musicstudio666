@@ -10,7 +10,6 @@ import java.util.List;
 import org.bane8006.MusicStudio.beans.UserBean;
 import org.bane8006.MusicStudio.service.IDataUserService;
 import org.bane8006.MusicStudio.User;
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 
 /**
@@ -26,8 +25,8 @@ public class DataUserHibernate implements IDataUserService{
 
     @Override
     public List<User> getAllUsers() {
-        Criteria criteria = session.createCriteria(UserBean.class);
-        return criteria.list();
+        List all = session.createQuery("from UserBean").list();
+        return all;
     }
 
     @Override

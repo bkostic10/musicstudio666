@@ -9,7 +9,6 @@ import java.io.Serializable;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
-import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.service.IDataStudiosService;
@@ -42,8 +41,6 @@ public class StudioDetails {
     @Inject
     private IDataStudiosService ds;
 
-    @Persist
-    private String name;
 
     @Inject
     private ILoggedUser lu;
@@ -54,13 +51,13 @@ public class StudioDetails {
         return null;
     }
     @OnEvent(component="roomsLink")
-    Object onEvent(String id){
+    Object onEvent(long id){
         Studio studio = ds.getStudioById(id);
         r.setStudio(studio);
         return r;
     }
     @OnEvent(component="addRoomsLink")
-    Object onAdd(String id){
+    Object onAdd(long id){
         Studio studio = ds.getStudioById(id);
         ar.setStudio(studio);
         return ar;
@@ -95,14 +92,6 @@ public class StudioDetails {
         this.room = room;
     }
 
-//
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public void setName(String name) {
-//        this.name = name;
-//    }
     public User getUser(){
         return lu.getFirst();
     }

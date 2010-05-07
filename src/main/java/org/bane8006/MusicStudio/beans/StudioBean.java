@@ -10,8 +10,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -20,7 +22,7 @@ import org.bane8006.MusicStudio.Studio;
 
 
 @Entity
-public class StudioBean implements Studio,Serializable{
+public class StudioBean implements Studio{
 
     @Id
     @GeneratedValue
@@ -31,8 +33,8 @@ public class StudioBean implements Studio,Serializable{
     private String studioName;
     @Basic
     private String studioAddress;
-    @OneToMany(targetEntity=RoomBean.class)
-    private List<Room> rooms;
+    @OneToMany(targetEntity=RoomBean.class,cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+    private List<Room> rooms = new ArrayList<Room>();
 
     @Override
     public long getIdStudio() {
@@ -44,12 +46,9 @@ public class StudioBean implements Studio,Serializable{
         this.studioName = studioName;
         this.studioAddress = studioAddress;
     }
-    public StudioBean(List<Room> rooms){
-        super();
-        this.rooms = rooms;
-    }
+
     public StudioBean(){
-        this(new ArrayList<Room>());
+        
     }
 
     @Override
@@ -138,7 +137,7 @@ public class StudioBean implements Studio,Serializable{
     @Override
     public Room getRoomById(Serializable id) {
         for(Room rb:getAllRooms()){
-            if(rb.getRoomID().equals(id))
+            if(rb.getIdRoom()==id)
                 return rb;
         }
         return null;
@@ -153,7 +152,7 @@ public class StudioBean implements Studio,Serializable{
             rooms.add(rb);
             return rb;
         }
-        else return null;//System.out.println("Room exists!");
+        else return null;
     }
     @Override
     public void deleteRoom(Room r){

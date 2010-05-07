@@ -5,7 +5,6 @@
 
 package org.bane8006.MusicStudio.pages;
 
-import java.io.Serializable;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
@@ -30,7 +29,6 @@ public class EditUser {
     private String password2;
     @Persist("flash")
     private String name;
-//    private Serializable id;
 
     @Inject
     private ILoggedUser lu;
@@ -108,14 +106,7 @@ public class EditUser {
     public void setName(String name) {
         this.name = name;
     }
-
-//    void onActivate(Serializable id){
-//        System.out.println("Activated:"+id);
-//        this.id = getIdUser();
-//    }
-//    Serializable onPassivate(){
-//        return id;
-//    }
+    
     public User getUser2() {
         return lu.getFirst();
     }

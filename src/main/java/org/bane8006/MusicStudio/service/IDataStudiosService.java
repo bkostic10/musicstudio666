@@ -22,6 +22,8 @@ public interface IDataStudiosService {
     public Studio addStudioBean(Studio sb);
     @CommitAfter
     public void deleteStudio(Studio s);
-    //public void load();
-
+    @CommitAfter
+    public void updateStudio(Studio s);
+    @CommitAfter
+    public void deleteRoom(Studio s,Room r);
 }

@@ -13,6 +13,7 @@ import org.bane8006.MusicStudio.beans.RoomBean;
 import org.bane8006.MusicStudio.beans.RoomType;
 import org.bane8006.MusicStudio.Room;
 import org.bane8006.MusicStudio.Studio;
+import org.bane8006.MusicStudio.service.IDataStudiosService;
 import org.bane8006.MusicStudio.service.ILoggedUser;
 
 /**
@@ -27,11 +28,10 @@ public class AddRooms {
 
     private String name;
     
-//    @ApplicationState
-//    private User user;
-//    private boolean userExists;
     @Inject
     private ILoggedUser lu;
+    @Inject
+    private IDataStudiosService dataStudios;
 
     private Room room;
 
@@ -126,6 +126,7 @@ public class AddRooms {
 
         if(!studio.getAllRooms().contains(room)){
             studio.addRoom(room);
+            dataStudios.updateStudio(studio);
             page.setName("Room "+getRoomName()+" is successfuly added!");
         }
         else{
