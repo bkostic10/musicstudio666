@@ -8,7 +8,6 @@ package org.bane8006.MusicStudio.pages;
 import java.io.Serializable;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.OnEvent;
-import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.service.IDataStudiosService;
@@ -24,7 +23,7 @@ import org.bane8006.MusicStudio.service.ILoggedUser;
 public class StudioDetails {
 
     private Serializable id;
-    @Persist
+    //@Persist
     private Studio studio;
 
     private Room room;
@@ -53,13 +52,13 @@ public class StudioDetails {
     @OnEvent(component="roomsLink")
     Object onEvent(long id){
         Studio studio = ds.getStudioById(id);
-        r.setStudio(studio);
+        r.setId(studio.getIdStudio());
         return r;
     }
     @OnEvent(component="addRoomsLink")
     Object onAdd(long id){
         Studio studio = ds.getStudioById(id);
-        ar.setStudio(studio);
+        ar.setId(studio.getIdStudio());
         return ar;
     }
     @OnEvent(component="deleteStudioLink")
@@ -68,9 +67,10 @@ public class StudioDetails {
         ds.deleteStudio(studio);
         return st;
     }
-    void onActivate(Serializable id){
+    void onActivate(long id){
         System.out.println("Activated:"+id);
-        this.id = getId();
+        this.id = id;
+        setStudio(ds.getStudioById(id));
     }
     Serializable onPassivate(){
         return id;
@@ -100,7 +100,12 @@ public class StudioDetails {
             return true;
         else return false;
     }
-    public long getId(){
-        return Studio.class.cast(studio).getIdStudio();
+
+//    public long getId(){
+//        return Studio.class.cast(studio).getIdStudio();
+//    }
+
+    void setId(Serializable id) {
+        this.id = id;
     }
 }

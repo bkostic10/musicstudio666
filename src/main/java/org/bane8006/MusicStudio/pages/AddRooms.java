@@ -5,6 +5,7 @@
 
 package org.bane8006.MusicStudio.pages;
 
+import java.io.Serializable;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -26,8 +27,11 @@ public class AddRooms {
     private RoomType roomType = RoomType.Recording;
     private String description = "Studio has:\nGuitar Head:\nGuitar Speaker:\nBass head:\nBass Speaker:\nMixer:\nVoice Speaker:\nDrums:";
 
+    @Persist("flash")
     private String name;
     
+    private Serializable id;
+
     @Inject
     private ILoggedUser lu;
     @Inject
@@ -35,7 +39,7 @@ public class AddRooms {
 
     private Room room;
 
-    @Persist
+
     private Studio studio;
 
     @InjectPage
@@ -107,12 +111,13 @@ public class AddRooms {
 
 
 
-    void onActivate(String room){
-        System.out.println("Activated:"+room);
-        this.name = room;
+    void onActivate(long id){
+        System.out.println("Activated:"+id);
+        this.id = id;
+        setStudio(dataStudios.getStudioById(id));
     }
-    String onPassivate(){
-        return name;
+    Serializable onPassivate(){
+        return id;
     }
 
     Object onSubmitFromAddRoomForm(){
@@ -133,5 +138,9 @@ public class AddRooms {
             page.setName("Room exists!!!");
         }
         return page;
+    }
+
+    void setId(Serializable id) {
+        this.id = id;
     }
 }

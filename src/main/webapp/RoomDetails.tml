@@ -21,7 +21,10 @@
     <p><t:if t:test="admin">
         <t:ActionLink t:context="room.idRoom" t:id="deleteRoomLink">Delete Room</t:ActionLink></t:if>
     </p>
-    <p><t:PageLink t:page="Rooms">Back</t:PageLink></p>
+    <p>
+        <t:ActionLink t:context="studio.idStudio"
+        t:id="backLink">Back</t:ActionLink>
+    </p>
 </body>
 <p:sidebar><br/>
         <h1>Welcome:</h1>

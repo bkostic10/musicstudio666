@@ -10,7 +10,10 @@
     </div><br/><div>${name}</div>
 
     <br/>
-    <t:PageLink t:page="StudioDetails">Back To The Studio Details</t:PageLink>
+    <div>
+        <t:ActionLink t:context="studio.idStudio"
+        t:id="backLink">Back To The Studio Details</t:ActionLink>
+    </div>
 </body>
 <p:sidebar><br/>
         <h1>Welcome:</h1>

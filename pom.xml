@@ -23,7 +23,24 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-c3p0</artifactId>
+            <version>3.3.2.GA</version>
+        </dependency>
 
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-annotations</artifactId>
+            <version>3.4.0.GA</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate</artifactId>
+            <version>3.2.7.ga</version>
+        </dependency>
 
 <!--      <dependency>
         <groupId>org.apache.tapestry</groupId>

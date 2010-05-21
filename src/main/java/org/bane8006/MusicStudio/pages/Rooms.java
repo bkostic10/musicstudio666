@@ -5,6 +5,7 @@
 
 package org.bane8006.MusicStudio.pages;
 
+import java.io.Serializable;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
@@ -12,6 +13,7 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.Room;
 import org.bane8006.MusicStudio.Studio;
 import org.bane8006.MusicStudio.User;
+import org.bane8006.MusicStudio.service.IDataStudiosService;
 import org.bane8006.MusicStudio.service.ILoggedUser;
 
 /**
@@ -20,15 +22,21 @@ import org.bane8006.MusicStudio.service.ILoggedUser;
  */
 public class Rooms {
 
-    @Persist
+    private Serializable id;
+
     private Studio studio;
 
     @Inject
     private ILoggedUser lu;
 
+    @Inject
+    private IDataStudiosService ds;
 
     @InjectPage
     private RoomDetails rdPage;
+
+    @InjectPage
+    private StudioDetails sdPage;
 
     @Persist("flash")
     private String name;
@@ -45,11 +53,23 @@ public class Rooms {
     @OnEvent(component="roomDetailsLink")
     Object onShowDetails(long id){
         Room room = studio.getRoomById(id);
-        rdPage.setRoom(room);
-        rdPage.setStudio(studio);
+        rdPage.setId(id);
+        rdPage.setIdStudio(studio.getIdStudio());
         return rdPage;
     }
-
+    @OnEvent(component="backLink")
+    Object onBack(long id){
+        sdPage.setId(studio.getIdStudio());
+        return sdPage;
+    }
+    void onActivate(long id){
+        System.out.println("Activated:"+id);
+        this.id = id; 
+        setStudio(ds.getStudioById(id));
+    }
+    Serializable onPassivate(){
+        return id;
+    }
     public Room getRoom(){
         return room;
     }
@@ -74,6 +94,10 @@ public class Rooms {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setId(Serializable id) {
+        this.id = id;
     }
 
 }

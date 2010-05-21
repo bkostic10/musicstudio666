@@ -18,7 +18,7 @@ public class RoomBean implements Room{
     @Id
     @GeneratedValue
     private long id;
-    @Column(name = "roomID",nullable=false,unique=true)
+    @Basic
     private String roomID;
     @Basic
     private String roomName;

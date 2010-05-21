@@ -175,5 +175,59 @@ public class SeleniumTests extends AbstractIntegrationTestSuite {
             click("link=Back");
             waitForPageToLoad("30000");
         }
+        @Test
+        void testRest2(){
+            open(BASE_URL);
+            click("link=Register");
+            waitForPageToLoad("30000");
+            type("firstname", "Pera");
+            type("lastname", "Pampur");
+            type("personalnumber", "123123123");
+            type("username", "admin");
+            type("password", "admin");
+            type("password2", "admin");
+            click("submit");
+            waitForPageToLoad("30000");
+            click("link=Back To The Hello Page");
+            waitForPageToLoad("30000");
+            type("userName", "admin");
+            type("password", "admin");
+            click("submit");
+            waitForPageToLoad("30000");
+            click("link=Add Studio");
+            waitForPageToLoad("30000");
+            type("textfield", "001");
+            type("textfield_0", "1st Studio");
+            type("textfield_1", "AA 1");
+            click("//input[@value='Submit']");
+            waitForPageToLoad("30000");
+            click("link=Back");
+            waitForPageToLoad("30000");
+            click("link=1st Studio");
+            waitForPageToLoad("30000");
+            click("link=Add Room");
+            waitForPageToLoad("30000");
+            type("textfield", "001001");
+            type("textfield_0", "1S - 1st Room");
+            click("radio");
+            click("//input[@value='Submit']");
+            waitForPageToLoad("30000");
+            click("link=Back");
+            waitForPageToLoad("30000");
+            click("link=1st Studio");
+            waitForPageToLoad("30000");
+            click("link=See the rooms:");
+            waitForPageToLoad("30000");
+            click("link=1S - 1st Room");
+            waitForPageToLoad("30000");
+            click("link=Delete Room");
+            waitForPageToLoad("30000");
+            click("link=Back To The Studio Details");
+            waitForPageToLoad("30000");
+            click("link=Back");
+            waitForPageToLoad("30000");
+            click("link=LogOut");
+            waitForPageToLoad("30000");
+        }
 }
 
