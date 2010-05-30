@@ -83,6 +83,7 @@ public class RoomDetails {
         System.out.println("Activated:"+id);
         this.id = id;
         setStudio(dataStudios.getStudioById(idStudio));
+        dataStudios.lockStudio(studio);
         setRoom(studio.getRoomById(id));
     }
     Serializable onPassivate(){

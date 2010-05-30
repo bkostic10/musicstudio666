@@ -70,6 +70,11 @@ public class MockDataStudios implements IDataStudiosService{
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    @Override
+    public void lockStudio(Studio s) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
 
 //    @Override
 //    public void load() {

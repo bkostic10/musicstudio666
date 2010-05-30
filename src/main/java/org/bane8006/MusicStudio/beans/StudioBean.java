@@ -13,7 +13,6 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -22,7 +21,7 @@ import org.bane8006.MusicStudio.Studio;
 
 
 @Entity
-public class StudioBean implements Studio{
+public class StudioBean implements Studio, Serializable{
 
     @Id
     @GeneratedValue
@@ -33,7 +32,7 @@ public class StudioBean implements Studio{
     private String studioName;
     @Basic
     private String studioAddress;
-    @OneToMany(targetEntity=RoomBean.class,cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+    @OneToMany(targetEntity=RoomBean.class,cascade=CascadeType.ALL)
     private List<Room> rooms = new ArrayList<Room>();
 
     @Override
@@ -54,10 +53,10 @@ public class StudioBean implements Studio{
     @Override
     public int getNumberOfJRooms() {
         int a = 0;
-        for (int i = 0; i < getAllRooms().size(); i++) {
-            if(rooms.get(i).getRoomType()==RoomType.Jamming){
+        for(Room r:rooms){
+            if(r.getRoomType()==RoomType.Jamming){
                 a++;
-            }        
+            }
         }
         return a;
     }
@@ -65,8 +64,8 @@ public class StudioBean implements Studio{
     @Override
     public int getNumberOfRRooms() {
         int a = 0;
-        for (int i = 0; i < getAllRooms().size(); i++) {
-            if(rooms.get(i).getRoomType()==RoomType.Recording){
+        for(Room r:rooms){
+            if(r.getRoomType()==RoomType.Recording){
                 a++;
             }
         }

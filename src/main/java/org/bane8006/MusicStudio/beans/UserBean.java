@@ -20,7 +20,7 @@ import org.bane8006.MusicStudio.User;
 
 
 @Entity
-public class UserBean implements User{
+public class UserBean implements User, Serializable{
     
 
     public UserBean(String firstName, String lastName, String password, String personalNumber, Privilege privilege, String userName) {

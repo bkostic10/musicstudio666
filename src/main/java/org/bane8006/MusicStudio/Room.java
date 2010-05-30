@@ -12,7 +12,7 @@ import org.bane8006.MusicStudio.beans.RoomType;
  * @author Baxter
  */
 public interface Room {
-    
+
     public long getIdRoom();
 
     public String getRoomID();

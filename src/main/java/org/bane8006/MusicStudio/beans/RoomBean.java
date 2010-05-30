@@ -6,18 +6,19 @@
 package org.bane8006.MusicStudio.beans;
 
 
+import java.io.Serializable;
 import javax.persistence.Basic;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import org.bane8006.MusicStudio.Room;
 
 @Entity
-public class RoomBean implements Room{
+public class RoomBean implements Room, Serializable{
     @Id
     @GeneratedValue
     private long id;
+    //@Column(name = "roomID",nullable=false,unique=true)
     @Basic
     private String roomID;
     @Basic

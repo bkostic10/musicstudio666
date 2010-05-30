@@ -71,6 +71,7 @@ public class StudioDetails {
         System.out.println("Activated:"+id);
         this.id = id;
         setStudio(ds.getStudioById(id));
+        ds.lockStudio(studio);
     }
     Serializable onPassivate(){
         return id;
