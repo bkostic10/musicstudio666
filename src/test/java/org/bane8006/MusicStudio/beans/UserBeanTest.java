@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
  */
 public class UserBeanTest {
     private User userUnderTest;
-
+    
     @BeforeMethod
     public void setUp() {
         userUnderTest = new UserBean();

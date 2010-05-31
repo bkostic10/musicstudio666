@@ -7,11 +7,17 @@ package org.bane8006.MusicStudio.beans;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import org.bane8006.MusicStudio.Booking;
 import org.bane8006.MusicStudio.Room;
+import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.OneToMany;
 
 @Entity
 public class RoomBean implements Room, Serializable{
@@ -27,6 +33,8 @@ public class RoomBean implements Room, Serializable{
     private RoomType roomType;
     @Basic
     private String description;
+    @OneToMany(targetEntity=BookingBean.class,cascade=CascadeType.ALL)
+    private List<Booking> bookings = new ArrayList<Booking>();
 
     @Override
     public long getIdRoom() {
@@ -93,12 +101,46 @@ public class RoomBean implements Room, Serializable{
         this.description = description;
     }
 
-
     @Override
     public boolean equals(Object o){
         Room r = (RoomBean)(o);
         if(roomID.equals(r.getRoomID())){return true;}
             else return false;
     }
+    @Override
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
+    }
 
+
+    @Override
+    public Collection<Booking> getAllBookings() {
+        return bookings;
+    }
+
+    @Override
+    public Booking getBookingById(Serializable id) {
+        for(Booking b:getAllBookings()){
+            if(b.getIdBooking()==id)
+                return b;
+        }
+        return null;
+    }
+    @Override
+    public Booking addBooking(Booking rb) {
+        if(!getAllBookings().contains(rb)){
+            assert rb != null;
+            assert rb.getBookingDate() != null;
+            assert !rb.getBookingDate().equals(" ");
+            assert !rb.getBookingDate().equals("");
+            assert rb.getBookingTime() != null;
+            bookings.add(rb);
+            return rb;
+        }
+        else return null;
+    }
+    @Override
+    public void deleteBooking(Booking b){
+        bookings.remove(b);
+    }
 }

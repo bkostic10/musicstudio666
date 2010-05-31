@@ -21,6 +21,24 @@
     <p><t:if t:test="admin">
         <t:ActionLink t:context="room.idRoom" t:id="deleteRoomLink">Delete Room</t:ActionLink></t:if>
     </p>
+       Book a room:<br/><br/>
+        <t:form t:id="bookRoomForm">
+        <t:errors/>
+            Date: <div><input type="text" t:type="datefield" t:value="bookingDate" t:readonly="readonly" t:validate="required"/></div><br/>
+            Time:<div><select t:type="select" t:model="timeModel" t:value="bookingTime" t:validate="required">
+                        <option>Super 1</option>
+                        <option>Super 2</option>
+                    </select>
+                </div><br/>
+            <input id="submit" type="submit" value="Submit"/>
+        </t:form><br/><br/>
+        <div>${answer}</div><br/><br/>
+    List:<br/>
+    <div t:type="loop" t:source="room.getAllBookings()" t:value="booking">
+
+    ${booking.bookingDate} ${booking.bookingTime} ${booking.userName}
+
+    </div><br/><br/>
     <p>
         <t:ActionLink t:context="studio.idStudio"
         t:id="backLink">Back</t:ActionLink>

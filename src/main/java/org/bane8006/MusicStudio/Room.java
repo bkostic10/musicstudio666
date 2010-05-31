@@ -5,6 +5,9 @@
 
 package org.bane8006.MusicStudio;
 
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
 import org.bane8006.MusicStudio.beans.RoomType;
 
 /**
@@ -33,4 +36,14 @@ public interface Room {
 
     @Override
     public boolean equals(Object o);
+
+    public void setBookings(List<Booking> bookings);
+
+    public Collection<Booking> getAllBookings();
+
+    public Booking getBookingById(Serializable id);
+
+    public Booking addBooking(Booking rb);
+
+    public void deleteBooking(Booking b);
 }
