@@ -8,6 +8,7 @@ package org.bane8006.MusicStudio.service;
 import java.io.Serializable;
 import java.util.Collection;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
+import org.bane8006.MusicStudio.Booking;
 import org.bane8006.MusicStudio.Room;
 import org.bane8006.MusicStudio.Studio;
 
@@ -28,4 +29,6 @@ public interface IDataStudiosService {
     public void lockStudio(Studio s);
     @CommitAfter
     public void deleteRoom(Studio s,Room r);
+    @CommitAfter
+    public void deleteBooking(Studio s,Room r,Booking b);
 }

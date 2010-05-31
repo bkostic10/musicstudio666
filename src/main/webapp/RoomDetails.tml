@@ -36,8 +36,10 @@
     List:<br/>
     <div t:type="loop" t:source="room.getAllBookings()" t:value="booking">
 
-    ${booking.bookingDate} ${booking.bookingTime} ${booking.userName}
-
+    ${booking.bookingDate} ${booking.bookingTime} ${booking.userName} 
+<t:if t:test="compatibility">
+<t:ActionLink t:context="booking.getIdBooking()" t:id="cancelResLink">Cancel</t:ActionLink>
+</t:if>
     </div><br/><br/>
     <p>
         <t:ActionLink t:context="studio.idStudio"

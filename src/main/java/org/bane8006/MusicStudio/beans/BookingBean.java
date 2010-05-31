@@ -7,13 +7,10 @@ package org.bane8006.MusicStudio.beans;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import org.bane8006.MusicStudio.Booking;
-import org.bane8006.MusicStudio.User;
 
 /**
  *

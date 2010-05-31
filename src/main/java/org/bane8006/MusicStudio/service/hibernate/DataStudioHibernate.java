@@ -11,6 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import org.bane8006.MusicStudio.Booking;
 import org.bane8006.MusicStudio.Room;
 import org.bane8006.MusicStudio.Studio;
 import org.bane8006.MusicStudio.beans.StudioBean;
@@ -52,6 +53,11 @@ public class DataStudioHibernate implements IDataStudiosService{
         s = (Studio) session.load(StudioBean.class, a);
         for(Iterator<Room> it = s.getAllRooms().iterator();it.hasNext();){
             Room r = it.next();
+            for(Iterator<Booking> it2 = r.getAllBookings().iterator();it2.hasNext();){
+                Booking b = it2.next();
+                it2.remove();
+                session.delete(b);
+            }
             it.remove();
             session.delete(r);
         }
@@ -69,8 +75,31 @@ public class DataStudioHibernate implements IDataStudiosService{
         for(Iterator<Room> it = s.getAllRooms().iterator();it.hasNext();){
             Room r = it.next();
             if(r.getIdRoom()==room.getIdRoom()){
+                for(Iterator<Booking> it2 = r.getAllBookings().iterator();it2.hasNext();){
+                    Booking b = it2.next();
+                    it2.remove();
+                    session.delete(b);
+                }
                 it.remove();
                 session.delete(r);
+            }
+        }
+    }
+    @Override
+    public void deleteBooking(Studio s,Room room,Booking b){
+        long a = s.getIdStudio();
+        s = (Studio) session.load(StudioBean.class, a);
+        for(Iterator<Room> it = s.getAllRooms().iterator();it.hasNext();){
+            Room r = it.next();
+            if(r.getIdRoom()==room.getIdRoom()){
+                for(Iterator<Booking> it2 = r.getAllBookings().iterator();it2.hasNext();){
+                    Booking book = it2.next();
+                    if(book.getIdBooking()==b.getIdBooking()){
+                        it2.remove();
+                        session.delete(b);
+                    }
+
+                }
             }
         }
     }

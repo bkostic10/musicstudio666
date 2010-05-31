@@ -101,6 +101,15 @@ public class RoomDetails {
         rooms.setId(studio.getIdStudio());
         return page;
     }
+    @OnEvent(component="cancelResLink")
+    Object onCancelRes(long id){
+        Booking b = room.getBookingById(id);
+        room.getAllBookings().remove(b);
+        dataStudios.deleteBooking(studio, room, b);
+        thisPage.setIdStudio(idStudio);
+        thisPage.setId(id);
+        return thisPage;
+    }
     void onActivate(long id){
         System.out.println("Activated:"+id);
         this.id = id;
@@ -116,6 +125,11 @@ public class RoomDetails {
     }
     public boolean getAdmin(){
         if(getUser().getPrivilege().equals(Privilege.Admin))
+            return true;
+        else return false;
+    }
+    public boolean getCompatibility(){
+        if(booking.getUsername().equals(getUser().getUserName()))
             return true;
         else return false;
     }

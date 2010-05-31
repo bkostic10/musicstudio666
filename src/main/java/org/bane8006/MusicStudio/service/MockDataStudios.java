@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import org.bane8006.MusicStudio.Booking;
 import org.bane8006.MusicStudio.Room;
 import org.bane8006.MusicStudio.Studio;
 
@@ -72,6 +73,11 @@ public class MockDataStudios implements IDataStudiosService{
 
     @Override
     public void lockStudio(Studio s) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void deleteBooking(Studio s, Room r, Booking b) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
