@@ -106,8 +106,6 @@ public class RoomDetails {
         Booking b = room.getBookingById(id);
         room.getAllBookings().remove(b);
         dataStudios.deleteBooking(studio, room, b);
-        thisPage.setIdStudio(idStudio);
-        thisPage.setId(id);
         return thisPage;
     }
     void onActivate(long id){
