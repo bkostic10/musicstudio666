@@ -103,9 +103,4 @@ public class DataStudioHibernate implements IDataStudiosService{
             }
         }
     }
-
-    @Override
-    public void lockStudio(Studio s) {
-        session.lock(s, LockMode.NONE);
-    }
 }

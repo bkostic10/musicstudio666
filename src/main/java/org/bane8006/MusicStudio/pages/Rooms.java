@@ -9,6 +9,7 @@ import java.io.Serializable;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
+import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.Room;
 import org.bane8006.MusicStudio.Studio;
@@ -24,6 +25,7 @@ public class Rooms {
 
     private Serializable id;
 
+    @Property
     private Studio studio;
 
     @Inject
@@ -41,6 +43,7 @@ public class Rooms {
     @Persist("flash")
     private String name;
 
+    @Property
     private Room room;
     
     Object onActivate()
@@ -64,27 +67,14 @@ public class Rooms {
     }
     void onActivate(long id){
         System.out.println("Activated:"+id);
-        this.id = id; 
-        setStudio(ds.getStudioById(id));
-        ds.lockStudio(studio);
+        this.id = id;
+        studio = ds.getStudioById(id);
+
     }
     Serializable onPassivate(){
         return id;
     }
-    public Room getRoom(){
-        return room;
-    }
-    public void setRoom(Room r){
-        room = r;
-    }
 
-    public Studio getStudio() {
-        return studio;
-    }
-
-    public void setStudio(Studio studio) {
-        this.studio = studio;
-    }
     public User getUser(){
         return lu.getFirst();
     }

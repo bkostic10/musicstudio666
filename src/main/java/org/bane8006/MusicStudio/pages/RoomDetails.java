@@ -23,7 +23,6 @@ import org.bane8006.MusicStudio.Studio;
 import org.bane8006.MusicStudio.User;
 import org.bane8006.MusicStudio.beans.BookingBean;
 import org.bane8006.MusicStudio.beans.Time;
-import org.bane8006.MusicStudio.service.IDataUserService;
 import org.bane8006.MusicStudio.service.ILoggedUser;
 
 /**
@@ -37,20 +36,22 @@ public class RoomDetails {
     @Persist
     private Serializable idStudio;
 
+    @Property
     private Room room;
+
     @Property
     private Booking booking;
 
     @Inject
     private IDataStudiosService dataStudios;
-    @Inject
-    private IDataUserService dataUsers;
+
     @Inject
     private ILoggedUser lu;
 
     @Inject
     private Messages message;
 
+    @Property
     private Studio studio;
 
     @InjectPage
@@ -72,21 +73,6 @@ public class RoomDetails {
         return null;
     }
 
-    public Room getRoom() {
-        return room;
-    }
-
-    public void setRoom(Room room) {
-        this.room = room;
-    }
-
-    public Studio getStudio() {
-        return studio;
-    }
-
-    public void setStudio(Studio studio) {
-        this.studio = studio;
-    }
     @OnEvent(component="backLink")
     Object onBack(long id){
         page.setId(studio.getIdStudio());
@@ -111,9 +97,8 @@ public class RoomDetails {
     void onActivate(long id){
         System.out.println("Activated:"+id);
         this.id = id;
-        setStudio(dataStudios.getStudioById(idStudio));
-        dataStudios.lockStudio(studio);
-        setRoom(studio.getRoomById(id));
+        studio = dataStudios.getStudioById(idStudio);
+        room = studio.getRoomById(id);
     }
     Serializable onPassivate(){
         return id;
@@ -170,10 +155,10 @@ public class RoomDetails {
         this.answer = answer;
     }
 
-
     public SelectModel getTimeModel() {
         return new EnumSelectModel(Time.class, message);
     }
+
     Object onSubmitFromBookRoomForm() {
         Booking b = new BookingBean();
         String db = String.valueOf(bookingDate);

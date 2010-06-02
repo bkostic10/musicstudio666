@@ -22,7 +22,7 @@ import org.bane8006.MusicStudio.service.ILoggedUser;
  * @author Baxter
  */
 public class AddStudios {
-    private Serializable id;
+
     private String studioID;
     private String studioName;
     private String studioAddress;
@@ -90,13 +90,7 @@ public class AddStudios {
     public void setName(String name) {
         this.name = name;
     }
-    void onActivate(Serializable id){
-        System.out.println("Activated:"+id);
-        this.id = getId();
-    }
-    Serializable onPassivate(){
-        return id;
-    }
+
 
     Object onSubmitFromAddStudioForm(){
         System.out.println("Handling form submission!");
@@ -113,8 +107,5 @@ public class AddStudios {
             page.setName("Studio exists!!!");
         }
         return page;
-    }
-    public long getId(){
-        return Studio.class.cast(studio).getIdStudio();
     }
 }

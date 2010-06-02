@@ -26,8 +26,6 @@ public interface IDataStudiosService {
     @CommitAfter
     public void updateStudio(Studio s);
     @CommitAfter
-    public void lockStudio(Studio s);
-    @CommitAfter
     public void deleteRoom(Studio s,Room r);
     @CommitAfter
     public void deleteBooking(Studio s,Room r,Booking b);

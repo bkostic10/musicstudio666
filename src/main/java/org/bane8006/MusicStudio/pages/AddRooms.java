@@ -8,6 +8,7 @@ package org.bane8006.MusicStudio.pages;
 import java.io.Serializable;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
+import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.beans.RoomBean;
@@ -39,7 +40,7 @@ public class AddRooms {
 
     private Room room;
 
-
+    @Property
     private Studio studio;
 
     @InjectPage
@@ -101,20 +102,10 @@ public class AddRooms {
         this.name = name;
     }
 
-    public Studio getStudio() {
-        return studio;
-    }
-
-    public void setStudio(Studio studio) {
-        this.studio = studio;
-    }
-
-
-
     void onActivate(long id){
         System.out.println("Activated:"+id);
         this.id = id;
-        setStudio(dataStudios.getStudioById(id));
+        studio = dataStudios.getStudioById(id);
     }
     Serializable onPassivate(){
         return id;
