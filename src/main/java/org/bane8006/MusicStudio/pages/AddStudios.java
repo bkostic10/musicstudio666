@@ -5,10 +5,11 @@
 
 package org.bane8006.MusicStudio.pages;
 
-import java.io.Serializable;
 import java.util.List;
+import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
+import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.beans.StudioBean;
@@ -22,6 +23,9 @@ import org.bane8006.MusicStudio.service.ILoggedUser;
  * @author Baxter
  */
 public class AddStudios {
+
+    @Component(id="addStudioForm")
+    private Form form;
 
     private String studioID;
     private String studioName;
@@ -90,22 +94,23 @@ public class AddStudios {
     public void setName(String name) {
         this.name = name;
     }
+    void onValidateFromAddStudioForm(){
+        for(Studio s:a.getAllStudios()){
+            if(s.getStudioID().equals(studioID))
+                form.recordError("Studio exists!!!");
+        }
 
+    }
 
-    Object onSubmitFromAddStudioForm(){
+    void onSuccessFromAddStudioForm(){
         System.out.println("Handling form submission!");
         studio = new StudioBean();
         studio.setStudioID(studioID);
         studio.setStudioName(studioName);
         studio.setStudioAddress(studioAddress);
 
-        if(!a.getAllStudios().contains(studio)){
-            a.addStudioBean(studio);
-            page.setName("Studio "+studio.getStudioName()+" is successfuly added!");
-        }
-        else{
-            page.setName("Studio exists!!!");
-        }
-        return page;
+        a.addStudioBean(studio);
+        page.setName("Studio "+studio.getStudioName()+" is successfuly added!");
+
     }
 }

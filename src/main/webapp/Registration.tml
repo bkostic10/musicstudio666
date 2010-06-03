@@ -27,7 +27,8 @@
         t:validate="required,minlength=5,maxlength=15"/></div>
 
         Retype Password:<br/>
-        <div><t:passwordfield t:id="password2" t:value="password2"/></div>
+        <div><t:passwordfield t:id="password2" t:value="password2"
+        t:validate="required"/></div>
 
         <br/>
         <input id="submit" type="submit" value="Submit"/>

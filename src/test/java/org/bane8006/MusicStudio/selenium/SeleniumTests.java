@@ -802,6 +802,9 @@ public class SeleniumTests extends AbstractIntegrationTestSuite {
             click("//form[@id='bookRoomForm']/div[2]/div/div[3]/table/tbody/tr/td[1]/button");
             click("submit");
             waitForPageToLoad("30000");
+            assertTextPresent("Room Name:");
+            assertTextPresent("Room Type:");
+            assertTextPresent("Description:");
             click("link=LogOut");
             waitForPageToLoad("30000");
         }

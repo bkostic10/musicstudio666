@@ -5,9 +5,11 @@
 
 package org.bane8006.MusicStudio.pages;
 
+import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.beans.UserBean;
 import org.bane8006.MusicStudio.service.IDataUserService;
@@ -20,6 +22,9 @@ import org.bane8006.MusicStudio.service.ILoggedUser;
  */
 public class EditUser {
     
+    @Component(id="editUserForm")
+    private Form form;
+
     private String firstName;
     private String lastName;
     private String personalNumber;
@@ -110,8 +115,15 @@ public class EditUser {
     public User getUser2() {
         return lu.getFirst();
     }
-
-    Object onSubmitFromEditUserForm(){
+    void onValidateFromEditUserForm(){
+        if(!getOldPassword().equals(getUser2().getPassword())){
+            form.recordError("Old password invalid!!!");
+        }
+        if(!getPassword().equals(getPassword2())){
+            form.recordError("Passwords don't match!!!");
+        }
+    }
+    void onSuccessFromEditUserForm(){
         System.out.println("Handling form submission!");
         user = new UserBean();
         user.setPrivilege(getUser2().getPrivilege());
@@ -120,15 +132,9 @@ public class EditUser {
         user.setPersonalNumber(personalNumber);
         user.setUserName(userName);
         user.setPassword(password);
-        if(getOldPassword().equals(getUser2().getPassword())&&user.getPassword().equals(getPassword2())){
-            a.replace(getUser2().getIdUser(), user);
-            edit.setName("Info is changed");
-            lu.remove();
-        }
-        else{
-            edit.setName("Data invalid!!!");
-        }
-        return edit;
+        a.replace(getUser2().getIdUser(), user);
+        edit.setName("Info is changed");
+        lu.remove();
     }
     public long getIdUser(){
         return User.class.cast(user).getIdUser();

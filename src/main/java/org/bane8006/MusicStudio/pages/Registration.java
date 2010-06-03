@@ -6,9 +6,11 @@
 package org.bane8006.MusicStudio.pages;
 
 import java.io.Serializable;
+import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.beans.UserBean;
@@ -21,7 +23,8 @@ import org.bane8006.MusicStudio.service.ILoggedUser;
  * @author Baxter
  */
 public class Registration {
-
+    @Component(id="registrationForm")
+    private Form form;
     private Serializable id;
     @Persist("flash")
     private String name;
@@ -113,7 +116,17 @@ public class Registration {
         return id;
     }
 
-    Object onSubmitFromRegistrationForm(){
+    void onValidateFromRegistrationForm(){
+        if(!password.equals(password2)){
+            form.recordError("Passwords don't match!!!");
+        }
+        for(User u:a.getAllUsers()){
+            if(u.getUserName().equals(userName))
+                form.recordError("Username exists!!!");
+        }
+
+    }
+    void onSuccessFromRegistrationForm(){
         System.out.println("Handling form submission!");
         user = new UserBean();
         user.setFirstName(firstName);
@@ -126,19 +139,9 @@ public class Registration {
         }else{
             user.setPrivilege(Privilege.User);
         }
-        if(!user.getPassword().equals(password2)){
-            registration.setName("Passwords doesn't match!!!");
-        }
-        else if (a.getAllUsers().contains(user)) {
-            registration.setName("Username exists!!!");
-        }
-        else{
-            a.addUser(user);
-            registration.setName("Successful registration: "+user.getFirstName()+" "+user.getLastName());
-        }
-        return registration;
+        a.addUser(user);
+        registration.setName("Successful registration: "+user.getFirstName()+" "+user.getLastName());
     }
-
     public long getId(){
         return User.class.cast(user).getIdUser();
     }

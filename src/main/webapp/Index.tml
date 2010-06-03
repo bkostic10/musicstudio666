@@ -4,7 +4,7 @@
         <!-- Most of the page content, including <head>, <body>, etc. tags, comes from Layout.tml -->
 <head></head><body>
     <t:form t:id="loginForm">
-    
+    <t:errors/>
  <div>
     <div>
         <t:label t:for="userName">
@@ -34,7 +34,7 @@
     </div>
 </div>
 </t:form>
-    <br/><div>${message}</div><br/>
+
 <p>
 <t:PageLink t:page="Registration">Register</t:PageLink>
 </p>

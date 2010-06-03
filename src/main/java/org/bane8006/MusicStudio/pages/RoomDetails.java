@@ -8,10 +8,12 @@ package org.bane8006.MusicStudio.pages;
 import java.io.Serializable;
 import java.util.Date;
 import org.apache.tapestry5.SelectModel;
+import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.util.EnumSelectModel;
@@ -30,6 +32,9 @@ import org.bane8006.MusicStudio.service.ILoggedUser;
  * @author Baxter
  */
 public class RoomDetails {
+
+    @Component(id="bookRoomForm")
+    private Form form;
 
     private long id;
 
@@ -158,8 +163,16 @@ public class RoomDetails {
     public SelectModel getTimeModel() {
         return new EnumSelectModel(Time.class, message);
     }
-
-    Object onSubmitFromBookRoomForm() {
+    void onValidateFromBookRoomForm() {
+        String db = String.valueOf(bookingDate);
+        String dd = db.substring(0, 10)+" "+db.substring(db.length()-4, db.length());
+        for(Booking b:room.getAllBookings()){
+            if(b.getBookingDate().equals(dd)&&b.getBookingTime().equals(bookingTime)){
+                form.recordError("Booking exists");
+            }
+        }
+    }
+    void onSuccessFromBookRoomForm() {
         Booking b = new BookingBean();
         String db = String.valueOf(bookingDate);
         String dd = db.substring(0, 10)+" "+db.substring(db.length()-4, db.length());
@@ -167,18 +180,11 @@ public class RoomDetails {
         b.setBookingTime(bookingTime);
         String user = lu.getFirst().getUserName();
         b.setUsername(user);
-        if(!room.getAllBookings().contains(b)||room.getAllBookings().isEmpty()){
-            room.addBooking(b);
-            dataStudios.updateStudio(studio);
-            thisPage.setIdStudio(idStudio);
-            thisPage.setId(id);
-            System.out.println("Booking added");
-            thisPage.setAnswer("Booking added");
-        }
-        else{
-            thisPage.setAnswer("Booking exists");
-            System.out.println("Booking exists");
-        }
-        return thisPage;
+        room.addBooking(b);
+        dataStudios.updateStudio(studio);
+        thisPage.setIdStudio(idStudio);
+        thisPage.setId(id);
+        System.out.println("Booking added");
+        thisPage.setAnswer("Booking added");
     }
 }

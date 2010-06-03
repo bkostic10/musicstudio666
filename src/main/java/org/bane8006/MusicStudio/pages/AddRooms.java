@@ -6,9 +6,11 @@
 package org.bane8006.MusicStudio.pages;
 
 import java.io.Serializable;
+import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.beans.RoomBean;
@@ -23,6 +25,10 @@ import org.bane8006.MusicStudio.service.ILoggedUser;
  * @author Baxter
  */
 public class AddRooms {
+
+    @Component(id="addRoomForm")
+    private Form form;
+
     private String roomID;
     private String roomName;
     private RoomType roomType = RoomType.Recording;
@@ -110,8 +116,14 @@ public class AddRooms {
     Serializable onPassivate(){
         return id;
     }
+    void onValidateFromAddRoomForm(){
+        for(Room r:studio.getAllRooms()){
+            if(r.getRoomID().equals(roomID))
+                form.recordError("Room exists!!!");
+        }
 
-    Object onSubmitFromAddRoomForm(){
+    }
+    void onSuccessFromAddRoomForm(){
         System.out.println("Handling form submission!");
         room = new RoomBean();
         room.setRoomID(roomID);
@@ -119,16 +131,9 @@ public class AddRooms {
         room.setRoomType(roomType);
         room.setDescription(description);
 
-
-        if(!studio.getAllRooms().contains(room)){
-            studio.addRoom(room);
-            dataStudios.updateStudio(studio);
-            page.setName("Room "+getRoomName()+" is successfuly added!");
-        }
-        else{
-            page.setName("Room exists!!!");
-        }
-        return page;
+        studio.addRoom(room);
+        dataStudios.updateStudio(studio);
+        page.setName("Room "+getRoomName()+" is successfuly added!");
     }
 
     void setId(Serializable id) {
