@@ -6,6 +6,7 @@
 package org.bane8006.MusicStudio.pages;
 
 import java.io.Serializable;
+import org.apache.tapestry5.annotations.BeginRender;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
@@ -17,7 +18,9 @@ import org.bane8006.MusicStudio.beans.RoomBean;
 import org.bane8006.MusicStudio.beans.RoomType;
 import org.bane8006.MusicStudio.Room;
 import org.bane8006.MusicStudio.Studio;
+import org.bane8006.MusicStudio.User;
 import org.bane8006.MusicStudio.service.IDataStudiosService;
+import org.bane8006.MusicStudio.service.IDataUserService;
 import org.bane8006.MusicStudio.service.ILoggedUser;
 
 /**
@@ -25,7 +28,14 @@ import org.bane8006.MusicStudio.service.ILoggedUser;
  * @author Baxter
  */
 public class AddRooms {
-
+    @Persist
+    private boolean userExists;
+    @Persist
+    private long idUser;
+    @Inject
+    private IDataUserService du;
+    @Property
+    private User user;
     @Component(id="addRoomForm")
     private Form form;
 
@@ -51,13 +61,21 @@ public class AddRooms {
 
     @InjectPage
     private AddRooms page;
-
+    @InjectPage
+    private StudioDetails st;
     Object onActivate()
     {
-        if (lu.getAllUsers().isEmpty()) {
+        user = du.getUserByUserName(st.getIdUser());
+        User u = null;
+        for(int i=0;i<lu.getAllUsers().size();i++){
+            if(lu.getAllUsers().get(i).getUserName().equals(user.getUserName())){
+                u = user;
+            }
+        }
+        if (u==null) {
             return Index.class;
         }
-        else if(lu.getFirst().getPrivilege().equals(Privilege.User)){
+        else if(u.getPrivilege().equals(Privilege.User)){
             return Studios.class;
         }
         else return null;
@@ -138,5 +156,16 @@ public class AddRooms {
 
     void setId(Serializable id) {
         this.id = id;
+    }
+    public void setIdUser(long idUser) {
+        this.idUser = idUser;
+    }
+
+    public void setUserExists(boolean userExists) {
+        this.userExists = userExists;
+    }
+    @BeginRender
+    public void pageActivation(){
+        user = du.getUserByUserName(idUser);
     }
 }

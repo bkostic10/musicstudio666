@@ -5,6 +5,7 @@
 
 package org.bane8006.MusicStudio.service;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import org.bane8006.MusicStudio.User;
@@ -53,6 +54,15 @@ public class LoggedUser implements ILoggedUser{
     @Override
     public User getFirst() {
         return users.get(0);
+    }
+
+    @Override
+    public User getUserById(Serializable id) {
+         for(User ub:users){
+            if(ub.getIdUser()==id)
+                return ub;
+        }
+        return null;
     }
 
 }

@@ -27,9 +27,14 @@ Description: A Web 2.0 design with fluid width suitable for blogs and small webs
             </div>
             <div id="menu">
                 <ul>
-                    <li t:type="loop" source="pageNames" value="pageName" class="prop:classForPageName">
+                    <!--<li t:type="loop" source="pageNames" value="pageName" class="prop:classForPageName">
                         <t:pagelink page="prop:pageName">${pageName}</t:pagelink>
-                    </li>
+                    </li>-->
+                    <li><t:ActionLink page="Index">Index</t:ActionLink></li>
+                    <li><t:ActionLink page="UserInfo">UserInfo</t:ActionLink></li>
+                    <li><t:ActionLink page="About">About</t:ActionLink></li>
+                    <li><t:ActionLink page="Contact">Contact</t:ActionLink></li>
+                    <li><t:PageLink page="LogOut">LogOut</t:PageLink></li>
                 </ul>
             </div>
         </div>
