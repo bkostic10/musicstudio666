@@ -8,7 +8,6 @@ package org.bane8006.MusicStudio.pages;
 import java.io.Serializable;
 import java.util.Date;
 import org.apache.tapestry5.SelectModel;
-import org.apache.tapestry5.annotations.BeginRender;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.OnEvent;
@@ -34,14 +33,6 @@ import org.bane8006.MusicStudio.service.ILoggedUser;
  * @author Baxter
  */
 public class RoomDetails {
-    @Persist
-    private boolean userExists;
-    @Persist
-    private long idUser;
-    @Inject
-    private IDataUserService du;
-    @Property
-    private User user;
 
     @Component(id="bookRoomForm")
     private Form form;
@@ -84,15 +75,13 @@ public class RoomDetails {
 
     Object onActivate()
     {
-        if (userExists==false) return Index.class;
+        if(lu.getAllUsers().isEmpty())return Index.class;
         return null;
     }
 
     @OnEvent(component="backLink")
     Object onBack(long id){
         page.setId(studio.getIdStudio());
-        page.setIdUser(idUser);
-        page.setUserExists(userExists);
         return page;
     }
     @OnEvent(component="deleteRoomLink")
@@ -102,8 +91,7 @@ public class RoomDetails {
         studio.getAllRooms().remove(room);
         dataStudios.deleteRoom(studio, room);
         rooms.setId(studio.getIdStudio());
-//        page.setIdUser(idUser);
-//        page.setUserExists(userExists);
+
         return page;
     }
     @OnEvent(component="cancelResLink")
@@ -111,8 +99,6 @@ public class RoomDetails {
         Booking b = room.getBookingById(id);
         room.getAllBookings().remove(b);
         dataStudios.deleteBooking(studio, room, b);
-//        thisPage.setIdUser(idUser);
-//        thisPage.setUserExists(userExists);
         return thisPage;
     }
     void onActivate(long id){
@@ -124,16 +110,16 @@ public class RoomDetails {
     Serializable onPassivate(){
         return id;
     }
-//    public User getUser(){
-//        return lu.getFirst();
-//    }
+    public User getUser(){
+        return lu.getFirst();
+    }
     public boolean getAdmin(){
-        if(user.getPrivilege().equals(Privilege.Admin))
+        if(getUser().getPrivilege().equals(Privilege.Admin))
             return true;
         else return false;
     }
     public boolean getCompatibility(){
-        if(booking.getUsername().equals(user.getUserName()))
+        if(booking.getUsername().equals(getUser().getUserName()))
             return true;
         else return false;
     }
@@ -194,26 +180,13 @@ public class RoomDetails {
         String dd = db.substring(0, 10)+" "+db.substring(db.length()-4, db.length());
         b.setBookingDate(dd);
         b.setBookingTime(bookingTime);
-        String username2 = lu.getUserById(idUser).getUserName();
-        b.setUsername(username2);
+        String user = getUser().getUserName();
+        b.setUsername(user);
         room.addBooking(b);
         dataStudios.updateStudio(studio);
         thisPage.setIdStudio(idStudio);
         thisPage.setId(id);
-//        thisPage.setUserExists(userExists);
-//        thisPage.setIdUser(idUser);
         System.out.println("Booking added");
         thisPage.setAnswer("Booking added");
-    }
-    public void setIdUser(long idUser) {
-        this.idUser = idUser;
-    }
-
-    public void setUserExists(boolean userExists) {
-        this.userExists = userExists;
-    }
-    @BeginRender
-    public void pageActivation(){
-        user = du.getUserByUserName(idUser);
     }
 }

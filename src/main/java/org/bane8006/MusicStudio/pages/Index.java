@@ -1,8 +1,11 @@
 package org.bane8006.MusicStudio.pages;
 
+import org.apache.tapestry5.annotations.ApplicationState;
+import org.apache.tapestry5.annotations.BeginRender;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
+import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.bane8006.MusicStudio.User;
@@ -29,8 +32,6 @@ public class Index
     @Inject
     private ILoggedUser lu;
     private User user;
-    @Persist
-    private boolean userExists;
 
     Object onActivate()
     {
@@ -43,8 +44,6 @@ public class Index
         if(aUser!=null){
             user = aUser;
             lu.addUser(user);
-            studios.setIdUser(user.getIdUser());
-            studios.setUserExists(true);
         }
         else{
             form.recordError("Username or password incorrect");

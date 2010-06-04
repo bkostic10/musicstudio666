@@ -11,7 +11,7 @@
 
     </div><br/>
     <div><t:if t:test="admin">
-        <t:PageLink t:page="addStudios">Add Studio</t:PageLink>
+        <t:PageLink t:page="AddStudios">Add Studio</t:PageLink>
     </t:if></div><br/><div>${name}</div>
 </body>
 <p:sidebar><br/>

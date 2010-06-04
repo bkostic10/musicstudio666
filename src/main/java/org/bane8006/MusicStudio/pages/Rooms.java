@@ -24,14 +24,6 @@ import org.bane8006.MusicStudio.service.ILoggedUser;
  * @author Baxter
  */
 public class Rooms {
-    @Persist
-    private boolean userExists;
-    @Persist
-    private long idUser;
-    @Inject
-    private IDataUserService du;
-    @Property
-    private User user;
 
     private Serializable id;
 
@@ -58,25 +50,21 @@ public class Rooms {
     
     Object onActivate()
     {
-        if (userExists==false){
-            return Index.class;
-        }
-        else return null;
+        if(lu.getAllUsers().isEmpty())return Index.class;
+        return null;
     }
     @OnEvent(component="roomDetailsLink")
     Object onShowDetails(long id){
         Room room = studio.getRoomById(id);
         rdPage.setId(id);
         rdPage.setIdStudio(studio.getIdStudio());
-        rdPage.setIdUser(idUser);
-        rdPage.setUserExists(userExists);
+
         return rdPage;
     }
     @OnEvent(component="backLink")
     Object onBack(long id){
         sdPage.setId(studio.getIdStudio());
-        sdPage.setIdUser(idUser);
-        sdPage.setUserExists(userExists);
+
         return sdPage;
     }
     void onActivate(long id){
@@ -89,9 +77,9 @@ public class Rooms {
         return id;
     }
 
-//    public User getUser(){
-//        return lu.getFirst();
-//    }
+    public User getUser(){
+        return lu.getFirst();
+    }
 
     public String getName() {
         return name;
@@ -103,17 +91,5 @@ public class Rooms {
 
     public void setId(Serializable id) {
         this.id = id;
-    }
-
-    public void setIdUser(long idUser) {
-        this.idUser = idUser;
-    }
-
-    public void setUserExists(boolean userExists) {
-        this.userExists = userExists;
-    }
-    @BeginRender
-    public void pageActivation(){
-        user = du.getUserByUserName(idUser);
     }
 }

@@ -786,7 +786,7 @@ public class SeleniumTests extends AbstractIntegrationTestSuite {
             waitForPageToLoad("30000");
             click("link=1S - 1st Room");
             waitForPageToLoad("30000");
-              
+
             assertTextPresent("Room Name:");
             assertTextPresent("Room Type:");
             assertTextPresent("Description:");
@@ -794,10 +794,19 @@ public class SeleniumTests extends AbstractIntegrationTestSuite {
             click("//form[@id='bookRoomForm']/div[2]/div/div[3]/table/tbody/tr/td[1]/button");
             click("submit");
             waitForPageToLoad("30000");
-            
+
             assertTextPresent("Room Name:");
             assertTextPresent("Room Type:");
             assertTextPresent("Description:");
+
+            click("link=Back");
+            waitForPageToLoad("30000");
+            click("link=1S - 1st Room");
+            waitForPageToLoad("30000");
+            assertTextPresent("Room Name:");
+            assertTextPresent("Room Type:");
+            assertTextPresent("Description:");
+            
             click("datefield-trigger");
             click("//form[@id='bookRoomForm']/div[2]/div/div[3]/table/tbody/tr/td[1]/button");
             click("submit");
