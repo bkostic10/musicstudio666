@@ -1,7 +1,6 @@
 package org.bane8006.MusicStudio.pages;
 
 import org.apache.tapestry5.annotations.ApplicationState;
-import org.apache.tapestry5.annotations.BeginRender;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
@@ -31,12 +30,17 @@ public class Index
     private IDataUserService a;
     @Inject
     private ILoggedUser lu;
+    @ApplicationState
+    @Property
     private User user;
-
+    private boolean userExists;
+    @Persist("flash")
+    private String message;
+    
     Object onActivate()
     {
-        if (lu.getAllUsers().isEmpty()) return null;
-        return Studios.class;
+        if (userExists) return Studios.class;
+        return null;
     }
     void onValidateFromLoginForm(){
         User aUser = null;
@@ -68,4 +72,11 @@ public class Index
         this.userName = userName;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }

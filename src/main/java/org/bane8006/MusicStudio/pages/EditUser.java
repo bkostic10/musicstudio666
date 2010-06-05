@@ -5,9 +5,9 @@
 
 package org.bane8006.MusicStudio.pages;
 
+import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
-import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -32,8 +32,6 @@ public class EditUser {
     private String password;
     private String oldPassword;
     private String password2;
-    @Persist("flash")
-    private String name;
 
     @Inject
     private ILoggedUser lu;
@@ -41,11 +39,18 @@ public class EditUser {
     @Inject
     private IDataUserService a;
 
-    @Property
-    private User user;
-
     @InjectPage
-    private EditUser edit;
+    private Index index;
+
+    @ApplicationState
+    @Property
+    private User user2;
+    private boolean user2Exists;
+    Object onActivate()
+    {
+        if (!user2Exists) return Index.class;
+        return null;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -103,40 +108,32 @@ public class EditUser {
         System.out.println("Setting password: " + oldPassword);
         this.oldPassword = oldPassword;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
     
-    public User getUser2() {
-        return lu.getFirst();
-    }
     void onValidateFromEditUserForm(){
-        if(!getOldPassword().equals(getUser2().getPassword())){
+        if(!getOldPassword().equals(user2.getPassword())){
             form.recordError("Old password invalid!!!");
         }
         if(!getPassword().equals(getPassword2())){
             form.recordError("Passwords don't match!!!");
         }
     }
-    void onSuccessFromEditUserForm(){
+    Object onSuccessFromEditUserForm(){
         System.out.println("Handling form submission!");
-        user = new UserBean();
-        user.setPrivilege(getUser2().getPrivilege());
+        User user = new UserBean();
+        user.setPrivilege(user2.getPrivilege());
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setPersonalNumber(personalNumber);
         user.setUserName(userName);
         user.setPassword(password);
-        a.replace(getUser2().getIdUser(), user);
-        edit.setName("Info is changed");
-        lu.remove();
+        a.replace(user2.getIdUser(), user);
+        index.setMessage("Info is changed! Please login");
+        lu.remove(user);
+        user2 = null;
+        return index;
+
     }
     public long getIdUser(){
-        return User.class.cast(user).getIdUser();
+        return User.class.cast(user2).getIdUser();
     }
 }

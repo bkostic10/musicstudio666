@@ -6,7 +6,7 @@
 package org.bane8006.MusicStudio.pages;
 
 import java.io.Serializable;
-import org.apache.tapestry5.annotations.BeginRender;
+import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
@@ -16,8 +16,6 @@ import org.bane8006.MusicStudio.Room;
 import org.bane8006.MusicStudio.Studio;
 import org.bane8006.MusicStudio.User;
 import org.bane8006.MusicStudio.service.IDataStudiosService;
-import org.bane8006.MusicStudio.service.IDataUserService;
-import org.bane8006.MusicStudio.service.ILoggedUser;
 
 /**
  *
@@ -29,9 +27,6 @@ public class Rooms {
 
     @Property
     private Studio studio;
-
-    @Inject
-    private ILoggedUser lu;
 
     @Inject
     private IDataStudiosService ds;
@@ -48,9 +43,13 @@ public class Rooms {
     @Property
     private Room room;
     
+    @ApplicationState
+    @Property
+    private User user;
+    private boolean userExists;
     Object onActivate()
     {
-        if(lu.getAllUsers().isEmpty())return Index.class;
+        if (!userExists) return Index.class;
         return null;
     }
     @OnEvent(component="roomDetailsLink")
@@ -75,10 +74,6 @@ public class Rooms {
     }
     Serializable onPassivate(){
         return id;
-    }
-
-    public User getUser(){
-        return lu.getFirst();
     }
 
     public String getName() {

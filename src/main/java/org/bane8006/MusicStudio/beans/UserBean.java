@@ -23,15 +23,6 @@ import org.bane8006.MusicStudio.User;
 public class UserBean implements User, Serializable{
     
 
-    public UserBean(String firstName, String lastName, String password, String personalNumber, Privilege privilege, String userName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.personalNumber = personalNumber;
-        this.userName = userName;
-        this.password = password;
-        this.privilege = privilege;
-    }
-
     @Id
     @GeneratedValue
     private long id;
@@ -52,12 +43,6 @@ public class UserBean implements User, Serializable{
     public UserBean() {
     }
 
-    public UserBean(String firstName, String lastName,String personalNumber,String userName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.userName = userName;
-        this.personalNumber = personalNumber;
-    }
     
     public UserBean(String firstName, String lastName, String personalNumber, String userName,Privilege p) {
         this.firstName = firstName;
@@ -151,12 +136,6 @@ public class UserBean implements User, Serializable{
         this.privilege = privilege;
     }
     
-    @Override
-    public boolean equals(Object o){
-        User u = (UserBean)(o);
-        if(userName.equals(u.getUserName()))return true;
-        else return false;
-    }
 
     @Override
     public long getIdUser() {

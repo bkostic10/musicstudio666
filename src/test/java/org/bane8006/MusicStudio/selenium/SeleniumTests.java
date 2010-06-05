@@ -637,7 +637,7 @@ public class SeleniumTests extends AbstractIntegrationTestSuite {
             waitForPageToLoad("30000");
             click("//input[@value='Delete Account']");
             waitForPageToLoad("30000");
-            click("link=Back");
+            click("link=LogOut");
             waitForPageToLoad("30000");
         }
         @Test

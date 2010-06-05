@@ -19,5 +19,5 @@ public interface ILoggedUser {
     public User getUserById(Serializable id);
     public User getFirst();
     public void addUser(User ub);
-    public void remove();
+    public void remove(User user);
 }

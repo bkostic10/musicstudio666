@@ -8,6 +8,7 @@ package org.bane8006.MusicStudio.pages;
 import java.io.Serializable;
 import java.util.Date;
 import org.apache.tapestry5.SelectModel;
+import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.OnEvent;
@@ -25,8 +26,6 @@ import org.bane8006.MusicStudio.Studio;
 import org.bane8006.MusicStudio.User;
 import org.bane8006.MusicStudio.beans.BookingBean;
 import org.bane8006.MusicStudio.beans.Time;
-import org.bane8006.MusicStudio.service.IDataUserService;
-import org.bane8006.MusicStudio.service.ILoggedUser;
 
 /**
  *
@@ -52,9 +51,6 @@ public class RoomDetails {
     private IDataStudiosService dataStudios;
 
     @Inject
-    private ILoggedUser lu;
-
-    @Inject
     private Messages message;
 
     @Property
@@ -73,9 +69,13 @@ public class RoomDetails {
     @InjectPage
     private RoomDetails thisPage;
 
+    @ApplicationState
+    @Property
+    private User user;
+    private boolean userExists;
     Object onActivate()
     {
-        if(lu.getAllUsers().isEmpty())return Index.class;
+        if (!userExists) return Index.class;
         return null;
     }
 
@@ -110,16 +110,14 @@ public class RoomDetails {
     Serializable onPassivate(){
         return id;
     }
-    public User getUser(){
-        return lu.getFirst();
-    }
+    
     public boolean getAdmin(){
-        if(getUser().getPrivilege().equals(Privilege.Admin))
+        if(user.getPrivilege().equals(Privilege.Admin))
             return true;
         else return false;
     }
     public boolean getCompatibility(){
-        if(booking.getUsername().equals(getUser().getUserName()))
+        if(booking.getUsername().equals(user.getUserName()))
             return true;
         else return false;
     }
@@ -180,8 +178,8 @@ public class RoomDetails {
         String dd = db.substring(0, 10)+" "+db.substring(db.length()-4, db.length());
         b.setBookingDate(dd);
         b.setBookingTime(bookingTime);
-        String user = getUser().getUserName();
-        b.setUsername(user);
+        String user2 = user.getUserName();
+        b.setUsername(user2);
         room.addBooking(b);
         dataStudios.updateStudio(studio);
         thisPage.setIdStudio(idStudio);

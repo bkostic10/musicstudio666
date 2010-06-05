@@ -6,6 +6,7 @@
 package org.bane8006.MusicStudio.pages;
 
 import java.io.Serializable;
+import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
@@ -16,7 +17,6 @@ import org.bane8006.MusicStudio.beans.Privilege;
 import org.bane8006.MusicStudio.beans.UserBean;
 import org.bane8006.MusicStudio.service.IDataUserService;
 import org.bane8006.MusicStudio.User;
-import org.bane8006.MusicStudio.service.ILoggedUser;
 
 /**
  *
@@ -44,12 +44,12 @@ public class Registration {
     @InjectPage
     private Registration registration;
     
-    @Inject
-    private ILoggedUser lu;
-    
+    @ApplicationState
+    private User user2;
+    private boolean user2Exists;
     Object onActivate()
     {
-        if (lu.getAllUsers().isEmpty()) return null;
+        if (!user2Exists) return null;
         return Studios.class;
     }
     public String getName() {

@@ -7,7 +7,6 @@ package org.bane8006.MusicStudio.pages;
 
 import java.util.List;
 import org.apache.tapestry5.annotations.ApplicationState;
-import org.apache.tapestry5.annotations.BeginRender;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
@@ -20,8 +19,6 @@ import org.bane8006.MusicStudio.service.IDataStudiosService;
 import org.bane8006.MusicStudio.Room;
 import org.bane8006.MusicStudio.Studio;
 import org.bane8006.MusicStudio.User;
-import org.bane8006.MusicStudio.service.IDataUserService;
-import org.bane8006.MusicStudio.service.ILoggedUser;
 
 /**
  *
@@ -38,9 +35,6 @@ public class AddStudios {
     private List<Room> rooms;
     @Persist("flash")
     private String name;
-
-    @Inject
-    private ILoggedUser lu;
     
     private Studio studio;
 
@@ -50,11 +44,15 @@ public class AddStudios {
     @InjectPage
     private AddStudios page;
 
+    @ApplicationState
+    @Property
+    private User user;
+    private boolean userExists;
 
     Object onActivate()
     {
-        if(lu.getAllUsers().isEmpty())return Index.class;
-        else if(lu.getFirst().getPrivilege()==Privilege.User){
+        if(!userExists)return Index.class;
+        else if(user.getPrivilege()==Privilege.User){
             return Studios.class;
         }
         return null;

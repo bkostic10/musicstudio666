@@ -5,9 +5,9 @@
 
 package org.bane8006.MusicStudio.pages;
 
-import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.annotations.ApplicationState;
+import org.apache.tapestry5.annotations.Property;
 import org.bane8006.MusicStudio.User;
-import org.bane8006.MusicStudio.service.ILoggedUser;
 
 /**
  *
@@ -15,17 +15,15 @@ import org.bane8006.MusicStudio.service.ILoggedUser;
  */
 public class UserInfo {
 
-    @Inject
-    private ILoggedUser lu;
 
-
-    public User getUser() {
-        return lu.getFirst();
-    }
+    @ApplicationState
+    @Property
+    private User user;
+    private boolean userExists;
     
     Object onActivate()
     {
-        if (lu.getAllUsers().isEmpty()) return Index.class;
+        if (!userExists) return Index.class;
         return null;
     }
 }

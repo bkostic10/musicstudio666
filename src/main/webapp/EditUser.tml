@@ -38,7 +38,6 @@
         <input id="submit" type="submit" value="Submit"/>
     </t:form>
     <br/>
-    <div>${name}</div>
 
 <t:PageLink t:page="UserInfo">Back</t:PageLink>
 </body>

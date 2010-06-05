@@ -47,8 +47,8 @@ public class LoggedUser implements ILoggedUser{
     }
 
     @Override
-    public void remove(){
-        users.removeAll(users);
+    public void remove(User u){
+        users.remove(u);
     }
 
     @Override
