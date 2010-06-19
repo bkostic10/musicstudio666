@@ -42,20 +42,32 @@ public class Index
         if (userExists) return Studios.class;
         return null;
     }
-    void onValidateFromLoginForm(){
+
+//    void onValidateFromLoginForm(){
+//        User aUser = null;
+//        aUser = a.authenticate(userName, password);
+//        if(aUser!=null){
+//            user = aUser;
+//            lu.addUser(user);
+//        }
+//        else{
+//            form.recordError("Username or password incorrect");
+//        }
+//    }
+    Object onSuccessFromLoginForm(){
         User aUser = null;
         aUser = a.authenticate(userName, password);
         if(aUser!=null){
             user = aUser;
             lu.addUser(user);
+            return studios;
         }
         else{
             form.recordError("Username or password incorrect");
+            return null;
         }
     }
-    Object onSuccessFromLoginForm(){
-        return studios;
-    }
+
     public String getPassword() {
         return password;
     }

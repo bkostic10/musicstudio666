@@ -10,5 +10,5 @@ package org.bane8006.MusicStudio.beans;
  * @author Baxter
  */
 public enum Privilege{
-    User,Admin;
+    User,Owner;
 }

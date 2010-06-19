@@ -6,98 +6,135 @@
     <packaging>war</packaging>
     <name>MusicStudio Tapestry 5 Application</name>
         <dependencies>
-        <dependency>
-            <groupId>org.apache.tapestry</groupId>
-            <artifactId>tapestry-core</artifactId>
-            <version>5.2.0-SNAPSHOT</version>
-        </dependency>
+                <dependency>
+                        <groupId>org.apache.tapestry</groupId>
+                        <artifactId>tapestry-core</artifactId>
+                        <version>${tapestry-version}</version>
+                        <type>jar</type>
+                </dependency>
+                <dependency>
+                        <groupId>org.apache.tapestry</groupId>
+                        <artifactId>tapestry-ioc</artifactId>
+                        <version>${tapestry-version}</version>
+                </dependency>
 
-        <!-- A dependency on either JUnit or TestNG is required, or the surefire plugin (which runs the tests)
-will fail, preventing Maven from packaging the WAR. Tapestry includes a large number
-of testing facilities designed for use with TestNG (http://testng.org/), so it's recommended. -->
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>5.8</version>
-            <classifier>jdk15</classifier>
-            <scope>test</scope>
-        </dependency>
+                <!--
+                        A dependency on either JUnit or TestNG is required, or the surefire
+                        plugin (which runs the tests) will fail, preventing Maven from
+                        packaging the WAR. Tapestry includes a large number of testing
+                        facilities designed for use with TestNG (http://testng.org/), so it's
+                        recommended.
+                -->
+                <dependency>
+                        <groupId>org.seleniumhq.selenium.client-drivers</groupId>
+                        <artifactId>selenium-java-client-driver</artifactId>
+                        <version>1.0.2</version>
+                </dependency>
 
-        <!--  <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-c3p0</artifactId>
-            <version>3.3.2.GA</version>
-        </dependency>
+                <dependency>
+                        <groupId>org.seleniumhq.selenium.server</groupId>
+                        <artifactId>selenium-server</artifactId>
+                        <version>1.0.1</version>
+                </dependency>
 
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-annotations</artifactId>
-            <version>3.4.0.GA</version>
-        </dependency>
+                <dependency>
+                        <groupId>org.seleniumhq.selenium.server</groupId>
+                        <artifactId>selenium-server-coreless</artifactId>
+                        <version>1.0.1</version>
+                </dependency>
 
 
-       <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate</artifactId>
-            <version>3.2.7.ga</version>
-        </dependency>
+                <dependency>
+                        <groupId>org.testng</groupId>
+                        <artifactId>testng</artifactId>
+                        <version>5.8</version>
+                        <classifier>jdk15</classifier>
+                        <scope>test</scope>
+                </dependency>
+                <dependency>
+                        <groupId>org.apache.tapestry</groupId>
+                        <artifactId>tapestry-hibernate</artifactId>
+                        <version>${tapestry-version}</version>
+                </dependency>
+                <dependency>
+                        <groupId>org.hibernate</groupId>
+                        <artifactId>ejb3-persistence</artifactId>
+                        <version>1.0.2.GA</version>
+                </dependency>
+                <dependency>
+                        <groupId>hsqldb</groupId>
+                        <artifactId>hsqldb</artifactId>
+                        <version>1.8.0.7</version>
+                </dependency>
+                <dependency>
+                        <groupId>org.easymock</groupId>
+                        <artifactId>easymock</artifactId>
+                        <version>2.4</version>
+                        <scope>test</scope>
+                </dependency>
 
-     <dependency>
-        <groupId>org.apache.tapestry</groupId>
-        <artifactId>tapestry-hibernate-core</artifactId>
-        <version>5.1.0.5</version>
-        <type>jar</type>
-      </dependency>-->
+                <dependency>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-core</artifactId>
+                        <version>${spring-version}</version>
+                </dependency>
+                <dependency>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-context</artifactId>
+                        <version>${spring-version}</version>
+                </dependency>
 
-    <dependency>
-      <groupId>org.apache.tapestry</groupId>
-      <artifactId>tapestry-hibernate</artifactId>
-      <version>5.1.0.5</version>
-    </dependency>
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>ejb3-persistence</artifactId>
-      <version>1.0.2.GA</version>
-    </dependency>
-    <dependency>
-      <groupId>hsqldb</groupId>
-      <artifactId>hsqldb</artifactId>
-      <version>1.8.0.7</version>
-    </dependency>
-    <dependency>
-            <groupId>org.easymock</groupId>
-            <artifactId>easymock</artifactId>
-            <version>2.4</version>
-            <scope>test</scope>
-     </dependency>
-     <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-all</artifactId>
-      <version>1.8.1</version>
-    </dependency>
-    <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
-            <scope>provided</scope>
-    </dependency>
-    <dependency>
-            <groupId>org.apache.tapestry</groupId>
-            <artifactId>tapestry-test</artifactId>
-            <version>5.2.0-SNAPSHOT</version>
-            <scope>test</scope>
-        </dependency>
-    <dependency>
- 	  <groupId>org.apache.tapestry</groupId>
-            <artifactId>tapestry5-annotations</artifactId>
-            <version>5.2.0-SNAPSHOT</version>
-            <type>jar</type>
-    </dependency>
-	<dependency>
-			<groupId>org.apache.tapestry</groupId>
-			<artifactId>tapestry-ioc</artifactId>
-			<version>5.2.0-SNAPSHOT</version>
-		</dependency>
+                <!--<dependency>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-orm</artifactId>
+                        <version>${spring-version}</version>
+                </dependency>-->
+
+
+                <!--
+                        tapestry-test will conflict with RunJettyRun inside Eclipse.
+                        tapestry-test brings in Selenium, which is based on Jetty 5.1;
+                        RunJettyRun uses Jetty 6. <dependency>
+                        <groupId>org.apache.tapestry</groupId>
+                        <artifactId>tapestry-test</artifactId>
+                        <version>${tapestry-release-version}</version> <scope>test</scope>
+                        </dependency>
+                -->
+
+                <!--
+                        Provided by the servlet container, but sometimes referenced in the
+                        application code.
+                -->
+                <dependency>
+                        <groupId>org.mockito</groupId>
+                        <artifactId>mockito-all</artifactId>
+                        <version>1.8.1</version>
+                </dependency>
+                <dependency>
+                        <groupId>javax.servlet</groupId>
+                        <artifactId>servlet-api</artifactId>
+                        <version>2.5</version>
+                        <scope>provided</scope>
+                </dependency>
+                <dependency>
+                        <groupId>org.apache.tapestry</groupId>
+                        <artifactId>tapestry-upload</artifactId>
+                        <version>${tapestry-version}</version>
+                        <type>jar</type>
+                </dependency>
+                <dependency>
+                        <groupId>org.apache.tapestry</groupId>
+                        <artifactId>tapestry-test</artifactId>
+                        <version>${tapestry-version}</version>
+                        <scope>test</scope>
+                        <type>jar</type>
+                </dependency>
+                <dependency>
+                        <groupId>org.apache.tapestry</groupId>
+                        <artifactId>tapestry5-annotations</artifactId>
+                        <version>${tapestry-version}</version>
+                        <type>jar</type>
+                </dependency>
     </dependencies>
     <build>
         <finalName>MusicStudio</finalName>
@@ -106,8 +143,8 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>1.5</source>
+                    <target>1.5</target>
                     <optimize>true</optimize>
                 </configuration>
             </plugin>
@@ -145,7 +182,7 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
          <plugin>
                 <groupId>org.apache.tapestry</groupId>
                 <artifactId>tapestry-component-report</artifactId>
-                <version>${tapestry-release-version}</version>
+                <version>5.2.0-SNAPSHOT</version>
                 <configuration>
                     <rootPackage>org.bane8006.MusicStudio</rootPackage>
                 </configuration>
@@ -191,8 +228,8 @@ of a Tapestry Maven plugin is not required.   -->
     </pluginRepositories>
 
     <properties>
-        <tapestry-version>5.2.0-SNAPSHOT</tapestry-version>
-        <netbeans.hint.deploy.server>Tomcat60</netbeans.hint.deploy.server>
+	<tapestry-version>5.1.0.5</tapestry-version>
+        <spring-version>3.0.2.RELEASE</spring-version>
     </properties>
 </project>
 

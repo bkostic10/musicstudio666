@@ -77,7 +77,7 @@ public class StudioDetails {
     }
     
     public boolean getAdmin(){
-        if(user.getPrivilege().equals(Privilege.Admin))
+        if(user.getPrivilege().equals(Privilege.Owner))
             return true;
         else return false;
     }

@@ -109,14 +109,14 @@ public class EditUser {
         this.oldPassword = oldPassword;
     }
     
-    void onValidateFromEditUserForm(){
-        if(!getOldPassword().equals(user2.getPassword())){
-            form.recordError("Old password invalid!!!");
-        }
-        if(!getPassword().equals(getPassword2())){
-            form.recordError("Passwords don't match!!!");
-        }
-    }
+//    void onValidateFromEditUserForm(){
+//        if(!getOldPassword().equals(user2.getPassword())){
+//            form.recordError("Old password invalid!!!");
+//        }
+//        if(!getPassword().equals(getPassword2())){
+//            form.recordError("Passwords don't match!!!");
+//        }
+//    }
     Object onSuccessFromEditUserForm(){
         System.out.println("Handling form submission!");
         User user = new UserBean();
@@ -126,12 +126,20 @@ public class EditUser {
         user.setPersonalNumber(personalNumber);
         user.setUserName(userName);
         user.setPassword(password);
-        a.replace(user2.getIdUser(), user);
-        index.setMessage("Info is changed! Please login");
-        lu.remove(user);
-        user2 = null;
-        return index;
-
+        if(!getOldPassword().equals(user2.getPassword())){
+            form.recordError("Old password invalid!!!");
+        }
+        else if(!getPassword().equals(getPassword2())){
+            form.recordError("Passwords don't match!!!");
+        }
+        else{
+            a.replace(user2.getIdUser(), user);
+            index.setMessage("Info is changed! Please login");
+            lu.remove(user);
+            user2 = null;
+            return index;
+        }
+        return null;
     }
     public long getIdUser(){
         return User.class.cast(user2).getIdUser();

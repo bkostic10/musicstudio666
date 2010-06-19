@@ -116,16 +116,16 @@ public class Registration {
         return id;
     }
 
-    void onValidateFromRegistrationForm(){
-        if(!password.equals(password2)){
-            form.recordError("Passwords don't match!!!");
-        }
-        for(User u:a.getAllUsers()){
-            if(u.getUserName().equals(userName))
-                form.recordError("Username exists!!!");
-        }
-
-    }
+//    void onValidateFromRegistrationForm(){
+//        if(!password.equals(password2)){
+//            form.recordError("Passwords don't match!!!");
+//        }
+//        for(User u:a.getAllUsers()){
+//            if(u.getUserName().equals(userName))
+//                form.recordError("Username exists!!!");
+//        }
+//
+//    }
     void onSuccessFromRegistrationForm(){
         System.out.println("Handling form submission!");
         user = new UserBean();
@@ -134,13 +134,25 @@ public class Registration {
         user.setPersonalNumber(personalNumber);
         user.setUserName(userName);
         user.setPassword(password);
-        if(user.getUserName().equals("admin")&&user.getPassword().equals("admin")){
-            user.setPrivilege(Privilege.Admin);
-        }else{
-            user.setPrivilege(Privilege.User);
+
+
+        if(!password.equals(password2)){
+            form.recordError("Passwords don't match!!!");
         }
-        a.addUser(user);
-        registration.setName("Successful registration: "+user.getFirstName()+" "+user.getLastName());
+        else{
+            if(user.getUserName().equals("admin")&&user.getPassword().equals("admin")){
+                user.setPrivilege(Privilege.Owner);
+            }
+            else{
+                user.setPrivilege(Privilege.User);
+            }
+            try {
+                a.addUser(user);
+                registration.setName("Successful registration: " + user.getFirstName() + " " + user.getLastName());
+            } catch (RuntimeException re) {
+                form.recordError("Username exists!!!");
+            }
+        }
     }
     public long getId(){
         return User.class.cast(user).getIdUser();

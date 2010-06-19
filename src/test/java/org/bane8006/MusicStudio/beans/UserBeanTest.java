@@ -149,7 +149,7 @@ public class UserBeanTest {
     @Test
     public void testPrivilege2() {
         assertNull(userUnderTest.getPrivilege());
-        Privilege p = Privilege.Admin;
+        Privilege p = Privilege.Owner;
         userUnderTest.setPrivilege(p);
         assertSame(p, userUnderTest.getPrivilege());
     }

@@ -27,7 +27,7 @@ public class MockDataUser implements IDataUserService{
     
     public MockDataUser() {
         this(new ArrayList<User>());
-        addUser(new UserBean("Pera", "Pampur", "0706987483921", "admin", "admin",Privilege.Admin));
+        addUser(new UserBean("Pera", "Pampur", "0706987483921", "admin", "admin",Privilege.Owner));
     }
 
     @Override

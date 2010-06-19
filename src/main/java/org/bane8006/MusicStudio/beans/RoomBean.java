@@ -24,7 +24,7 @@ public class RoomBean implements Room, Serializable{
     @Id
     @GeneratedValue
     private long id;
-    //@Column(name = "roomID",nullable=false,unique=true)
+//@Column(name = "roomID",nullable=false,unique=true)
     @Basic
     private String roomID;
     @Basic
