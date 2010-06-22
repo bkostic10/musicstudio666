@@ -116,16 +116,16 @@ public class Registration {
         return id;
     }
 
-//    void onValidateFromRegistrationForm(){
-//        if(!password.equals(password2)){
-//            form.recordError("Passwords don't match!!!");
-//        }
-//        for(User u:a.getAllUsers()){
-//            if(u.getUserName().equals(userName))
-//                form.recordError("Username exists!!!");
-//        }
-//
-//    }
+    void onValidateFormFromRegistrationForm(){
+        if(!password.equals(password2)){
+            form.recordError("Passwords don't match!!!");
+        }
+        for(User u:a.getAllUsers()){
+            if(u.getUserName().equals(userName))
+                form.recordError("Username exists!!!");
+        }
+
+    }
     void onSuccessFromRegistrationForm(){
         System.out.println("Handling form submission!");
         user = new UserBean();
@@ -146,12 +146,12 @@ public class Registration {
             else{
                 user.setPrivilege(Privilege.User);
             }
-            try {
+            
                 a.addUser(user);
                 registration.setName("Successful registration: " + user.getFirstName() + " " + user.getLastName());
-            } catch (RuntimeException re) {
-                form.recordError("Username exists!!!");
-            }
+            
+               
+            
         }
     }
     public long getId(){

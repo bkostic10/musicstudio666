@@ -43,29 +43,29 @@ public class Index
         return null;
     }
 
-//    void onValidateFromLoginForm(){
-//        User aUser = null;
-//        aUser = a.authenticate(userName, password);
-//        if(aUser!=null){
-//            user = aUser;
-//            lu.addUser(user);
-//        }
-//        else{
-//            form.recordError("Username or password incorrect");
-//        }
-//    }
-    Object onSuccessFromLoginForm(){
+	void onValidateFormFromLoginForm(){
         User aUser = null;
         aUser = a.authenticate(userName, password);
         if(aUser!=null){
             user = aUser;
             lu.addUser(user);
-            return studios;
         }
         else{
             form.recordError("Username or password incorrect");
-            return null;
         }
+    }
+    Object onSuccessFromLoginForm(){
+        //User aUser = null;
+        //aUser = a.authenticate(userName, password);
+        /*if(aUser!=null){
+            user = aUser;
+            lu.addUser(user);*/
+            return studios;
+        /*}
+        else{
+            form.recordError("Username or password incorrect");
+            return null;
+        }*/
     }
 
     public String getPassword() {

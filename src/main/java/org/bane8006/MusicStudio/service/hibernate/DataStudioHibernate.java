@@ -31,23 +31,23 @@ public class DataStudioHibernate implements IDataStudiosService{
         this.session = session;
     }
 
-    @Override
+    
     public Collection<Studio> getAllStudios() {
         List all = session.createQuery("from StudioBean").list();
         return all;
     }
 
-    @Override
+    
     public Studio getStudioById(Serializable id) {
         return (Studio) session.get(StudioBean.class, id);
     }
 
-    @Override
+    
     public Studio addStudioBean(Studio sb) {
         return (Studio)session.get(StudioBean.class, session.save(sb));
     }
 
-    @Override
+    
     public void deleteStudio(Studio s) {
         long a = s.getIdStudio();
         s = (Studio) session.load(StudioBean.class, a);
@@ -64,11 +64,11 @@ public class DataStudioHibernate implements IDataStudiosService{
         session.delete(s);
     }
 
-    @Override
+    
     public void updateStudio(Studio s) {
         session.update(s);
     }
-    @Override
+    
     public void deleteRoom(Studio s,Room room){
         long a = s.getIdStudio();
         s = (Studio) session.load(StudioBean.class, a);
@@ -85,7 +85,8 @@ public class DataStudioHibernate implements IDataStudiosService{
             }
         }
     }
-    @Override
+    
+    
     public void deleteBooking(Studio s,Room room,Booking b){
         long a = s.getIdStudio();
         s = (Studio) session.load(StudioBean.class, a);

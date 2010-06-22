@@ -38,17 +38,17 @@ public class BookingBean implements Booking, Serializable{
         this.username = username;
     }
 
-    @Override
+    
     public long getIdBooking() {
         return id;
     }
 
-    @Override
+    
     public String getBookingDate() {
         return bookingDate;
     }
 
-    @Override
+    
     public void setBookingDate(String bookingDate) {
         assert bookingDate!=null;
         assert !bookingDate.equals("");
@@ -56,21 +56,21 @@ public class BookingBean implements Booking, Serializable{
         this.bookingDate = bookingDate;
     }
 
-    @Override
+    
     public Time getBookingTime() {
         return bookingTime;
     }
 
-    @Override
+    
     public void setBookingTime(Time bookingTime) {
         assert bookingTime!=null;
         this.bookingTime = bookingTime;
     }
-    @Override
+    
     public String getUsername() {
         return username;
     }
-    @Override
+    
     public void setUsername(String username) {
         assert username!=null;
         assert !username.equals("");

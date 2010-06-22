@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+ 	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+ 	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+	<bean id="studioService"
+		class="org.bane8006.MusicStudio.service.spring_hibernate.DataStudioDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="userService"
+		class="org.bane8006.MusicStudio.service.spring_hibernate.DataUserDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="configLocation">
+			<value>classpath:hibernate.cfg.xml</value>
+		</property>
+		<property name="configurationClass">
+			<value>org.hibernate.cfg.AnnotationConfiguration</value>
+		</property>
+		<property name="annotatedClasses">
+			<list>
+				<value>org.bane8006.MusicStudio.beans.BookingBean</value>
+				<value>org.bane8006.MusicStudio.beans.RoomBean</value>
+				<value>org.bane8006.MusicStudio.beans.StudioBean</value>
+				<value>org.bane8006.MusicStudio.beans.UserBean
+				</value>
+
+			</list>
+		</property>
+	</bean>
+	<bean id="org.springframework.transaction.PlatformTransactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<tx:annotation-driven
+		transaction-manager="org.springframework.transaction.PlatformTransactionManager" />
+</beans>

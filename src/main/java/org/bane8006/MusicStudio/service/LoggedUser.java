@@ -27,12 +27,12 @@ public class LoggedUser implements ILoggedUser{
         this(new ArrayList<User>());
     }
 
-    @Override
+    
     public List<User> getAllUsers() {
         return  users;
     }
 
-    @Override
+    
     public User getUserByUserName(String name) {
          for(User ub:users){
             if(ub.getUserName().equals(name))
@@ -41,25 +41,25 @@ public class LoggedUser implements ILoggedUser{
         return null;
     }
 
-    @Override
+    
     public void addUser(User ub){
         users.add(ub);
     }
 
-    @Override
+    
     public void remove(User u){
         users.remove(u);
     }
 
-    @Override
+    
     public User getFirst() {
         return users.get(0);
     }
 
-    @Override
+    
     public User getUserById(Serializable id) {
          for(User ub:users){
-            if(ub.getIdUser()==id)
+            if(ub.getIdUser()==(Long)id)
                 return ub;
         }
         return null;

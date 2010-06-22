@@ -18,6 +18,12 @@
                         <version>${tapestry-version}</version>
                 </dependency>
 
+				<dependency>
+                        <groupId>org.apache.tapestry</groupId>
+                        <artifactId>tapestry-spring</artifactId>
+                        <version>${tapestry-version}</version>
+                        <type>jar</type>
+                </dependency>
                 <!--
                         A dependency on either JUnit or TestNG is required, or the surefire
                         plugin (which runs the tests) will fail, preventing Maven from
@@ -84,11 +90,11 @@
                         <version>${spring-version}</version>
                 </dependency>
 
-                <!--<dependency>
+                <dependency>
                         <groupId>org.springframework</groupId>
                         <artifactId>spring-orm</artifactId>
                         <version>${spring-version}</version>
-                </dependency>-->
+                </dependency>
 
 
                 <!--

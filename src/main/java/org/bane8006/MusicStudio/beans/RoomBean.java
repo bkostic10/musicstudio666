@@ -36,7 +36,7 @@ public class RoomBean implements Room, Serializable{
     @OneToMany(targetEntity=BookingBean.class,cascade=CascadeType.ALL)
     private List<Booking> bookings = new ArrayList<Booking>();
 
-    @Override
+    
     public long getIdRoom() {
         return id;
     }
@@ -51,12 +51,12 @@ public class RoomBean implements Room, Serializable{
         this.description = description;
     }
 
-    @Override
+    
     public String getRoomID() {
         return roomID;
     }
 
-    @Override
+    
     public void setRoomID(String roomID) {
         assert roomID!=null;
         assert !roomID.equals(" ");
@@ -64,12 +64,12 @@ public class RoomBean implements Room, Serializable{
         this.roomID = roomID;
     }
 
-    @Override
+    
     public String getRoomName() {
         return roomName;
     }
 
-    @Override
+    
     public void setRoomName(String roomName) {
         assert roomName!=null;
         assert !roomName.equals(" ");
@@ -77,23 +77,23 @@ public class RoomBean implements Room, Serializable{
         this.roomName = roomName;
     }
 
-    @Override
+    
     public RoomType getRoomType() {
         return roomType;
     }
 
-    @Override
+    
     public void setRoomType(RoomType roomType) {
         assert roomType!=null;
         this.roomType = roomType;
     }
 
-    @Override
+    
     public String getDescription() {
         return description;
     }
 
-    @Override
+    
     public void setDescription(String description) {
         assert description!=null;
         assert !description.equals("");
@@ -107,26 +107,26 @@ public class RoomBean implements Room, Serializable{
         if(roomID.equals(r.getRoomID())){return true;}
             else return false;
     }
-    @Override
+    
     public void setBookings(List<Booking> bookings) {
         this.bookings = bookings;
     }
 
 
-    @Override
+    
     public Collection<Booking> getAllBookings() {
         return bookings;
     }
 
-    @Override
+    
     public Booking getBookingById(Serializable id) {
         for(Booking b:getAllBookings()){
-            if(b.getIdBooking()==id)
+            if(b.getIdBooking()==(Long)id)
                 return b;
         }
         return null;
     }
-    @Override
+    
     public Booking addBooking(Booking rb) {
         if(!getAllBookings().contains(rb)){
             assert rb != null;
@@ -139,7 +139,7 @@ public class RoomBean implements Room, Serializable{
         }
         else return null;
     }
-    @Override
+    
     public void deleteBooking(Booking b){
         bookings.remove(b);
     }

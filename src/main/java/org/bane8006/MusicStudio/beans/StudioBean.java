@@ -35,7 +35,6 @@ public class StudioBean implements Studio, Serializable{
     @OneToMany(targetEntity=RoomBean.class,cascade=CascadeType.ALL)
     private List<Room> rooms = new ArrayList<Room>();
 
-    @Override
     public long getIdStudio() {
         return id;
     }
@@ -50,7 +49,7 @@ public class StudioBean implements Studio, Serializable{
         
     }
 
-    @Override
+    
     public int getNumberOfJRooms() {
         int a = 0;
         for(Room r:rooms){
@@ -61,7 +60,7 @@ public class StudioBean implements Studio, Serializable{
         return a;
     }
 
-    @Override
+    
     public int getNumberOfRRooms() {
         int a = 0;
         for(Room r:rooms){
@@ -72,17 +71,17 @@ public class StudioBean implements Studio, Serializable{
         return a;
     }
 
-    @Override
+    
     public int getNumberOfRooms() {
         return rooms.size();
     }
 
-    @Override
+    
     public String getStudioAddress() {
         return studioAddress;
     }
 
-    @Override
+    
     public void setStudioAddress(String studioAddress) {
         assert studioAddress!=null;
         assert !studioAddress.equals(" ");
@@ -90,12 +89,12 @@ public class StudioBean implements Studio, Serializable{
         this.studioAddress = studioAddress;
     }
 
-    @Override
+    
     public String getStudioID() {
         return studioID;
     }
 
-    @Override
+    
     public void setStudioID(String studioID) {
         assert studioID!=null;
         assert !studioID.equals(" ");
@@ -103,45 +102,45 @@ public class StudioBean implements Studio, Serializable{
         this.studioID = studioID;
     }
 
-    @Override
+    
     public String getStudioName() {
         return studioName;
     }
 
-    @Override
+    
     public void setStudioName(String studioName) {
         assert studioName!=null;
         assert !studioName.equals(" ");
         assert !studioName.equals("");
         this.studioName = studioName;
     }
-    @Override
+    
     public boolean equals(Object o){
         Studio s = (StudioBean)(o);
         if(studioID.equals(s.getStudioID())){return true;}
         else return false;
     }
 
-    @Override
+    
     public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
     }
     
 
-    @Override
+    
     public Collection<Room> getAllRooms() {
         return rooms;
     }
 
-    @Override
+    
     public Room getRoomById(Serializable id) {
         for(Room rb:getAllRooms()){
-            if(rb.getIdRoom()==id)
+            if(rb.getIdRoom()==(Long)id)
                 return rb;
         }
         return null;
     }
-    @Override
+    
     public Room addRoom(Room rb) {
         if(!getAllRooms().contains(rb)){
             assert rb != null;
@@ -153,7 +152,7 @@ public class StudioBean implements Studio, Serializable{
         }
         else return null;
     }
-    @Override
+    
     public void deleteRoom(Room r){
         rooms.remove(r);
     }
