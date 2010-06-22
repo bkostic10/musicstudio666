@@ -116,13 +116,13 @@ public class AddRooms {
     Serializable onPassivate(){
         return id;
     }
-//    void onValidateFromAddRoomForm(){
-//        for(Room r:studio.getAllRooms()){
-//            if(r.getRoomID().equals(roomID))
-//                form.recordError("Room exists!!!");
-//        }
-//
-//    }
+    void onValidateFormFromAddRoomForm(){
+        for(Room r:studio.getAllRooms()){
+            if(r.getRoomID().equals(roomID))
+                form.recordError("Room exists!!!");
+        }
+
+    }
     void onSuccessFromAddRoomForm(){
         System.out.println("Handling form submission!");
         room = new RoomBean();
@@ -130,13 +130,9 @@ public class AddRooms {
         room.setRoomName(roomName);
         room.setRoomType(roomType);
         room.setDescription(description);
-        if(!studio.getAllRooms().contains(room)) {
-            studio.addRoom(room);
-            dataStudios.updateStudio(studio);
-            page.setName("Room " + getRoomName() + " is successfuly added!");
-        } else {
-            form.recordError("Room exists!!!");
-        }
+        studio.addRoom(room);
+        dataStudios.updateStudio(studio);
+        page.setName("Room " + getRoomName() + " is successfuly added!");
     }
 
     void setId(Serializable id) {

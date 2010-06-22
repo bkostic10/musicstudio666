@@ -141,7 +141,6 @@ public class StudioBeanTest {
         when(room.getRoomType()).thenReturn(roomType);
 	studioUnderTest.addRoom(room);
 	assertSame(room,studioUnderTest.getRoomById(idRoom));
-        //assertNull(studioUnderTest.getRoomById(0));
     }
     @Test
     public void testAddRoom(){

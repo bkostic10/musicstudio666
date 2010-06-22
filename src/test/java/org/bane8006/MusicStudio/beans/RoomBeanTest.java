@@ -139,7 +139,6 @@ public class RoomBeanTest {
     @Test
     public void testBookings(){
         assertNotNull(roomUnderTest.getAllBookings());
-
     }
 
     @Test
@@ -158,7 +157,6 @@ public class RoomBeanTest {
         when(booking.getBookingTime()).thenReturn(time);
 	roomUnderTest.addBooking(booking);
 	assertSame(booking,roomUnderTest.getBookingById(bookingID));
-        //assertNull(roomUnderTest.getBookingById(new Long(0)));
     }
     @Test
     public void testAddBooking(){

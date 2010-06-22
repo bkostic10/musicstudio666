@@ -9,14 +9,11 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import org.bane8006.MusicStudio.Booking;
 import org.bane8006.MusicStudio.Room;
 import org.bane8006.MusicStudio.Studio;
 import org.bane8006.MusicStudio.beans.StudioBean;
 import org.bane8006.MusicStudio.service.IDataStudiosService;
-import org.hibernate.LockMode;
 import org.hibernate.Session;
 
 /**

@@ -43,7 +43,7 @@ public class Index
         return null;
     }
 
-	void onValidateFormFromLoginForm(){
+    void onValidateFormFromLoginForm(){
         User aUser = null;
         aUser = a.authenticate(userName, password);
         if(aUser!=null){
@@ -55,17 +55,7 @@ public class Index
         }
     }
     Object onSuccessFromLoginForm(){
-        //User aUser = null;
-        //aUser = a.authenticate(userName, password);
-        /*if(aUser!=null){
-            user = aUser;
-            lu.addUser(user);*/
-            return studios;
-        /*}
-        else{
-            form.recordError("Username or password incorrect");
-            return null;
-        }*/
+        return studios;
     }
 
     public String getPassword() {

@@ -96,13 +96,13 @@ public class AddStudios {
     public void setName(String name) {
         this.name = name;
     }
-//    void onValidateFromAddStudioForm(){
-//        for(Studio s:a.getAllStudios()){
-//            if(s.getStudioID().equals(studioID))
-//                form.recordError("Studio exists!!!");
-//        }
-//
-//    }
+    void onValidateFormFromAddStudioForm(){
+        for(Studio s:a.getAllStudios()){
+            if(s.getStudioID().equals(studioID))
+                form.recordError("Studio exists!!!");
+        }
+
+    }
 
     void onSuccessFromAddStudioForm(){
         System.out.println("Handling form submission!");
@@ -110,13 +110,8 @@ public class AddStudios {
         studio.setStudioID(studioID);
         studio.setStudioName(studioName);
         studio.setStudioAddress(studioAddress);
-
-        try {
-            a.addStudioBean(studio);
-            page.setName("Studio " + studio.getStudioName() + " is successfuly added!");
-        } catch (RuntimeException re) {
-            form.recordError("Studio exists!!!");
-        }
+        a.addStudioBean(studio);
+        page.setName("Studio " + studio.getStudioName() + " is successfuly added!");
 
     }
 }

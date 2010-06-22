@@ -163,15 +163,15 @@ public class RoomDetails {
     public SelectModel getTimeModel() {
         return new EnumSelectModel(Time.class, message);
     }
-//    void onValidateFromBookRoomForm() {
-//        String db = String.valueOf(bookingDate);
-//        String dd = db.substring(0, 10)+" "+db.substring(db.length()-4, db.length());
-//        for(Booking b:room.getAllBookings()){
-//            if(b.getBookingDate().equals(dd)&&b.getBookingTime().equals(bookingTime)){
-//                form.recordError("Booking exists");
-//            }
-//        }
-//    }
+    void onValidateFormFromBookRoomForm() {
+        String db = String.valueOf(bookingDate);
+        String dd = db.substring(0, 10)+" "+db.substring(db.length()-4, db.length());
+        for(Booking b:room.getAllBookings()){
+            if(b.getBookingDate().equals(dd)&&b.getBookingTime().equals(bookingTime)){
+                form.recordError("Booking exists");
+            }
+        }
+    }
     void onSuccessFromBookRoomForm() {
         Booking b = new BookingBean();
         String db = String.valueOf(bookingDate);
@@ -180,16 +180,12 @@ public class RoomDetails {
         b.setBookingTime(bookingTime);
         String user2 = user.getUserName();
         b.setUsername(user2);
-        if(!room.getAllBookings().contains(b)){
-            room.addBooking(b);
-            dataStudios.updateStudio(studio);
-            thisPage.setIdStudio(idStudio);
-            thisPage.setId(id);
-            System.out.println("Booking added");
-            thisPage.setAnswer("Booking added");
-        }
-        else{
-            form.recordError("Booking exists");
-        }
+
+        room.addBooking(b);
+        dataStudios.updateStudio(studio);
+        thisPage.setIdStudio(idStudio);
+        thisPage.setId(id);
+        System.out.println("Booking added");
+        thisPage.setAnswer("Booking added");
     }
 }

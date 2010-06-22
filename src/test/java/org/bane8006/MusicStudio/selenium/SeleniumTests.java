@@ -790,8 +790,10 @@ public class SeleniumTests extends AbstractIntegrationTestSuite {
             assertTextPresent("Room Name:");
             assertTextPresent("Room Type:");
             assertTextPresent("Description:");
-            click("datefield-trigger");
-            click("//form[@id='bookRoomForm']/div[2]/div/div[3]/table/tbody/tr/td[1]/button");
+            //click("datefield-trigger");
+            //click("//form[@id='bookRoomForm']/div[2]/div/div[3]/table/tbody/tr/td[1]/button");
+            type("datefield", "6/22/2010");
+            select("select", "label=_14h 16h");
             click("submit");
             waitForPageToLoad("30000");
 
@@ -807,8 +809,10 @@ public class SeleniumTests extends AbstractIntegrationTestSuite {
             assertTextPresent("Room Type:");
             assertTextPresent("Description:");
             
-            click("datefield-trigger");
-            click("//form[@id='bookRoomForm']/div[2]/div/div[3]/table/tbody/tr/td[1]/button");
+            //click("datefield-trigger");
+            //click("//form[@id='bookRoomForm']/div[2]/div/div[3]/table/tbody/tr/td[1]/button");
+            type("datefield", "6/22/2010");
+            select("select", "label=_14h 16h");
             click("submit");
             waitForPageToLoad("30000");
             assertTextPresent("Room Name:");

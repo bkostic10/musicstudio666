@@ -135,24 +135,15 @@ public class Registration {
         user.setUserName(userName);
         user.setPassword(password);
 
-
-        if(!password.equals(password2)){
-            form.recordError("Passwords don't match!!!");
+        if(user.getUserName().equals("admin")&&user.getPassword().equals("admin")){
+            user.setPrivilege(Privilege.Owner);
         }
         else{
-            if(user.getUserName().equals("admin")&&user.getPassword().equals("admin")){
-                user.setPrivilege(Privilege.Owner);
-            }
-            else{
-                user.setPrivilege(Privilege.User);
-            }
-            
-                a.addUser(user);
-                registration.setName("Successful registration: " + user.getFirstName() + " " + user.getLastName());
-            
-               
-            
+            user.setPrivilege(Privilege.User);
         }
+        a.addUser(user);
+        registration.setName("Successful registration: " + user.getFirstName() + " " + user.getLastName());
+        
     }
     public long getId(){
         return User.class.cast(user).getIdUser();
