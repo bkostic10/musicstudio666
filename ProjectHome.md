@@ -1,0 +1,1 @@
+Student project. Music studio web application. Showing studio info, room info, booking rooms for recording or jamming... Practice and learning tapestry, hibernate.
